@@ -1,0 +1,31 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --dark-green: #52734D;
+    --medium-green: #91C788;
+    --light-green: #DDFFBC;
+
+    --light-yellow: #FEFFDE;
+
+    --default: white;
+}
+
+body {
+    background-color: none;
+}
+
+.container-top {    
+    background-color: none;
+}
+
+.header {
+    color: none;
+}
+
+.topbox {
+    background-color: none;
+    color: none;
+} 
