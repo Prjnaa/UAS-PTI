@@ -21,9 +21,9 @@ export default {
     fontSize: {
       '2xs': '0.6rem',
       'xs': '0.8rem',
-      'sm': '1rem',
-      'base': '1.25rem',
-      'xl': '1.5rem',
+      sm: '1rem',
+      base: '1.25rem',
+      xl: '1.5rem',
       '2xl': '1.8rem',
       '3xl': '2rem',
       '4xl': '2.6rem',
