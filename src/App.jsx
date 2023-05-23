@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route } from "react-router-dom"
 import Login from './components/page-signin/Login'
 import Register from './components/page-signin/Regis'
 import Main from './components/page-main/Main'
 import Friend from './components/page-friends/src/Friend'
+import "./components/page-signin/firebase"
 
 export default function App() {
   return (
