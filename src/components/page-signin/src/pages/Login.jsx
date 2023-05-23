@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Login() {
   return (
@@ -14,9 +15,9 @@ export default function Login() {
           <input type='password' id='password' className=' h-10 px-3 rounded-md border-[1px] border-gray-300'/>
 
           <div className=' mt-4 flex flex-col gap-2'>
-            <button className='h-10 w-full bg-blue-500 text-white rounded-lg'>Login</button>
+            <Link to={'/dashboard'} className='h-10 w-full bg-blue-500 text-white rounded-lg flex justify-center items-center'>Login</Link>
             <button className='h-10 w-full bg-yellow-500 text-white rounded-lg'>Google Login</button>
-            <button className='h-10 w-full bg-red-500 text-white rounded-lg'>Register</button>
+            <Link to= {'/register'} className='h-10 w-full bg-red-500 text-white rounded-lg flex justify-center items-center'>Register</Link>
           </div>
 
         </div>
