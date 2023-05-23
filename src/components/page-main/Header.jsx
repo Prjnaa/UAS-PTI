@@ -20,7 +20,7 @@ function Header() {
         <div className="header bg-lgreen sticky top-0 flex justify-between pb-3 text-dgreen font-normal text-xl">
             <div className="header-username">
                 <p className="tracking-wider">Hello,</p>
-                <h1 className="text-3xl/6 font-semibold">{user?.displayName}</h1>
+                <h1 className="text-3xl/6 font-semibold">{user?.email}</h1>
             </div>
             <div className="header-date text-end">
                 <p className="wider">{currDay},</p>
