@@ -3,7 +3,6 @@ import 'tailwindcss/tailwind.css';
 import friendImage from '../src/asset/profilefriend.png';
 import '../src/friend.css';
 
-
 const Friend = () => {
   const [friends, setFriends] = useState([]);
   const [newFriend, setNewFriend] = useState('');
@@ -36,7 +35,7 @@ const Friend = () => {
 
   return (
     <div className="bg-mgreen min-h-screen">
-      <div className="container mx-auto  ml-72 py-8">
+      <div className="container mx-auto ml-72 py-8">
         <div className="flex flex-col md:flex-row md:space-x-8">
           <div className="w-64 bg-lgreen shadow-md rounded-lg p-4 mb-4 md:mb-0">
             <h2 className="mb-4 text-center">Friend List</h2>
@@ -96,14 +95,14 @@ const Friend = () => {
         <div className="w-1/2 mx-72 mt-8 bg-lgreen shadow-md rounded-lg p-4">
           <h2 className="mb-4 text-center">Chat</h2>
             {chats.map((chat, index) => (
-              <div key={index} className="rounded-md mb-2">
+              <div key={index} className="rounded mb-2">
                 <div className="font-bold mb-1">{chat.sender}</div>
-                <div className="bg-white rounded-full shadow-md">{chat.message}</div>
+                <div className="bg-white rounded-full shadow-md p-2 break-words">{chat.message}</div>
               </div>
             ))}
           </div>
         </div>
-    </div>
+      </div>
   );
 };
 
