@@ -2,6 +2,8 @@ import Header from "./Header.jsx"
 import Topside from "./Topside.jsx"
 import Bottomside from "./Bottomside.jsx"
 import Upcomming from "./upcoming events/Upcoming.jsx"
+import Logout from "./logout.jsx"
+
 import "./Main.css"
 
 function Main() {
@@ -15,6 +17,9 @@ function Main() {
             </div>
             <div className="justify-around container-bottom mt-32 mb-24">
                 <Upcomming></Upcomming>
+            </div>
+            <div>
+                <Logout></Logout>
             </div>
         </div>
     </div>
