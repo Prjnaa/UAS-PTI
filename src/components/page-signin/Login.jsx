@@ -13,6 +13,7 @@ export default function Login() {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.info(result.user);
+        localStorage.setItem('user', JSON.stringify(result.user))
         navigate("/main")
       })
       .catch((err) => {
