@@ -5,7 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "./slider.css";
 
 function Imgslider() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
+
   const apiURL =
     "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=9b9d44e62ca3456cb1a3ffca9e991fe2";
 
@@ -49,29 +50,26 @@ function Imgslider() {
     nextArrow: null,
   };
 
-  function openURL() {
-    window.load();
-  }
+  function openURL() {}
 
   return (
     <div className="slider-container">
-      <Slider {...settings}>
-        {data.length > 0 &&
-          data.map((d, i) => {
-            return (
-              <div key={i} className="slide">
-                <div className="img-wrapper bg-dgreen p-5 mx-3 rounded-2xl overflow-visible">
-                  <img
-                    onClick={openURL}
-                    className="sliderimg rounded-lg"
-                    src={d.urlToImage}
-                    alt={d.title}
-                  />
-                </div>
+      {data && (
+        <Slider {...settings}>
+          {data.map((d, i) => (
+            <div key={i} className="slide">
+              <div className="img-wrapper bg-dgreen p-5 mx-3 rounded-2xl overflow-visible">
+                <img
+                  onClick={openURL}
+                  className="sliderimg rounded-lg"
+                  src={d.urlToImage}
+                  alt={d.title}
+                />
               </div>
-            );
-          })}
-      </Slider>
+            </div>
+          ))}
+        </Slider>
+      )}
     </div>
   );
 }

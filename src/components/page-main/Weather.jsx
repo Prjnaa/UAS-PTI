@@ -7,9 +7,7 @@ function Weather() {
   useEffect(() => {
     const fetchWeatherData = () => {
       fetch(
-        "https://api.weatherapi.com/v1/current.json?" + 
-        "key=391e94c342374b5b976154320232205" +
-        "q=auto:ip"
+        "https://api.weatherapi.com/v1/current.json?key=391e94c342374b5b976154320232205&q=auto:ip"
       )
         .then((res) => res.json())
         .then((data) => {
