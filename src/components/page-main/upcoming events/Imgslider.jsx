@@ -49,25 +49,28 @@ function Imgslider() {
     nextArrow: null,
   };
 
-  function openURL() {}
+  function openURL() {
+    window.load();
+  }
 
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        {data.map((d, i) => {
-          return (
-            <div key={i} className="slide">
-              <div className="img-wrapper bg-dgreen p-5 mx-3 rounded-2xl overflow-visible">
-                <img
-                  onClick={openURL}
-                  className="sliderimg rounded-lg"
-                  src={d.urlToImage}
-                  alt={d.title}
-                />
+        {data.length > 0 &&
+          data.map((d, i) => {
+            return (
+              <div key={i} className="slide">
+                <div className="img-wrapper bg-dgreen p-5 mx-3 rounded-2xl overflow-visible">
+                  <img
+                    onClick={openURL}
+                    className="sliderimg rounded-lg"
+                    src={d.urlToImage}
+                    alt={d.title}
+                  />
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </Slider>
     </div>
   );
