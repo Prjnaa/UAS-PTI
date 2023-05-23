@@ -8,7 +8,7 @@ function Topside(props) {
                 <h1 className="md:text-4xl/5 text-xl/6 font-semibold md:mt-4 mt-1">Konser Coldplay</h1>
                 <div className="md:mt-3 mt-1">
                     <p className="md:text-base/5 text-sm/6 font-normal">Nov 15 2023</p>
-                    <p className="md:text-base/5 text-sm/3 font-normal">with, kelompok</p>
+                    <p className="md:text-base/5 text-sm/4 font-normal">with, kelompok</p>
                 </div>
             </div>
             <Weather/>
