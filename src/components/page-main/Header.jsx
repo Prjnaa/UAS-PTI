@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Username from "./Username";
 
 function Header() {
   const [user, setUser] = useState();
@@ -41,7 +42,7 @@ function Header() {
     <div className="header bg-lgreen sticky top-0 flex justify-between pb-4 pt-3 text-dgreen font-normal text-xl">
       <div className="header-username">
         <p className="tracking-wider">Hello,</p>
-        <h1 className="lg:text-3xl/6 flex flex-wrap font-semibold">{user?.displayName}</h1>
+        <Username></Username>
       </div>
       <div className="header-date text-end">
         <p className="tracking-wider ">{currDay},</p>
