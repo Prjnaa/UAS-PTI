@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDDjVlEumpyuMWM846LHKh7W5UeerInDlc",
-  authDomain: "uas-pti-8f2c8.firebaseapp.com",
+  authDomain: "https://eternals-events.netlify.app/",
   projectId: "uas-pti-8f2c8",
   storageBucket: "uas-pti-8f2c8.appspot.com",
   messagingSenderId: "569867826029",
