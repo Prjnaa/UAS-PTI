@@ -36,6 +36,8 @@ export default {
         'mgreen': "#91C788",
         'lgreen': "#DDFFBC",
         'lyellow': "#FEFFDE",
+        'custom-blue': '#25C3F5',
+        'custom-blue-dark': '#1D9ED9',
       },
     },
     plugins: [],

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import friendImage from '../src/asset/profilefriend.png';
+import '../src/friend.css';
 
 
 const Friend = () => {
@@ -34,10 +35,10 @@ const Friend = () => {
   };
 
   return (
-    <div className="bg-custom-green min-h-screen">
+    <div className="bg-dgreen min-h-screen">
       <div className="container mx-auto py-8">
         <div className="flex flex-col md:flex-row md:space-x-8">
-          <div className="w-64 bg-custom-green-light shadow-md rounded-lg p-4 mb-4 md:mb-0">
+          <div className="w-64 bg-lgreen shadow-md rounded-lg p-4 mb-4 md:mb-0">
             <h2 className="mb-4 text-center">Friend List</h2>
             {friends.map((friend, index) => (
               <div
@@ -52,7 +53,7 @@ const Friend = () => {
               </div>
             ))}
           </div>
-          <div className="w-80 bg-custom-green-light shadow-md rounded-lg p-4 mb-4 md:mb-0">
+          <div className="w-80 bg-lgreen shadow-md rounded-lg p-4 mb-4 md:mb-0">
             <h2 className="mb-4 text-center">Add Friend</h2>
             <input
               type="text"
@@ -69,7 +70,7 @@ const Friend = () => {
               </button>
             </div>
           </div>
-          <div className="w-80 bg-custom-green-light shadow-md rounded-lg p-4">
+          <div className="w-80 bg-lgreen shadow-md rounded-lg p-4">
             <h2 className="mb-4 text-center">Send Message</h2>
             <input
               type="text"
@@ -92,7 +93,7 @@ const Friend = () => {
             </div>
           </div>
         </div>
-        <div className="w-89 mx-72 mt-8 bg-custom-green-light shadow-md rounded-lg p-4">
+        <div className="w-89 mx-72 mt-8 bg-lgreen shadow-md rounded-lg p-4">
           <h2 className="mb-4 text-center">Chat</h2>
           <div className="h-64 overflow-y-scroll">
             {chats.map((chat, index) => (
