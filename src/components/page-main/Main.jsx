@@ -6,7 +6,7 @@ import "./Main.css"
 
 function Main() {
     return (
-        <div className="container lg:w-3/5 md:w-4/5 font-sans md:px-0 px-3">
+        <div className="container lg:w-3/6 md:w-4/5 font-sans md:px-0 px-3">
             <div className="container-top">
                 <Header></Header>
                 <Topside></Topside>
