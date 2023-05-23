@@ -41,9 +41,9 @@ export default function Login() {
   };
 
   return (
-    <main className="w-screen h-screen bg-dgreen grid grid-cols-8 py-5">
+    <main className="w-screen h-screen bg-dgreen grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
       <form
-        className="w-full bg-lyellow shadow-lg rounded-lg p-6 lg:col-start-4 lg:col-end-6"
+        className="w-full bg-lyellow shadow-lg rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9" 
         autoComplete="off"
         onSubmit={handleEmailPasswordLogin}
       >
