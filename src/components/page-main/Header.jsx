@@ -10,13 +10,13 @@ function Header() {
   const date = new Date();
 
   const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
   ];
   const months = [
     "Jan",
@@ -38,14 +38,14 @@ function Header() {
   let currMonth = months[month];
 
   return (
-    <div className="header bg-lgreen sticky top-0 flex justify-between pb-5 pt-3 text-dgreen font-normal text-xl">
+    <div className="header bg-lgreen sticky top-0 flex justify-between pb-4 pt-3 text-dgreen font-normal text-xl">
       <div className="header-username">
         <p className="tracking-wider">Hello,</p>
-        <h1 className="text-3xl/6 font-semibold">{user?.email}</h1>
+        <h1 className="lg:text-3xl/6 flex flex-wrap font-semibold">{user?.displayName}</h1>
       </div>
       <div className="header-date text-end">
-        <p className="wider">{currDay},</p>
-        <h1 className="text-2xl/6 font-semibold">
+        <p className="tracking-wider ">{currDay},</p>
+        <h1 className="lg:text-3xl/6 flex flex-wrap font-semibold">
           {currMonth} {date.getDate()} {date.getFullYear()}
         </h1>
       </div>

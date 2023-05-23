@@ -58,10 +58,10 @@ function Imgslider() {
         <Slider {...settings}>
           {data.map((d, i) => (
             <div key={i} className="slide">
-              <div className="img-wrapper bg-dgreen p-5 mx-3 rounded-2xl overflow-visible">
+              <div className="img-wrapper mx-3 rounded-lg overflow-visible mt-4 mb-3">
                 <img
                   onClick={openURL}
-                  className="sliderimg rounded-lg"
+                  className="sliderimg rounded-md"
                   src={d.urlToImage}
                   alt={d.title}
                 />

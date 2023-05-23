@@ -1,6 +1,5 @@
 .slider-container {
-  padding: 30px 10px 0px 10px;
-  height: 300px;
+  height: 200px;
 }
 
 .slide {
@@ -20,5 +19,5 @@
 
 .sliderimg:hover {
   transform: scale(1.03) translateY(-10px);
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
 }
