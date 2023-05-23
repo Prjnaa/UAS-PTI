@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route } from "react-router-dom"
 import Login from './components/page-signin/Login'
 import Register from './components/page-signin/Regis'
