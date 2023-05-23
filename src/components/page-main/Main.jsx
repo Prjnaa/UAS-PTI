@@ -1,18 +1,23 @@
 import Header from "./Header.jsx"
 import Topside from "./Topside.jsx"
 import Bottomside from "./Bottomside.jsx"
+import Upcomming from "./upcoming events/Upcoming.jsx"
 import "./Main.css"
-
 
 function Main() {
     return (
-        <div className="container lg:w-3/6 md:w-4/5 font-sans md:px-0 px-3">
+    <div className="container-wrapper bg-lgreen w-screen h-auto grid grid-cols-12 py-5">
+        <div className="wrapper col-start-4 col-end-10">
+            <Header></Header>
             <div className="container-top">
-                <Header></Header>
                 <Topside></Topside>
-            </div>
                 <Bottomside></Bottomside>
+            </div>
+            <div className="flex justify-around container-bottom my-36">
+                <Upcomming></Upcomming>
+            </div>
         </div>
+    </div>
     )
 }
 

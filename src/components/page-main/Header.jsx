@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function Header() {
 
     const date = new Date();
@@ -10,7 +12,7 @@ function Header() {
     let currMonth = months[month];
 
     return(
-        <div className="bg-lgreen header sticky top-0 flex justify-between mt-5 pb-3 text-dgreen font-normal text-xl">
+        <div className="header bg-lgreen sticky top-0 flex justify-between pb-3 text-dgreen font-normal text-xl">
             <div className="header-username">
                 <p className="tracking-wider">Hello,</p>
                 <h1 className="text-3xl/6 font-semibold">Nama User</h1>
