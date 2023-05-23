@@ -1,0 +1,25 @@
+.slider-container {
+    padding: 30px 10px 0px 10px;
+    height: 300px;
+}
+
+.slide {
+    margin: 0 0;
+}
+
+.slick-prev,
+.slick-next {
+  display: none !important;
+}
+
+.sliderimg {
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    transition: all 250ms;
+}
+
+.sliderimg:hover {
+    transform: scale(1.03)
+        translateY(-10px);
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+}

@@ -11,15 +11,16 @@ function Header() {
     let currDay = days[day];
     let currMonth = months[month];
 
+
     return(
-        <div className="header bg-lgreen sticky top-0 flex justify-between pb-3 text-dgreen font-normal text-xl">
+        <div className="header bg-lgreen sticky top-0 flex justify-between pb-5 pt-3 text-dgreen font-normal text-xl">
             <div className="header-username">
                 <p className="tracking-wider">Hello,</p>
-                <h1 className="text-3xl/6 font-semibold">Nama User</h1>
+                <h1 className="text-2xl/6 font-semibold">{}</h1>
             </div>
             <div className="header-date text-end">
                 <p className="wider">{currDay},</p>
-                <h1 className="text-3xl/6 font-semibold">{currMonth} {date.getDate()} {date.getFullYear()}</h1>
+                <h1 className="text-2xl/6 font-semibold">{currMonth} {date.getDate()} {date.getFullYear()}</h1>
             </div>
         </div>
     )
