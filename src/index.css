@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 html::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 html {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react"
-import Slider from "react-slick"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
-import "./slider.css"
+import { useEffect, useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./slider.css";
 
 function Imgslider() {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
   const apiURL =
-    "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=9b9d44e62ca3456cb1a3ffca9e991fe2"
+    "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=9b9d44e62ca3456cb1a3ffca9e991fe2";
 
   useEffect(() => {
     fetch(apiURL)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-        setData(data.articles)
+        console.log(data);
+        setData(data.articles);
       })
       .catch((error) => {
-        console.error("Error fetching data", error)
-      })
-  }, [])
+        console.error("Error fetching data", error);
+      });
+  }, []);
 
   const settings = {
     dots: false,
@@ -47,11 +47,9 @@ function Imgslider() {
     ],
     prevArrow: null,
     nextArrow: null,
-  }
+  };
 
-  function openURL() {
-
-  }
+  function openURL() {}
 
   return (
     <div className="slider-container">
@@ -59,15 +57,20 @@ function Imgslider() {
         {data.map((d, i) => {
           return (
             <div key={i} className="slide">
-                <div className="img-wrapper bg-dgreen p-5 mx-3 rounded-2xl overflow-visible">
-                    <img onClick={openURL} className="sliderimg rounded-lg" src={d.urlToImage} alt={d.title} />
-                </div>
+              <div className="img-wrapper bg-dgreen p-5 mx-3 rounded-2xl overflow-visible">
+                <img
+                  onClick={openURL}
+                  className="sliderimg rounded-lg"
+                  src={d.urlToImage}
+                  alt={d.title}
+                />
+              </div>
             </div>
-          )
+          );
         })}
       </Slider>
     </div>
-  )
+  );
 }
 
-export default Imgslider
+export default Imgslider;

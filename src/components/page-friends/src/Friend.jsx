@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
-import 'tailwindcss/tailwind.css';
-import friendImage from '../src/asset/profilefriend.png';
-import '../src/friend.css';
+import React, { useState } from "react";
+import "tailwindcss/tailwind.css";
+import friendImage from "../src/asset/profilefriend.png";
+import "../src/friend.css";
 
 const Friend = () => {
   const [friends, setFriends] = useState([]);
-  const [newFriend, setNewFriend] = useState('');
-  const [selectedFriend, setSelectedFriend] = useState('');
-  const [message, setMessage] = useState('');
+  const [newFriend, setNewFriend] = useState("");
+  const [selectedFriend, setSelectedFriend] = useState("");
+  const [message, setMessage] = useState("");
   const [chats, setChats] = useState([]);
 
   const handleAddFriend = () => {
-    if (newFriend !== '') {
+    if (newFriend !== "") {
       setFriends([...friends, newFriend]);
-      setNewFriend('');
+      setNewFriend("");
     }
   };
 
   const handleSendMessage = () => {
-    if (selectedFriend !== '' && message !== '') {
+    if (selectedFriend !== "" && message !== "") {
       const chat = {
         sender: selectedFriend,
         message: message,
       };
       setChats([...chats, chat]);
-      setMessage('');
+      setMessage("");
     }
   };
 
@@ -43,11 +43,15 @@ const Friend = () => {
               <div
                 key={index}
                 className={`flex items-center mb-2 cursor-pointer rounded shadow bg-white ${
-                  selectedFriend === friend ? 'bg-blue-200' : ''
+                  selectedFriend === friend ? "bg-blue-200" : ""
                 }`}
                 onClick={() => handleFriendClick(friend)}
               >
-                <img src={friendImage} alt="Friend" className="w-15 h-12 rounded-full mr-2" />
+                <img
+                  src={friendImage}
+                  alt="Friend"
+                  className="w-15 h-12 rounded-full mr-2"
+                />
                 <span>{friend}</span>
               </div>
             ))}
@@ -80,12 +84,12 @@ const Friend = () => {
             <div className="flex justify-center">
               <button
                 className={`bg-custom-blue hover:bg-custom-blue-dark text-white font-bold py-1 px-7 rounded-full shadow ${
-                  selectedFriend === '' || message === ''
-                    ? 'opacity-50 cursor-not-allowed'
-                    : ''
+                  selectedFriend === "" || message === ""
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
                 }`}
                 onClick={handleSendMessage}
-                disabled={selectedFriend === '' || message === ''}
+                disabled={selectedFriend === "" || message === ""}
               >
                 Send
               </button>
@@ -94,15 +98,17 @@ const Friend = () => {
         </div>
         <div className="w-1/2 mx-72 mt-8 bg-lgreen shadow-md rounded-lg p-4">
           <h2 className="mb-4 text-center">Chat</h2>
-            {chats.map((chat, index) => (
-              <div key={index} className="rounded mb-2">
-                <div className="font-bold mb-1">{chat.sender}</div>
-                <div className="bg-white rounded-full shadow-md p-2 break-words">{chat.message}</div>
+          {chats.map((chat, index) => (
+            <div key={index} className="rounded mb-2">
+              <div className="font-bold mb-1">{chat.sender}</div>
+              <div className="bg-white rounded-full shadow-md p-2 break-words">
+                {chat.message}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
+    </div>
   );
 };
 
