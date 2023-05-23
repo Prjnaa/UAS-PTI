@@ -42,7 +42,7 @@ function Weather() {
               src={weatherData.current.condition.icon}
               alt=""
             />
-            <div className="md:mt-5 mt-3 h-fit">
+            <div className="md:mt-4 mt-3 h-fit">
               <p className="font-semibold md:text-base/4 text-sm/4">
                 {weatherData.current.temp_c}°
               </p>
