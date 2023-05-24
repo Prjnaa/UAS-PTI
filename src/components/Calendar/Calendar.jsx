@@ -6,6 +6,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import * as bootstrap from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './calendar.css';
+import { Modal, Button, Form } from 'react-bootstrap';
 
 const Calendar = () => {
   const [events, setEvents] = useState(() => {
@@ -51,34 +52,48 @@ const Calendar = () => {
     localStorage.setItem('calendarEvents', JSON.stringify(events));
   }, [events]);
 
+  const [showModal, setShowModal] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('');
+
   const handleDateClick = arg => {
-    const newEventTitle = prompt('Masukkan Nama Acara:');
-    const newEventLocation = prompt('Masukkan Lokasi Acara:');
-    let newEventStartTime = prompt('Masukkan Jam Mulai Acara (HH:mm):');
-    let newEventEndTime = prompt('Masukkan Jam Selesai Acara (HH:mm):');
-
-    // Cek jika panjang string jam kurang dari 2 (tidak termasuk separator ':')
-    if (newEventStartTime.length < 2) {
-      newEventStartTime = `0${newEventStartTime}`; // Tambahkan '0' di depan jam
-    }
-    if (newEventEndTime.length < 2) {
-      newEventEndTime = `0${newEventEndTime}`; // Tambahkan '0' di depan jam
-    }
-
-    if (newEventTitle && newEventLocation && newEventStartTime && newEventEndTime) {
-      const newEvent = {
-        title: newEventTitle,
-        start: `${arg.dateStr}T${newEventStartTime}:00`,
-        end: `${arg.dateStr}T${newEventEndTime}:00`,
-        location: newEventLocation,
-      };
-
-      setEvents(prevEvents => [...prevEvents, newEvent]);
-    }
+    setSelectedDate(arg.dateStr);
+    setShowModal(true);
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleSubmitModal = event => {
+    event.preventDefault();
+  
+    const newEventTitle = event.target.elements.title.value;
+    const newEventLocation = event.target.elements.location.value;
+    const newEventStartTime = event.target.elements.startTime.value;
+    const newEventEndTime = event.target.elements.endTime.value;
+  
+    // Ubah string jam mulai dan jam selesai menjadi objek Date
+    const startTime = new Date(`2023-01-01T${newEventStartTime}:00`);
+    const endTime = new Date(`2023-01-01T${newEventEndTime}:00`);
+  
+    // Periksa apakah jam selesai lebih besar dari jam mulai
+    if (newEventTitle && newEventLocation && newEventStartTime && newEventEndTime && endTime > startTime) {
+      const newEvent = {
+        title: newEventTitle,
+        start: `${selectedDate}T${newEventStartTime}:00`,
+        end: `${selectedDate}T${newEventEndTime}:00`,
+        location: newEventLocation,
+      };
+  
+      setEvents(prevEvents => [...prevEvents, newEvent]);
+      setShowModal(false);
+    } else {
+      alert('Jam selesai harus lebih besar dari jam mulai');
+    }
+  };
+  
   return (
-    <div>
+    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'white' }}>
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
@@ -87,7 +102,7 @@ const Calendar = () => {
           center: 'title',
           end: 'dayGridMonth,timeGridWeek,timeGridDay',
         }}
-        height="90vh"
+        height="100vh"
         events={events}
         eventDidMount={info => {
           return new bootstrap.Popover(info.el, {
@@ -95,12 +110,41 @@ const Calendar = () => {
             placement: 'auto',
             trigger: 'hover',
             customClass: 'popoverStyle',
-            content: `Lokasi: ${info.event.extendedProps.location}<br>Jam Mulai: ${info.event.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}<br>Jam Selesai: ${info.event.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).replace(/:00 /, ' ')}`,
+            content: `Lokasi: ${info.event.extendedProps.location}<br>Jam mulai: ${info.event.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}<br>Jam selesai: ${info.event.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).replace(/:00 /, ' ')}`,
             html: true,
           });
         }}
         dateClick={handleDateClick}
       />
+
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Tambah acara</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmitModal}>
+            <Form.Group controlId="title">
+              <Form.Label>Nama acara</Form.Label>
+              <Form.Control type="text" placeholder="Masukkan nama acara" />
+            </Form.Group>
+            <Form.Group controlId="location">
+              <Form.Label>Lokasi acara</Form.Label>
+              <Form.Control type="text" placeholder="Masukkan lokasi acara" />
+            </Form.Group>
+            <Form.Group controlId="startTime">
+              <Form.Label>Jam mulai acara</Form.Label>
+              <Form.Control type="text" placeholder="HH:mm" />
+            </Form.Group>
+            <Form.Group controlId="endTime">
+              <Form.Label>Jam selesai acara</Form.Label>
+              <Form.Control type="text" placeholder="HH:mm" />
+            </Form.Group>
+            <Button variant="primary" type="submit" style={{ zIndex: 1, color: 'black', marginTop: '10px', borderColor: 'black'}} className='hover-button'>
+              Simpan
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

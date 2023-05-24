@@ -5,3 +5,15 @@
 a{
     color: #212529 !important;
 }
+
+button {
+    background-color: greenyellow !important;
+    color: black !important;
+    margin-left: 1px !important;
+    margin-right: 1px !important;
+}
+
+button:hover {
+    background-color: #218838 !important;
+    border-color: #218838 !important;
+}
