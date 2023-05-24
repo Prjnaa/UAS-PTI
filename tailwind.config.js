@@ -34,6 +34,12 @@ export default {
       '6xl': '3.8rem',
     },
     extend: {
+      boxShadow: {
+        'box': '0px 3px 8px 2px rgba(0, 0, 0, 0.2)',
+      },
+      dropShadow: {
+        'text': '0px 4px 2px rgba(0, 0, 0, 0.24)'
+      },
       colors: {
         'dgreen': "#52734D",
         'mgreen': "#91C788",

@@ -3,7 +3,7 @@ import "./Main.css"
 
 function Topside() {
   return (
-    <div className="topbox bg-dgreen flex lg:px-8 lg:py-4 px-4 py-2 justify-between rounded-xl">
+    <div className="topbox shadow-[0px_3px_8px_2px_rgba(0,0,0,0.2)] bg-dgreen flex lg:px-8 lg:py-4 px-4 py-2 justify-between rounded-xl">
       <div className="schedule text-lyellow my-auto">
         <p className="md:text-base/7 text-xs/3 font-normal tracking-widest">
           NEXT SCHEDULE
