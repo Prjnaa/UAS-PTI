@@ -5,22 +5,22 @@ import "slick-carousel/slick/slick-theme.css";
 import "./slider.css";
 
 function Imgslider() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
 
   const apiURL =
-  "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=9b9d44e62ca3456cb1a3ffca9e991fe2";
+    "https://script.googleusercontent.com/macros/echo?user_content_key=j9dndTmPoeP9nVJTUWao7eM1xM1RlncqbTinII4XA_vgkDtn0FHZQU1fBGMFIKcFOn1CE8BO-ZJK8aSlfLQO2qrKjbs-epomm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnL1PrmRfRTdKId1bFATW-W4406ibqV8BkmN793uWb7m97frMHD8RVLkmQ2a4IME0eQftZxC8v6z0Fcjm9TPSvv1XTo-2Ear2Mdz9Jw9Md8uu&lib=M0EFZnq-909yy3F8kAOKfUrpyijN56ziQ";
 
   useEffect(() => {
     fetch(apiURL)
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setData(data.articles);
+      .then((responseData) => {
+        console.log(responseData);
+        setData(responseData.data);
       })
       .catch((error) => {
         console.error("Error fetching data", error);
       });
-  }, []);  
+  }, []);
 
   const settings = {
     dots: false,
@@ -31,7 +31,7 @@ function Imgslider() {
     swipeToSlide: true,
     draggable: true,
     scroll: true,
-    centerode: false,
+    centerMode: false,
     responsive: [
       {
         breakpoint: 768,
@@ -50,26 +50,25 @@ function Imgslider() {
     nextArrow: null,
   };
 
-  function openURL() {}
+  function openURL() {
+  }
 
   return (
     <div className="slider-container">
-      {data && (
-        <Slider {...settings}>
-          {data.map((d, i) => (
-            <div key={i} className="slide">
-              <div className="img-wrapper mx-3 rounded-lg overflow-visible mt-4 mb-3">
-                <img
-                  onClick={openURL}
-                  className="sliderimg rounded-md"
-                  src={d.urlToImage}
-                  alt={d.title}
-                />
-              </div>
+      <Slider {...settings}>
+        {data.map((item, index) => (
+          <div key={index} className="slide">
+            <div className="img-wrapper mx-3 rounded-lg overflow-visible mt-4 mb-3">
+              <img
+                onClick={openURL}
+                className="sliderimg rounded-xl"
+                src={item.imgurl}
+                alt={item.eventid}
+              />
             </div>
-          ))}
-        </Slider>
-      )}
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 }
