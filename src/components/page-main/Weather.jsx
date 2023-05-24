@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import { useEffect, useState } from "react";
 
 function Weather() {
@@ -27,28 +26,30 @@ function Weather() {
   }, []);
 
   return (
-    <div className="weather text-lyellow">
+    <div className="my-2 weather text-lyellow">
       {weatherData && (
         <div className="weather-wrapper">
           <div className="location">
             <img src="" alt="" />
-            <p className="text-end md:text-base/4 text-sm/3">
+            <p className="text-end md:text-base/4 text-sm/snug">
               {weatherData.location.name}
             </p>
           </div>
-          <div className="condition flex justify-between">
+          <div className="condition grid grid-cols-2">
             <img
-              className="md:w-20 md:mt-0 mt-2 w-12"
+              className="md:w-14 w-12 col-start-1 col-end-2"
               src={weatherData.current.condition.icon}
               alt=""
             />
-            <div className="md:mt-4 mt-3 h-fit">
-              <p className="font-semibold md:text-base/4 text-sm/4">
-                {weatherData.current.temp_c}°
-              </p>
-              <p className="font-semibold md:text-base/6 text-sm/4">
-                {Math.trunc(weatherData.current.feelslike_c)}°
-              </p>
+            <div className="relative col-start-2 col-end-3">
+              <div className="top-2 right-0 absolute">
+                <p className="w-fit font-semibold md:text-base/4 text-sm/4">
+                  {weatherData.current.temp_c}°
+                </p>
+                <p className="w-fit font-semibold md:text-base/6 text-sm/4">
+                  {Math.trunc(weatherData.current.feelslike_c)}°
+                </p>
+              </div>
             </div>
           </div>
           <div>

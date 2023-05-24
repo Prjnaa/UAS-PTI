@@ -40,13 +40,13 @@ function Header() {
 
   return (
     <div className="header bg-lgreen sticky top-0 flex justify-between pb-4 pt-3 text-dgreen font-normal text-xl">
-      <div className="header-username">
+      <div className="header-username text-start">
         <p className="tracking-wider">Hello,</p>
         <Username></Username>
       </div>
       <div className="header-date text-end">
-        <p className="tracking-wider ">{currDay},</p>
-        <h1 className="lg:text-3xl/6 flex flex-wrap font-semibold">
+        <p className="tracking-wider">{currDay},</p>
+        <h1 className="2xl:text-3xl/6 xl:text-xl flex flex-wrap font-semibold">
           {currMonth} {date.getDate()} {date.getFullYear()}
         </h1>
       </div>

@@ -8,7 +8,7 @@ function Imgslider() {
   const [data, setData] = useState(null);
 
   const apiURL =
-    "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=9b9d44e62ca3456cb1a3ffca9e991fe2";
+  "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=9b9d44e62ca3456cb1a3ffca9e991fe2";
 
   useEffect(() => {
     fetch(apiURL)
@@ -20,7 +20,7 @@ function Imgslider() {
       .catch((error) => {
         console.error("Error fetching data", error);
       });
-  }, []);
+  }, []);  
 
   const settings = {
     dots: false,
