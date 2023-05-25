@@ -38,7 +38,7 @@
   animation: bg-in 0.5s ease-in-out forwards;
 }
 
-.slider:hover .sliderimg{
+.slider:hover .sliderimg {
   transform: scale(1.03) translateY(-10px);
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
 }
@@ -46,7 +46,7 @@
 .title,
 .date {
   opacity: 0;
-  animation: fade-in .5s ease-in-out forwards;
+  animation: fade-in 0.5s ease-in-out forwards;
 }
 
 .title {
@@ -84,6 +84,3 @@
     transform: translateY(0);
   }
 }
-
-
-

@@ -8,7 +8,14 @@ function Navbutton(props) {
     navigate(props.navTo);
   };
 
-  return <img className="navbtn drop-shadow-text" src={props.imgURL} alt={props.alt} onClick={handleClick}/>;
+  return (
+    <img
+      className="navbtn drop-shadow-text"
+      src={props.imgURL}
+      alt={props.alt}
+      onClick={handleClick}
+    />
+  );
 }
 
 export default Navbutton;
