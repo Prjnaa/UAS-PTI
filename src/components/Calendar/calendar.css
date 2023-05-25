@@ -17,3 +17,18 @@ a{
     background-color: #52734D !important;
     border-color: #52734D !important;
 }
+
+.fc-toolbar-chunk > button{
+    background-color: #DDFFBC !important;
+    color: #52734D !important;
+}
+
+.fc-toolbar-chunk > button:hover {
+    background-color: #52734D !important;
+    border-color: #52734D !important;
+    color: #DDFFBC;
+}
+
+.hover-button btn btn-primary {
+    background-color: #DDFFBC !important;
+}
