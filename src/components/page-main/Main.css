@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.menubttn {
+    transform: all 150ms;
+}
+
+.menubttn:hover {
+  
+}
