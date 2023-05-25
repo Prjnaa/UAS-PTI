@@ -34,6 +34,12 @@ function Imgslider() {
     centerMode: false,
     responsive: [
       {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
         breakpoint: 768,
         settings: {
           slidesToShow: 2,
@@ -58,7 +64,7 @@ function Imgslider() {
       <Slider {...settings}>
         {data.map((item, index) => (
           <div key={index} className="slide">
-            <div className="img-wrapper mx-3 rounded-lg overflow-visible mt-4 mb-3">
+            <div className="img-wrapper mx-3 md:rounded-lg overflow-visible mt-4 mb-3">
               <img
                 onClick={openURL}
                 className="sliderimg rounded-xl"
