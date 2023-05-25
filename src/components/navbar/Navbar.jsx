@@ -1,5 +1,5 @@
 import Navbutton from "./Navbutton";
-import Logout from "./logout";
+import Logout from "./Logout";
 import HomeSvg from "../assets/Home.svg";
 import LogoutSvg from "../assets/Logout.svg";
 
