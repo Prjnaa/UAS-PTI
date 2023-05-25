@@ -1,17 +1,21 @@
-import { useEffect, useState } from 'react'
-import { Routes, Route } from "react-router-dom"
-import Login from './components/page-signin/Login'
-import Register from './components/page-signin/Regis'
-import Main from './components/page-main/Main'
-import Form from './components/page-newschedule/Newschedule'
-import Friend from './components/page-friends/src/Friend'
-import Calendar from './components/Calendar/Calendar'
-import "./components/page-signin/firebase"
-import {getAuth, onAuthStateChanged} from 'firebase/auth'
+import { useEffect, useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { AnimatePresence } from "framer-motion";
+
+import "./components/page-signin/firebase";
+
+import Login from "./components/page-signin/Login";
+import Register from "./components/page-signin/Regis";
+import Main from "./components/page-main/Main";
+import Form from "./components/page-newschedule/Newschedule";
+import Friend from "./components/page-friends/src/Friend";
+import Calendar from "./components/Calendar/Calendar";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   //component lifecycle
   useEffect(() => {
@@ -30,26 +34,32 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className=" w-screen h-screen flex flex-col justify-center items-center">
-        Loading...
+      <div className=" text-dgreen bg-mgreen  w-screen h-screen flex flex-col justify-center items-center">
+        <p className="font-semibold text-3xl">PLEASE WAIT . . .</p>
       </div>
     );
   }
   return (
-    <>
-      {isLogin? (<Routes>
-      <Route path='/main' element = {<Main/>} />
-      <Route path='*' element = {<Main/>} />
-      <Route path="/friend" element={<Friend/>}/>
-      <Route path="/form" element={<Form />} />
-      <Route path="/calendar" element={<Calendar />} />
-    </Routes>) : (
-      <Routes>
-      <Route path='/' element = {<Login />} />
-      <Route path='/register' element = {<Register />} />
-      <Route path='/*' element = {<Register />} />
-    </Routes>
-    )}
-    </>
+    <div className="App">
+      {isLogin ? (
+        <AnimatePresence>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/main" element={<Main />} />
+            <Route path="*" element={<Main />} />
+            <Route path="/friend" element={<Friend />} />
+            <Route path="/form" element={<Form />} />
+            <Route path="/calendar" element={<Calendar />} />
+          </Routes>
+        </AnimatePresence>
+      ) : (
+        <AnimatePresence>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/*" element={<Register />} />
+          </Routes>
+        </AnimatePresence>
+      )}
+    </div>
   );
 }
