@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -53,10 +54,13 @@ export default function Register() {
 
   return (
     <main className="w-screen h-screen bg-lyellow grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
-      <form
+      <motion.form
         className="w-full bg-dgreen shadow-box rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9"
         autoComplete="off"
         onSubmit={handleGoogleRegister}
+        initial={{ y: "-1000px" }}
+        animate={{ y: 0 }}
+        exit={{ y: "1000px", transition: { duration: 0.25 } }}
       >
         <h1 className="text-4xl text-lgreen font-bold text-center">Sign Up</h1>
         <div className="flex flex-col gap-2">
@@ -103,7 +107,7 @@ export default function Register() {
             </Link>
           </div>
         </div>
-      </form>
+      </motion.form>
     </main>
   );
 }
