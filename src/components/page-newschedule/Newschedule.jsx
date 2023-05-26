@@ -4,12 +4,12 @@ import './newschedule.css';
 
 const Form = () => {
   return (
-    <div className="container mx-auto p-4">
-      <div className="max-w-md mx-auto bg-white rounded-md shadow-md p-4">
-        <h2 className="text-2xl font-semibold mb-4">Event Form</h2>
-        <div className="grid grid-cols-3 gap-4">
-          <div className="col-span-1">
-            <label htmlFor="eventName" className="block mb-2 font-medium">
+    <div className="mx-auto p-20 bg-lgreen">
+      <div className="max-w-screen-lg mx-auto bg-dgreen rounded-md shadow-md p-4">
+        <h2 className="text-2xl font-semibold mb-4 text-lyellow">Event Form</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="mb-4">
+            <label htmlFor="eventName" className="block mb-2 font-medium text-lyellow">
               Event Name
             </label>
             <input
@@ -18,8 +18,8 @@ const Form = () => {
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
-          <div className="col-span-1">
-            <label htmlFor="eventLocation" className="block mb-2 font-medium">
+          <div className="mb-4">
+            <label htmlFor="eventLocation" className="block mb-2 font-medium text-lyellow">
               Event Location
             </label>
             <input
@@ -28,8 +28,8 @@ const Form = () => {
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
-          <div className="col-span-1">
-            <label htmlFor="savingPerWeek" className="block mb-2 font-medium">
+          <div className="mb-4">
+            <label htmlFor="savingPerWeek" className="block mb-2 font-medium text-lyellow">
               Saving per Week
             </label>
             <input
@@ -38,8 +38,8 @@ const Form = () => {
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
-          <div className="col-span-1">
-            <label htmlFor="eventDate" className="block mb-2 font-medium">
+          <div className="mb-4">
+            <label htmlFor="eventDate" className="block mb-2 font-medium text-lyellow">
               Event Date
             </label>
             <input
@@ -48,8 +48,8 @@ const Form = () => {
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
-          <div className="col-span-1">
-            <label htmlFor="ticketPrice" className="block mb-2 font-medium">
+          <div className="mb-4">
+            <label htmlFor="ticketPrice" className="block mb-2 font-medium text-lyellow">
               Ticket Price
             </label>
             <input
@@ -58,8 +58,8 @@ const Form = () => {
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
-          <div className="col-span-1">
-            <label htmlFor="eventDescription" className="block mb-2 font-medium">
+          <div className="mb-4">
+            <label htmlFor="eventDescription" className="block mb-2 font-medium text-lyellow">
               Event Description
             </label>
             <textarea
@@ -68,8 +68,8 @@ const Form = () => {
               rows="4"
             ></textarea>
           </div>
-          <div className="col-span-1">
-            <label htmlFor="eventTime" className="block mb-2 font-medium">
+          <div className="mb-4">
+            <label htmlFor="eventTime" className="block mb-2 font-medium text-lyellow">
               Event Time
             </label>
             <input
@@ -78,8 +78,8 @@ const Form = () => {
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
-          <div className="col-span-2">
-            <label htmlFor="additionalCost" className="block mb-2 font-medium">
+          <div className="mb-4 col-span-2">
+            <label htmlFor="additionalCost" className="block mb-2 font-medium text-lyellow">
               Additional Cost
             </label>
             <input
@@ -91,8 +91,8 @@ const Form = () => {
         </div>
       </div>
       <div className="mt-4 flex justify-center">
-        <button className="bg-blue-500 text-white font-semibold py-2 px-4 rounded">
-          Submit
+        <button className="bg-dgreen font-semibold py-2 px-9 rounded text-lyellow">
+          SUBMIT
         </button>
       </div>
     </div>
