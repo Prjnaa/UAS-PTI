@@ -2,6 +2,8 @@
     z-index: 99999 !important;
 }
 
+.fc-scoller {}
+
 a{
     color: #212529 !important;
 }
@@ -31,4 +33,20 @@ a{
 
 .hover-button btn btn-primary {
     background-color: #DDFFBC !important;
+}
+
+.fc-event-main {
+    background-color: #52734D !important;
+    border-radius: 0.5rem;
+}
+
+.fc-event-main-frame {
+    padding: 2.5% 7% !important;
+    font-size: 130%;
+    line-height: 100%;
+}
+
+.fc-event {
+    border: none !important;
+    background: transparent !important;
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -7,10 +7,11 @@ import * as bootstrap from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './calendar.css';
 import { Modal, Button, Form } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Calendar = () => {
   const [events, setEvents] = useState(() => {
-    // Cek apakah ada data event yang disimpan di localStorage
     const savedEvents = localStorage.getItem('calendarEvents');
     if (savedEvents) {
       return JSON.parse(savedEvents);
@@ -36,9 +37,7 @@ const Calendar = () => {
       upcomingEvents.forEach(event => {
         const eventDateTime = new Date(event.start);
         const timeDiff = eventDateTime - now;
-        // Mengatur notifikasi untuk acara yang akan dimulai dalam waktu kurang dari 5 menit
         if (timeDiff > 0 && timeDiff <= 300000) {
-          // Ganti kode di bawah ini dengan logika notifikasi yang sesuai
           console.log(`Notifikasi: Acara ${event.title} akan segera dimulai!`);
         }
       });
@@ -48,12 +47,13 @@ const Calendar = () => {
   }, [events]);
 
   useEffect(() => {
-    // Simpan data event ke localStorage setiap kali terjadi perubahan pada events
     localStorage.setItem('calendarEvents', JSON.stringify(events));
   }, [events]);
 
   const [showModal, setShowModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
 
   const handleDateClick = arg => {
     setSelectedDate(arg.dateStr);
@@ -66,34 +66,44 @@ const Calendar = () => {
 
   const handleSubmitModal = event => {
     event.preventDefault();
-  
+
     const newEventTitle = event.target.elements.title.value;
     const newEventLocation = event.target.elements.location.value;
-    const newEventStartTime = event.target.elements.startTime.value;
-    const newEventEndTime = event.target.elements.endTime.value;
-  
-    // Ubah string jam mulai dan jam selesai menjadi objek Date
-    const startTime = new Date(`2023-01-01T${newEventStartTime}:00`);
-    const endTime = new Date(`2023-01-01T${newEventEndTime}:00`);
-  
-    // Periksa apakah jam selesai lebih besar dari jam mulai
-    if (newEventTitle && newEventLocation && newEventStartTime && newEventEndTime && endTime > startTime) {
+
+    if (newEventTitle && newEventLocation && startTime && endTime) {
       const newEvent = {
         title: newEventTitle,
-        start: `${selectedDate}T${newEventStartTime}:00`,
-        end: `${selectedDate}T${newEventEndTime}:00`,
+        start: selectedDate + 'T' + startTime + ':00',
+        end: selectedDate + 'T' + endTime + ':00',
         location: newEventLocation,
       };
-  
+
       setEvents(prevEvents => [...prevEvents, newEvent]);
       setShowModal(false);
+
+      toast.success('Acara berhasil disimpan!', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
-      alert('Jam selesai harus lebih besar dari jam mulai');
+      toast.error('Mohon isi semua kolom yang diperlukan!');
     }
+  };
+
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
   };
   
   return (
-    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'white' }}>
+    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0}} className='bg-lgreen'>
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
@@ -101,7 +111,7 @@ const Calendar = () => {
           start: 'today prev,next',
           center: 'title',
           end: 'dayGridMonth,timeGridWeek,timeGridDay',
-        }}
+        }} 
         height="100vh"
         events={events}
         eventDidMount={info => {
@@ -110,7 +120,7 @@ const Calendar = () => {
             placement: 'auto',
             trigger: 'hover',
             customClass: 'popoverStyle',
-            content: `Lokasi: ${info.event.extendedProps.location}<br>Jam mulai: ${info.event.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}<br>Jam selesai: ${info.event.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).replace(/:00 /, ' ')}`,
+            content: `Lokasi: ${info.event.extendedProps.location}<br>Jam mulai: ${new Date(info.event.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}<br>Jam selesai: ${new Date(info.event.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).replace(':00 ', ' ')}`,
             html: true,
           });
         }}
@@ -133,18 +143,20 @@ const Calendar = () => {
             </Form.Group>
             <Form.Group controlId="startTime">
               <Form.Label>Jam mulai acara</Form.Label>
-              <Form.Control type="text" placeholder="HH:mm" />
+              <Form.Control type="time" value={startTime} onChange={e => setStartTime(e.target.value)} max="24:00" />
             </Form.Group>
             <Form.Group controlId="endTime">
               <Form.Label>Jam selesai acara</Form.Label>
-              <Form.Control type="text" placeholder="HH:mm" />
+              <Form.Control type="time" value={endTime} onChange={e => setEndTime(e.target.value)} max="24:00" />
             </Form.Group>
-            <Button variant="primary" type="submit" style={{ zIndex: 1, color: 'black', marginTop: '10px', borderColor: 'black'}} className='hover-button'>
+            <Button variant="primary" type="submit" style={{backgroundColor:'#DDFFBC' ,zIndex: 1, color: '#52734D', marginTop: '10px', border: 'none' }} className="hover-button">
               Simpan
             </Button>
           </Form>
         </Modal.Body>
       </Modal>
+
+      <ToastContainer />
     </div>
   );
 };
