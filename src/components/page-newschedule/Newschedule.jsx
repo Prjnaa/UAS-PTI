@@ -1,10 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import './newschedule.css';
+import { db } from '../firebase';
+import { getDocs, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const Form = () => {
+  const [eventList, setEventList] = useState([]);
+  const [name, setName] = useState("");
+  const [location, setLocation] = useState("");
+  const [date, setDate] = useState(null);
+  const [budget, setBudget] = useState("");
+  const [desc, setDesc] = useState("");
+  const [time, setTime] = useState("");
+
+  const eventListCollectionRef = collection(db, "makeEvent");
+
+  useEffect(() => {
+    const getEventList = async () => {
+      // Read data
+      try {
+        const data = await getDocs(eventListCollectionRef);
+        const filteredData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setEventList(filteredData);
+        console.log(filteredData);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getEventList();
+  }, []);
+
+  const onSubmitEvent = async () => {
+    try {
+      await addDoc(eventListCollectionRef, {
+        name: name,
+        location: location,
+        date: date ? serverTimestamp() : null,
+        budget: Number(budget),
+        desc: desc,
+        time: time,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
-    <div className="mx-auto p-20 bg-lgreen">
+    <div className="mx-auto p-20 bg-cust-2 h-screen">
       <div className="max-w-screen-lg mx-auto bg-dgreen rounded-md shadow-md p-4">
         <h2 className="text-2xl font-semibold mb-4 text-lyellow">Event Form</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -16,6 +61,8 @@ const Form = () => {
               type="text"
               id="eventName"
               className="w-full p-2 border border-gray-300 rounded"
+              placeholder="Input Event..."
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -26,16 +73,8 @@ const Form = () => {
               type="text"
               id="eventLocation"
               className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="savingPerWeek" className="block mb-2 font-medium text-lyellow">
-              Saving per Week
-            </label>
-            <input
-              type="text"
-              id="savingPerWeek"
-              className="w-full p-2 border border-gray-300 rounded"
+              placeholder="Input Location..."
+              onChange={(e) => setLocation(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -46,6 +85,7 @@ const Form = () => {
               type="date"
               id="eventDate"
               className="w-full p-2 border border-gray-300 rounded"
+              onChange={(e) => setDate(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -56,6 +96,8 @@ const Form = () => {
               type="number"
               id="ticketPrice"
               className="w-full p-2 border border-gray-300 rounded"
+              placeholder="Input Budget..."
+              onChange={(e) => setBudget(e.target.value)}
             />
           </div>
           <div className="mb-4">
@@ -66,6 +108,8 @@ const Form = () => {
               id="eventDescription"
               className="w-full p-2 border border-gray-300 rounded"
               rows="4"
+              placeholder="Input Description..."
+              onChange={(e) => setDesc(e.target.value)}
             ></textarea>
           </div>
           <div className="mb-4">
@@ -75,23 +119,15 @@ const Form = () => {
             <input
               type="time"
               id="eventTime"
+              value={time}
               className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-          <div className="mb-4 col-span-2">
-            <label htmlFor="additionalCost" className="block mb-2 font-medium text-lyellow">
-              Additional Cost
-            </label>
-            <input
-              type="text"
-              id="additionalCost"
-              className="w-full p-2 border border-gray-300 rounded"
+              onChange={(e) => setTime(e.target.value)}
             />
           </div>
         </div>
       </div>
       <div className="mt-4 flex justify-center">
-        <button className="bg-dgreen font-semibold py-2 px-9 rounded text-lyellow">
+        <button className="bg-dgreen font-semibold py-2 px-9 rounded text-lyellow" onClick={onSubmitEvent}>
           SUBMIT
         </button>
       </div>

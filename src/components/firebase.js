@@ -1,26 +1,20 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "@firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth, GoogleAuthProvider } from "firebase/auth"
+import { getFirestore } from "firebase/firestore";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAC_bQqsgkd7QeYWeGzira-UPfhLJ39gok",
-  authDomain: "eternal-s-events.firebaseapp.com",
-  databaseURL:
-    "https://eternal-s-events-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "eternal-s-events",
-  storageBucket: "eternal-s-events.appspot.com",
-  messagingSenderId: "401382554098",
-  appId: "1:401382554098:web:a9f4928aa3e0b92f0cd36b",
-  measurementId: "G-0PK5R6EYNY",
+  apiKey: "AIzaSyDDjVlEumpyuMWM846LHKh7W5UeerInDlc",
+  authDomain: "uas-pti-8f2c8.firebaseapp.com",
+  databaseURL: "https://uas-pti-8f2c8-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "uas-pti-8f2c8",
+  storageBucket: "uas-pti-8f2c8.appspot.com",
+  messagingSenderId: "569867826029",
+  appId: "1:569867826029:web:abb1f73ecd54c9ade12064",
+  measurementId: "G-LHE1JYNDSP"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export const auth = getAuth(app);
+export const googleProvide = new GoogleAuthProvider();
 
 export const db = getFirestore(app);
