@@ -101,9 +101,9 @@ const Calendar = () => {
     const minutes = now.getMinutes().toString().padStart(2, '0');
     return `${hours}:${minutes}`;
   };
-
+  
   return (
-    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'white' }}>
+    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0}} className='bg-lgreen'>
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
@@ -111,7 +111,7 @@ const Calendar = () => {
           start: 'today prev,next',
           center: 'title',
           end: 'dayGridMonth,timeGridWeek,timeGridDay',
-        }}
+        }} 
         height="100vh"
         events={events}
         eventDidMount={info => {
@@ -120,7 +120,7 @@ const Calendar = () => {
             placement: 'auto',
             trigger: 'hover',
             customClass: 'popoverStyle',
-            content: `Lokasi: ${info.event.extendedProps.location}<br>Jam mulai: ${info.event.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}<br>Jam selesai: ${info.event.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).replace(':00 ', ' ')}`,
+            content: `Lokasi: ${info.event.extendedProps.location}<br>Jam mulai: ${new Date(info.event.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}<br>Jam selesai: ${new Date(info.event.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).replace(':00 ', ' ')}`,
             html: true,
           });
         }}
@@ -149,7 +149,7 @@ const Calendar = () => {
               <Form.Label>Jam selesai acara</Form.Label>
               <Form.Control type="time" value={endTime} onChange={e => setEndTime(e.target.value)} max="24:00" />
             </Form.Group>
-            <Button variant="primary" type="submit" style={{ zIndex: 1, color: 'black', marginTop: '10px', borderColor: 'black' }} className="hover-button">
+            <Button variant="primary" type="submit" style={{backgroundColor:'#DDFFBC' ,zIndex: 1, color: '#52734D', marginTop: '10px', border: 'none' }} className="hover-button">
               Simpan
             </Button>
           </Form>

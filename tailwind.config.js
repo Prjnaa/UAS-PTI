@@ -41,10 +41,10 @@ export default {
         'text': '0px 4px 2px rgba(0, 0, 0, 0.24)'
       },
       colors: {
-        'dgreen': "#52734D",
-        'mgreen': "#91C788",
-        'lgreen': "#DDFFBC",
-        'lyellow': "#FEFFDE",
+        'dgreen': "#116D6E",
+        'mgreen': "#321E1E",
+        'lgreen': "#4E3636",
+        'lyellow': "#CD1818",
         'custom-blue': '#25C3F5',
         'custom-blue-dark': '#1D9ED9',
       },

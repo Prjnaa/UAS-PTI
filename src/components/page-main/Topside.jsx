@@ -4,7 +4,7 @@ import "./Main.css"
 function Topside() {
   return (
     <div className="topbox shadow-box bg-dgreen flex lg:px-14 px-4 py-4 justify-between rounded-xl">
-      <div className="schedule text-lyellow my-auto">
+      <div className="schedule text-lgreen my-auto">
         <p className="md:text-base/7 text-xs/3 font-normal tracking-widest">
           NEXT SCHEDULE
         </p>
