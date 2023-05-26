@@ -1,52 +1,61 @@
 .popoverstyle {
     z-index: 99999 !important;
-}
-
-.fc-scoller {}
-
-a{
+    }
+        
+a {
     color: #212529 !important;
-}
-
+    }
+    
 .fc-button-group > button {
     background-color: #DDFFBC !important;
     color: black !important;
     margin-left: 1px !important;
     margin-right: 1px !important;
-}
-
+    border: none !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    
 .fc-button-group > button:hover {
     background-color: #52734D !important;
     border-color: #52734D !important;
-}
-
-.fc-toolbar-chunk > button{
+    }
+    
+.fc-toolbar-chunk > button {
     background-color: #DDFFBC !important;
     color: #52734D !important;
-}
-
+    border: none !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
 .fc-toolbar-chunk > button:hover {
     background-color: #52734D !important;
-    border-color: #52734D !important;
-    color: #DDFFBC;
-}
-
-.hover-button btn btn-primary {
-    background-color: #DDFFBC !important;
-}
-
+    border: none !important;
+    color: #DDFFBC !important;
+    }
+    
 .fc-event-main {
     background-color: #52734D !important;
     border-radius: 0.5rem;
-}
-
+    border: none !important;
+    transition: background-color 0.3s ease;
+    }
+    
 .fc-event-main-frame {
     padding: 2.5% 7% !important;
     font-size: 130%;
     line-height: 100%;
-}
-
+    border: none !important;
+    transition: padding 0.3s ease, font-size 0.3s ease;
+    }
+    
 .fc-event {
     border: none !important;
     background: transparent !important;
-}
+    }
+    
+.hover-button.save-button-hover {
+    background-color: darkgreen !important;
+    color: white !important;
+    transition: background-color 0.3s ease;
+    transform: scale(1.05);
+    }

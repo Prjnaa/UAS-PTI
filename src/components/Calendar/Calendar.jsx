@@ -54,6 +54,7 @@ const Calendar = () => {
   const [selectedDate, setSelectedDate] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
+  const [isSaveButtonHovered, setIsSaveButtonHovered] = useState(false);
 
   const handleDateClick = arg => {
     setSelectedDate(arg.dateStr);
@@ -101,9 +102,9 @@ const Calendar = () => {
     const minutes = now.getMinutes().toString().padStart(2, '0');
     return `${hours}:${minutes}`;
   };
-  
+
   return (
-    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0}} className='bg-lgreen'>
+    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} className='bg-cust-1'>
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
@@ -111,7 +112,7 @@ const Calendar = () => {
           start: 'today prev,next',
           center: 'title',
           end: 'dayGridMonth,timeGridWeek,timeGridDay',
-        }} 
+        }}
         height="100vh"
         events={events}
         eventDidMount={info => {
@@ -149,7 +150,14 @@ const Calendar = () => {
               <Form.Label>Jam selesai acara</Form.Label>
               <Form.Control type="time" value={endTime} onChange={e => setEndTime(e.target.value)} max="24:00" />
             </Form.Group>
-            <Button variant="primary" type="submit" style={{backgroundColor:'#DDFFBC' ,zIndex: 1, color: '#52734D', marginTop: '10px', border: 'none' }} className="hover-button">
+            <Button
+              variant="primary"
+              type="submit"
+              className={`hover-button ${isSaveButtonHovered ? 'save-button-hover' : ''}`}
+              onMouseEnter={() => setIsSaveButtonHovered(true)}
+              onMouseLeave={() => setIsSaveButtonHovered(false)}
+              style={{ backgroundColor: '#DDFFBC', zIndex: 1, color: '#52734D', marginTop: '10px', border: 'none', transition: 'background-color 0.3s' }}
+            >
               Simpan
             </Button>
           </Form>
