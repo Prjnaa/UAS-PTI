@@ -50,7 +50,7 @@ const Form = () => {
           </div>
           <div className="mb-4">
             <label htmlFor="ticketPrice" className="block mb-2 font-medium text-lyellow">
-              Ticket Price
+              Budget
             </label>
             <input
               type="number"
