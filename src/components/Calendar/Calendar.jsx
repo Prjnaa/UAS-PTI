@@ -153,10 +153,10 @@ const Calendar = () => {
             <Button
               variant="primary"
               type="submit"
-              style={{ backgroundColor: '#DDFFBC', zIndex: 1, color: '#52734D', marginTop: '10px', border: 'none' }}
               className={`hover-button ${isSaveButtonHovered ? 'save-button-hover' : ''}`}
               onMouseEnter={() => setIsSaveButtonHovered(true)}
               onMouseLeave={() => setIsSaveButtonHovered(false)}
+              style={{ backgroundColor: '#DDFFBC', zIndex: 1, color: '#52734D', marginTop: '10px', border: 'none', transition: 'background-color 0.3s' }}
             >
               Simpan
             </Button>
