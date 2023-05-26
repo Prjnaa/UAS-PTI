@@ -64,21 +64,27 @@ export default function Register() {
       >
         <h1 className="text-4xl text-lgreen font-bold text-center">Sign Up</h1>
         <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-lgreen">Email</label>
+          <label htmlFor="email" className="text-lgreen">
+            Email
+          </label>
           <input
             type="email"
             id="email"
             className="h-10 px-3 rounded-md border-[1px] border-gray-300"
           />
 
-          <label htmlFor="password" className="text-lgreen">Password</label>
+          <label htmlFor="password" className="text-lgreen">
+            Password
+          </label>
           <input
             type="password"
             id="password"
             className="h-10 px-3 rounded-md border-[1px] border-gray-300"
           />
 
-          <label htmlFor="password2" className="text-lgreen">Ulangi Password</label>
+          <label htmlFor="password2" className="text-lgreen">
+            Ulangi Password
+          </label>
           <input
             type="password"
             id="password2"

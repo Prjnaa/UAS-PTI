@@ -4,7 +4,6 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { AnimatePresence } from "framer-motion";
 
 import "./components/firebase";
-import Userdata from "./components/data-components/Userdata";
 
 import Login from "./components/page-signin/Login";
 import Register from "./components/page-signin/Regis";
@@ -16,7 +15,9 @@ import Calendar from "./components/Calendar/Calendar";
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(true);
+
   const location = useLocation();
+  
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (result) => {
@@ -38,9 +39,9 @@ export default function App() {
       </div>
     );
   }
+  
   return (
     <div className="App">
-      <Userdata />
       {isLogin ? (
         <AnimatePresence>
           <Routes location={location} key={location.pathname}>
