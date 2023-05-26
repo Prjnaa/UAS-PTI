@@ -34,21 +34,15 @@ function Imgslider() {
     centerMode: false,
     responsive: [
       {
-        breakpoint: 480,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
         },
       },
       {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
         },
       },
     ],
@@ -56,21 +50,28 @@ function Imgslider() {
     nextArrow: null,
   };
 
-  function openURL() {
-  }
+  function openURL() {}
 
   return (
     <div className="slider-container">
       <Slider {...settings}>
         {data.map((item, index) => (
-          <div key={index} className="slide">
-            <div className="img-wrapper mx-3 md:rounded-lg overflow-visible mt-4 mb-3">
+          <div key={index} className="slider">
+            <div className="img-wrapper mx-3 overflow-visible mt-4 mb-3">
               <img
                 onClick={openURL}
                 className="sliderimg rounded-xl"
                 src={item.imgurl}
                 alt={item.eventid}
               />
+              <div className="descbox rounded-xl">
+                <div>
+                  <p className="title font-bold text-lyellow tracking-wider">
+                    {item.eventid}
+                  </p>
+                  <p className="date font-sm text-lyellow">{item.desc}</p>
+                </div>
+              </div>
             </div>
           </div>
         ))}

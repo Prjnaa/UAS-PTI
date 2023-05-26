@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -41,11 +42,14 @@ export default function Login() {
   };
 
   return (
-    <main className="w-screen h-screen bg-dgreen grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
-      <form
-        className="w-full bg-lyellow shadow-lg rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9" 
+    <main className="w-screen h-screen bg-mgreen grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
+      <motion.form
+        className=" w-full bg-lyellow shadow-box rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9" 
         autoComplete="off"
         onSubmit={handleEmailPasswordLogin}
+        initial={{ y: "-1000px" }}
+        animate={{ y: 0 }}
+        exit={{ y: "1000px", transition: { duration: 0.25 } }}
       >
         <h1 className="text-4xl text-dgreen font-bold text-center">Login</h1>
         <div className="flex flex-col gap-2">
@@ -97,7 +101,7 @@ export default function Login() {
             </Link>
           </div>
         </div>
-      </form>
+      </motion.form>
     </main>
   );
 }

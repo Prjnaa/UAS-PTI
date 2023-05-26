@@ -35,7 +35,7 @@ export default {
     },
     extend: {
       boxShadow: {
-        'box': '0px 3px 8px 2px rgba(0, 0, 0, 0.2)',
+        'box': '0px 3px 8px 2px rgba(0, 0, 0, 0.3)',
       },
       dropShadow: {
         'text': '0px 4px 2px rgba(0, 0, 0, 0.24)'

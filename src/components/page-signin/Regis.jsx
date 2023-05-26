@@ -1,4 +1,3 @@
-import React from "react";
 import {
   getAuth,
   signInWithPopup,
@@ -6,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -53,29 +53,32 @@ export default function Register() {
   };
 
   return (
-    <main className="w-screen min-h-screen flex flex-col bg-gradient-to-tr from-orange-300 to-orange-500 max-w-[500px] mx-auto p-10">
-      <form
-        className="w-full bg-white flex flex-col gap-4 shadow-lg rounded-lg mt-8 p-6"
+    <main className="w-screen h-screen bg-lyellow grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
+      <motion.form
+        className="w-full bg-dgreen shadow-box rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9"
         autoComplete="off"
         onSubmit={handleGoogleRegister}
+        initial={{ y: "-1000px" }}
+        animate={{ y: 0 }}
+        exit={{ y: "1000px", transition: { duration: 0.25 } }}
       >
-        <h1 className="text-4xl text-orange-500 text-center">Register</h1>
+        <h1 className="text-4xl text-lgreen font-bold text-center">Sign Up</h1>
         <div className="flex flex-col gap-2">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" className="text-lgreen">Email</label>
           <input
             type="email"
             id="email"
             className="h-10 px-3 rounded-md border-[1px] border-gray-300"
           />
 
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" className="text-lgreen">Password</label>
           <input
             type="password"
             id="password"
             className="h-10 px-3 rounded-md border-[1px] border-gray-300"
           />
 
-          <label htmlFor="password2">Ulangi Password</label>
+          <label htmlFor="password2" className="text-lgreen">Ulangi Password</label>
           <input
             type="password"
             id="password2"
@@ -104,7 +107,7 @@ export default function Register() {
             </Link>
           </div>
         </div>
-      </form>
+      </motion.form>
     </main>
   );
 }

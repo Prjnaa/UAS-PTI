@@ -1,13 +1,13 @@
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
-function Logout() {
+function Logout(props) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     const auth = getAuth();
     signOut(auth)
-      .then((result) => {
+      .then(() => {
         localStorage.clear();
         navigate("/");
       })
@@ -17,13 +17,12 @@ function Logout() {
   };
 
   return (
-    <button
-      className=" bg-dgreen p-3 w-36 text-white rounded-lg"
-      type="button"
+    <img
+      className="navbtn drop-shadow-text"
+      src={props.imgURL}
+      alt={props.alt}
       onClick={handleLogout}
-    >
-      Logout
-    </button>
+    />
   );
 }
 
