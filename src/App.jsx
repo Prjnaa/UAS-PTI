@@ -3,7 +3,8 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { AnimatePresence } from "framer-motion";
 
-import "./components/page-signin/firebase";
+import "./components/firebase";
+import Userdata from "./components/data-components/Userdata";
 
 import Login from "./components/page-signin/Login";
 import Register from "./components/page-signin/Regis";
@@ -16,8 +17,6 @@ export default function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(true);
   const location = useLocation();
-
-  //component lifecycle
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (result) => {
@@ -41,6 +40,7 @@ export default function App() {
   }
   return (
     <div className="App">
+      <Userdata />
       {isLogin ? (
         <AnimatePresence>
           <Routes location={location} key={location.pathname}>

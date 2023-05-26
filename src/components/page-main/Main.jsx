@@ -9,7 +9,7 @@ import "./Main.css";
 
 function Main() {
   return (
-    <div className="container-wrapper bg-lyellow w-screen grid grid-cols-12 py-3">
+    <div className="container-wrapper bg-cust-2 w-screen grid grid-cols-12 py-3">
       <motion.div
         initial={{ y: "-1000px" }}
         animate={{ y: 0 }}
