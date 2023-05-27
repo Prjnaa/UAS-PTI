@@ -6,9 +6,41 @@ import {
 } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { db } from "../firebase";
+import { useEffect, useState } from "react";
+import 'firebase/auth';
+import { SeekData } from "../SeekData";
+
+
 
 export default function Register() {
+  GetCurrUser()
   const navigate = useNavigate();
+  const [uname, setUname] = useState('');
+  const [email, setEmail] = useState('');
+
+  const userDataCollectionRef = collection(db, "users");
+  
+  useEffect(() => {
+    SeekData()
+  }, []);
+
+  const submitUser = async () => {
+    try {
+      await addDoc(userDataCollectionRef, {
+        email: email,
+        userName: uname
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleSubmitUser = (e) => {
+    setEmail(e.target.value)
+    const userName = JSON.stringify(email.split('@')[0]);
+    setUname(userName)
+  }  
 
   const handleGoogleLogin = () => {
     const auth = getAuth();
@@ -45,6 +77,7 @@ export default function Register() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         localStorage.setItem("user", JSON.stringify(result.user));
+
         navigate("/main");
       })
       .catch((err) => {
@@ -71,6 +104,7 @@ export default function Register() {
             type="email"
             id="email"
             className="h-10 px-3 rounded-md border-[1px] border-gray-300"
+            onChange={handleSubmitUser}
           />
 
           <label htmlFor="password" className="text-lgreen">
@@ -95,6 +129,7 @@ export default function Register() {
             <button
               className="h-10 w-full bg-red-500 text-white rounded-lg"
               type="submit"
+              onClick={submitUser}
             >
               Register
             </button>

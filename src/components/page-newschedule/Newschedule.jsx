@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import './newschedule.css';
-import { db, serverTimestamp } from '../firebase';
-import { getDocs, collection, addDoc } from 'firebase/firestore';
-import FormField from './components/formField';
+import { db } from '../firebase';
+import { getDocs, collection, addDoc, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { SeekData } from '../SeekData';
+import { updateCurrentUser } from 'firebase/auth';
 
 const Form = () => {
   const [eventList, setEventList] = useState([]);
@@ -51,6 +53,7 @@ const Form = () => {
 
   return (
     <div className="mx-auto p-20 bg-cust-2 h-screen">
+    <div className="mx-auto p-20 bg-cust-2 h-screen">
       <div className="max-w-screen-lg mx-auto bg-dgreen rounded-md shadow-md p-4">
         <h2 className="text-2xl font-semibold mb-4 text-lyellow">Event Form</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -86,6 +89,7 @@ const Form = () => {
         </div>
       </div>
       <div className="mt-4 flex justify-center">
+        <button className="bg-dgreen font-semibold py-2 px-9 rounded text-lyellow" onClick={onSubmitEvent}>
         <button className="bg-dgreen font-semibold py-2 px-9 rounded text-lyellow" onClick={onSubmitEvent}>
           SUBMIT
         </button>
