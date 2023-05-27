@@ -1,97 +1,92 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import './newschedule.css';
+import { db, serverTimestamp } from '../firebase';
+import { getDocs, collection, addDoc } from 'firebase/firestore';
+import FormField from './components/formField';
 
 const Form = () => {
+  const [eventList, setEventList] = useState([]);
+
+  const [name, setName] = useState('');
+  const [location, setLocation] = useState('');
+  const [date, setDate] = useState('');
+  const [budget, setBudget] = useState(0);
+  const [desc, setDesc] = useState('');
+  const [time, setTime] = useState('');
+
+  const eventListCollectionRef = collection(db, 'makeEvent');
+
+  const getEventList = async () => {
+    try {
+      const data = await getDocs(eventListCollectionRef);
+      const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      setEventList(filteredData);
+      console.log(filteredData);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getEventList();
+  }, []);
+
+  const onSubmitEvent = async () => {
+    try {
+      await addDoc(eventListCollectionRef, {
+        name: name,
+        location: location,
+        date: date ? serverTimestamp() : null,
+        budget: Number(budget),
+        desc: desc,
+        time: time,
+      });
+
+      getEventList();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
-    <div className="mx-auto p-20 bg-lgreen">
+    <div className="mx-auto p-20 bg-cust-2 h-screen">
       <div className="max-w-screen-lg mx-auto bg-dgreen rounded-md shadow-md p-4">
         <h2 className="text-2xl font-semibold mb-4 text-lyellow">Event Form</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div className="mb-4">
-            <label htmlFor="eventName" className="block mb-2 font-medium text-lyellow">
-              Event Name
-            </label>
-            <input
-              type="text"
-              id="eventName"
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="eventLocation" className="block mb-2 font-medium text-lyellow">
-              Event Location
-            </label>
-            <input
-              type="text"
-              id="eventLocation"
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="savingPerWeek" className="block mb-2 font-medium text-lyellow">
-              Saving per Week
-            </label>
-            <input
-              type="text"
-              id="savingPerWeek"
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="eventDate" className="block mb-2 font-medium text-lyellow">
-              Event Date
-            </label>
-            <input
-              type="date"
-              id="eventDate"
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="ticketPrice" className="block mb-2 font-medium text-lyellow">
-              Budget
-            </label>
-            <input
-              type="number"
-              id="ticketPrice"
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="eventDescription" className="block mb-2 font-medium text-lyellow">
-              Event Description
-            </label>
-            <textarea
-              id="eventDescription"
-              className="w-full p-2 border border-gray-300 rounded"
-              rows="4"
-            ></textarea>
-          </div>
-          <div className="mb-4">
-            <label htmlFor="eventTime" className="block mb-2 font-medium text-lyellow">
-              Event Time
-            </label>
-            <input
-              type="time"
-              id="eventTime"
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-          <div className="mb-4 col-span-2">
-            <label htmlFor="additionalCost" className="block mb-2 font-medium text-lyellow">
-              Additional Cost
-            </label>
-            <input
-              type="text"
-              id="additionalCost"
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
+          <FormField
+            label="Event Name"
+            placeholder="Input Event..."
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <FormField
+            label="Event Location"
+            placeholder="Input Location..."
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+          <FormField label="Event Date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+          <FormField
+            label="Budget"
+            type="number"
+            placeholder="Input Budget..."
+            value={budget}
+            onChange={(e) => setBudget(e.target.value)}
+          />
+          <FormField
+            label="Event Description"
+            placeholder="Input Description..."
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+            textarea
+            rows={4}
+          />
+          <FormField label="Event Time" type="time" value={time} onChange={(e) => setTime(e.target.value)} />
         </div>
       </div>
       <div className="mt-4 flex justify-center">
-        <button className="bg-dgreen font-semibold py-2 px-9 rounded text-lyellow">
+        <button className="bg-dgreen font-semibold py-2 px-9 rounded text-lyellow" onClick={onSubmitEvent}>
           SUBMIT
         </button>
       </div>
