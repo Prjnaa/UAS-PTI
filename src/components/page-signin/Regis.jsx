@@ -6,59 +6,68 @@ import {
 } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { addDoc, collection, db } from "../firebase";
-import { useEffect, useState } from "react";
-import 'firebase/auth';
-import { SeekData } from "../SeekData";
-
+import { collection, db } from "../firebase";
+import "firebase/auth";
+import { doc, getDocs, query, setDoc, where } from "firebase/firestore";
+import { saveUserStateToLocalStorage, userState } from "../currentUser";
 
 
 export default function Register() {
   const navigate = useNavigate();
-  const [uname, setUname] = useState('');
-  const [email, setEmail] = useState('');
 
   const userDataCollectionRef = collection(db, "users");
-  
-  useEffect(() => {
-    SeekData()
-  }, []);
 
-  const submitUser = async () => {
-    try {
-      await addDoc(userDataCollectionRef, {
-        email: email,
-        userName: uname
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const handleSubmitUser = (e) => {
-    setEmail(e.target.value)
-    const userName = JSON.stringify(email.split('@')[0]);
-    setUname(userName)
-  }  
+  const useRef = doc(userDataCollectionRef);
 
   const handleGoogleLogin = () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
+        const googleData = result.user;
         console.info(result.user);
+        localStorage.setItem("user", JSON.stringify(result.user));
+        submitUser(googleData.email, googleData.displayName);
+        userState.currentUser = useRef.id;
+        saveUserStateToLocalStorage();
         navigate("/main");
       })
       .catch((err) => {
-        console.error(err);
+        console.info(err);
       });
   };
 
-  const handleGoogleRegister = (e) => {
+  const submitUser = async (email, name) => {
+    console.log("User:", email, name);
+
+    const querySnapshot = await getDocs(
+      query(collection(db, "users"), where("email", "==", email))
+    );
+
+    if (querySnapshot.empty) {
+      try {
+        const id = useRef.id;
+        await setDoc(useRef, {
+          id: id,
+          email: email,
+          userName: name,
+          eventLists:[],
+        });
+
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      console.log("User data already exists in the database");
+    }
+  };
+
+  const handleRegister = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     const password2 = e.target.password2.value;
+    const userName = JSON.stringify(email.split("@")[0]);
 
     if (!email || !password || !password2) {
       return alert("Lengkapi Data Dulu");
@@ -77,11 +86,41 @@ export default function Register() {
       .then((result) => {
         localStorage.setItem("user", JSON.stringify(result.user));
 
+        // Call submitUser with the user data
+        submitUserNonGoogle(result.user.email, userName);
+        userState.currentUser = useRef.id;
+        saveUserStateToLocalStorage();
         navigate("/main");
       })
       .catch((err) => {
         console.error(err);
+        alert("Email already in used");
       });
+  };
+
+  const submitUserNonGoogle = async (email, name) => {
+    console.log("User:", email, name);
+
+    const querySnapshot = await getDocs(
+      query(collection(db, "users"), where("email", "==", email))
+    );
+
+    if (querySnapshot.empty) {
+      try {
+        const userRef = doc(userDataCollectionRef);
+        await setDoc(userRef, {
+          id: userRef.id,
+          email: email,
+          userName: name,
+          eventLists:[],
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      console.log("User data already exists in the database");
+      alert("Email already in used");
+    }
   };
 
   return (
@@ -89,7 +128,7 @@ export default function Register() {
       <motion.form
         className="w-full bg-dgreen shadow-box rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9"
         autoComplete="off"
-        onSubmit={handleGoogleRegister}
+        onSubmit={handleRegister}
         initial={{ y: "-1000px" }}
         animate={{ y: 0 }}
         exit={{ y: "1000px", transition: { duration: 0.25 } }}
@@ -103,7 +142,6 @@ export default function Register() {
             type="email"
             id="email"
             className="h-10 px-3 rounded-md border-[1px] border-gray-300"
-            onChange={handleSubmitUser}
           />
 
           <label htmlFor="password" className="text-lgreen">
@@ -128,7 +166,6 @@ export default function Register() {
             <button
               className="h-10 w-full bg-red-500 text-white rounded-lg"
               type="submit"
-              onClick={submitUser}
             >
               Register
             </button>

@@ -7,7 +7,7 @@ const FormField = ({ label, type = 'text', placeholder, value, onChange, textare
       {textarea ? (
         <textarea
           id={label.toLowerCase().replace(/\s/g, '')}
-          className="w-full p-2 border border-gray-300 rounded"
+          className="w-full p-2 border border-gray-300 rounded resize-none"
           rows={rows}
           placeholder={placeholder}
           value={value}

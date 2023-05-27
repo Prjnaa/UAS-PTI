@@ -7,63 +7,61 @@ import {
   collection,
   addDoc,
   serverTimestamp,
+  doc,
+  getDoc,
   updateDoc,
+  arrayUnion,
+  FieldValue,
 } from "firebase/firestore";
-import FormField from "./components/formField";
-import { SeekData } from "../SeekData";
-import { updateCurrentUser } from "firebase/auth";
+import FormField from "./FormField";
+import { userState } from "../currentUser";
+
 
 const Form = () => {
-  const [eventList, setEventList] = useState([]);
+  const currentUser = userState.currentUser;
 
-  const [name, setName] = useState("");
+  const [eventName, setEventName] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
   const [budget, setBudget] = useState(0);
   const [desc, setDesc] = useState("");
   const [time, setTime] = useState("");
 
-  const eventListCollectionRef = collection(db, "makeEvent");
-
-  const getEventList = async () => {
-    try {
-      const data = await getDocs(eventListCollectionRef);
-      const filteredData = data.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setEventList(filteredData);
-      console.log(filteredData);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  useEffect(() => {
-    getEventList();
-  }, []);
-
   const onSubmitEvent = async () => {
     try {
-      await addDoc(eventListCollectionRef, {
-        name: name,
-        location: location,
-        date: date ? serverTimestamp() : null,
-        budget: Number(budget),
-        desc: desc,
-        time: time,
+      const event = {
+        eventName,
+        location,
+        date,
+        budget,
+        desc,
+        time,
+      };
+
+      const userRef = doc(db, "users", currentUser);
+      await updateDoc(userRef, {
+        eventLists: arrayUnion(event),
       });
 
-      getEventList();
-    } catch (err) {
-      console.error(err);
+      //reset value
+      setEventName("");
+      setLocation("");
+      setDate("");
+      setBudget(0);
+      setDesc("");
+      setTime("");
+
+      console.log("Data berhasil disimpan dalam array");
+    } catch (error) {
+      console.log("Terjadi kesalahan:", error);
     }
   };
+  
 
   return (
-    <div className="mx-auto p-20 bg-cust-2 h-screen">
-      <div className="mx-auto p-20 bg-cust-2 h-screen">
-        <div className="max-w-screen-lg mx-auto bg-dgreen rounded-md shadow-md p-4">
+    <div className="bg-cust-2 h-screen w-screen grid grid-cols-12 py-3">
+      <div className="bg-cust-2 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13">
+        <div className="bg-dgreen rounded-md shadow-md p-4">
           <h2 className="text-2xl font-semibold mb-4 text-lyellow">
             Event Form
           </h2>
@@ -71,8 +69,8 @@ const Form = () => {
             <FormField
               label="Event Name"
               placeholder="Input Event..."
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={eventName}
+              onChange={(e) => setEventName(e.target.value)}
             />
             <FormField
               label="Event Location"

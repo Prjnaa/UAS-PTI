@@ -4,10 +4,12 @@ import Bottomside from "./Bottomside.jsx";
 import Upcomming from "./upcoming events/Upcoming.jsx";
 import Navbar from "../navbar/Navbar.jsx";
 import { motion } from "framer-motion";
+import { userState } from "../currentUser.js";
 
 import "./Main.css";
 
 function Main() {
+  console.log(userState.currentUser)
   return (
     <div className="container-wrapper bg-cust-2 w-screen grid grid-cols-12 py-3">
       <motion.div

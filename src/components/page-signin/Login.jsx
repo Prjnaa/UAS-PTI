@@ -7,24 +7,66 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
+import { db } from "../firebase";
+import { saveUserStateToLocalStorage, userState } from "../currentUser";
 
 export default function Login() {
   const navigate = useNavigate();
+  const userDataCollectionRef = collection(db, "users");
 
+  const useRef = doc(userDataCollectionRef);
+  //dari sini
   const handleGoogleLogin = () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
+        const googleData = result.user;
         console.info(result.user);
         localStorage.setItem("user", JSON.stringify(result.user));
+        submitUser(googleData.email, googleData.displayName);
+        userState.currentUser = useRef.id;
+        saveUserStateToLocalStorage();
         navigate("/main");
       })
       .catch((err) => {
         console.info(err);
       });
   };
+
+  const submitUser = async (email, name) => {
+    console.log("User:", email, name);
+
+    const querySnapshot = await getDocs(
+      query(collection(db, "users"), where("email", "==", email))
+    );
+
+    if (querySnapshot.empty) {
+      try {
+        const id = useRef.id;
+        await setDoc(useRef, {
+          id: id,
+          email: email,
+          userName: name,
+          eventLists:[],
+        });
+
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      console.log("User data already exists in the database");
+    }
+  };
+  //sampe sini
 
   const handleEmailPasswordLogin = (e) => {
     e.preventDefault();
@@ -35,6 +77,8 @@ export default function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
         localStorage.setItem("user", JSON.stringify(result.user));
+        userState.currentUser = useRef.id;
+        saveUserStateToLocalStorage();
         navigate("/main");
       })
       .catch(() => {

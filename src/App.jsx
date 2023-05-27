@@ -12,8 +12,6 @@ import Form from "./components/page-newschedule/Newschedule";
 import Friend from "./components/page-friends/src/Friend";
 import Calendar from "./components/Calendar/Calendar";
 import Saving from "./components/page-saving/Saving";
-import Eventlistdata from "./components/page-eventlistdata/Eventlistdata";
-import { SeekData } from "./components/SeekData";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
