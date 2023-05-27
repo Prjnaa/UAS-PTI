@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import './newschedule.css';
 import { db } from '../firebase';
-import { getDocs, collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { getDocs, collection, addDoc, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { SeekData } from '../SeekData';
+import { updateCurrentUser } from 'firebase/auth';
 
 const Form = () => {
-  const [eventList, setEventList] = useState([]);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState(null);
@@ -13,35 +14,42 @@ const Form = () => {
   const [desc, setDesc] = useState("");
   const [time, setTime] = useState("");
 
-  const eventListCollectionRef = collection(db, "makeEvent");
+  const eventListCollectionRef = collection(db, "users");
+
+  const [currUser, setCurrUser] = useState('');
+
 
   useEffect(() => {
-    const getEventList = async () => {
-      // Read data
-      try {
-        const data = await getDocs(eventListCollectionRef);
-        const filteredData = data.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setEventList(filteredData);
-        console.log(filteredData);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    getEventList();
+    SeekData()
+    setCurrUser
+    // const getEventList = async () => {
+    //   // Read data
+    //   try {
+    //     const data = await getDocs(eventListCollectionRef);
+    //     const filteredData = data.docs.map((doc) => ({
+    //       ...doc.data(),
+    //       id: doc.id,
+    //     }));
+    //     setEventList(filteredData);
+    //     console.log(filteredData);
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // };
+    // getEventList();
   }, []);
 
   const onSubmitEvent = async () => {
     try {
-      await addDoc(eventListCollectionRef, {
-        name: name,
-        location: location,
-        date: date ? serverTimestamp() : null,
-        budget: Number(budget),
-        desc: desc,
-        time: time,
+      await updateDoc(eventListCollectionRef, {
+        eventList: {
+          name: name,
+          location: location,
+          date: date ? serverTimestamp() : null,
+          budget: Number(budget),
+          desc: desc,
+          time: time,
+        },
       });
     } catch (err) {
       console.error(err);

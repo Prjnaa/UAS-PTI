@@ -10,7 +10,7 @@ function Bottomside() {
         desc="Saving"
       />
       <Menubutton 
-        goTo="/" 
+        goTo="/form" 
         ALT="add.jpg" 
         imgURL="" 
         desc="Add"

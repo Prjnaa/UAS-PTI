@@ -13,13 +13,14 @@ import Friend from "./components/page-friends/src/Friend";
 import Calendar from "./components/Calendar/Calendar";
 import Saving from "./components/page-saving/Saving";
 import Eventlistdata from "./components/page-eventlistdata/Eventlistdata";
+import { SeekData } from "./components/SeekData";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const location = useLocation();
-  
+
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (result) => {
@@ -41,7 +42,7 @@ export default function App() {
       </div>
     );
   }
-  
+
   return (
     <div className="App">
       {isLogin ? (
@@ -53,7 +54,6 @@ export default function App() {
             <Route path="/form" element={<Form />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/saving" element={<Saving />}/>
-            <Route path="/eventlistdata" element={<Eventlistdata />}/>
           </Routes>
         </AnimatePresence>
       ) : (
