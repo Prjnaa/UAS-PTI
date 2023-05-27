@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Login() {
   const navigate = useNavigate();
