@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { db } from "../firebase";
+import { addDoc, collection, db } from "../firebase";
 import { useEffect, useState } from "react";
 import 'firebase/auth';
 import { SeekData } from "../SeekData";
@@ -14,7 +14,6 @@ import { SeekData } from "../SeekData";
 
 
 export default function Register() {
-  GetCurrUser()
   const navigate = useNavigate();
   const [uname, setUname] = useState('');
   const [email, setEmail] = useState('');
