@@ -10,14 +10,51 @@ import { collection, db } from "../firebase";
 import "firebase/auth";
 import { doc, getDocs, query, setDoc, where } from "firebase/firestore";
 import { saveUserStateToLocalStorage, userState } from "../currentUser";
-
+import { v4 as uuidv4 } from 'uuid'; // Import uuidv4 function from the uuid library
 
 export default function Register() {
   const navigate = useNavigate();
 
   const userDataCollectionRef = collection(db, "users");
 
-  const useRef = doc(userDataCollectionRef);
+  // Function to generate a unique ID
+  const generateUniqueId = () => {
+    const id = uuidv4();
+    return id;
+  };
+
+  //google
+  const submitUser = async (email, name) => {
+    console.log("User:", email, name);
+    const querySnapshot = await getDocs(
+      query(collection(db, "users"), where("email", "==", email))
+    );
+
+    if (querySnapshot.empty) {
+      try {
+        const id = generateUniqueId(); // Generate a unique ID
+        const useRef = doc(userDataCollectionRef, id); // Use the generated ID for the user document
+        await setDoc(useRef, {
+          id: id,
+          email: email,
+          userName: name,
+          eventLists: [],
+        });
+
+        userState.currentUser = id;
+        return id;
+      } catch (err) {
+        console.error(err);
+        throw err;
+      }
+    } else {
+      console.log("User data already exists in the database");
+      const firstDoc = querySnapshot.docs[0];
+      const id = firstDoc.id; // Use the existing ID for the user document
+      userState.currentUser = id;
+      return id;
+    }
+  };
 
   const handleGoogleLogin = () => {
     const auth = getAuth();
@@ -27,47 +64,28 @@ export default function Register() {
         const googleData = result.user;
         console.info(result.user);
         localStorage.setItem("user", JSON.stringify(result.user));
-        submitUser(googleData.email, googleData.displayName);
-        userState.currentUser = useRef.id;
-        saveUserStateToLocalStorage();
-        navigate("/main");
+        submitUser(googleData.email, googleData.displayName)
+          .then((id) => {
+            userState.currentUser = id;
+            saveUserStateToLocalStorage();
+            navigate("/main");
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       })
       .catch((err) => {
         console.info(err);
       });
   };
-
-  const submitUser = async (email, name) => {
-    console.log("User:", email, name);
-
-    const querySnapshot = await getDocs(
-      query(collection(db, "users"), where("email", "==", email))
-    );
-
-    if (querySnapshot.empty) {
-      try {
-        const id = useRef.id;
-        await setDoc(useRef, {
-          id: id,
-          email: email,
-          userName: name,
-          eventLists:[],
-        });
-
-      } catch (err) {
-        console.error(err);
-      }
-    } else {
-      console.log("User data already exists in the database");
-    }
-  };
+  //google
 
   const handleRegister = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     const password2 = e.target.password2.value;
-    const userName = JSON.stringify(email.split("@")[0]);
+    const userName = email.split("@")[0];
 
     if (!email || !password || !password2) {
       return alert("Lengkapi Data Dulu");
@@ -85,42 +103,20 @@ export default function Register() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         localStorage.setItem("user", JSON.stringify(result.user));
-
-        // Call submitUser with the user data
-        submitUserNonGoogle(result.user.email, userName);
-        userState.currentUser = useRef.id;
-        saveUserStateToLocalStorage();
-        navigate("/main");
+        submitUser(result.user.email, userName)
+          .then((id) => {
+            userState.currentUser = id;
+            saveUserStateToLocalStorage();
+            navigate("/main");
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       })
       .catch((err) => {
         console.error(err);
-        alert("Email already in used");
+        alert("Email already in use");
       });
-  };
-
-  const submitUserNonGoogle = async (email, name) => {
-    console.log("User:", email, name);
-
-    const querySnapshot = await getDocs(
-      query(collection(db, "users"), where("email", "==", email))
-    );
-
-    if (querySnapshot.empty) {
-      try {
-        const userRef = doc(userDataCollectionRef);
-        await setDoc(userRef, {
-          id: userRef.id,
-          email: email,
-          userName: name,
-          eventLists:[],
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    } else {
-      console.log("User data already exists in the database");
-      alert("Email already in used");
-    }
   };
 
   return (

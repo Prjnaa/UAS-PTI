@@ -7,14 +7,7 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  collection,
-  doc,
-  getDocs,
-  query,
-  setDoc,
-  where,
-} from "firebase/firestore";
+import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 import { saveUserStateToLocalStorage, userState } from "../currentUser";
 
@@ -22,8 +15,6 @@ export default function Login() {
   const navigate = useNavigate();
   const userDataCollectionRef = collection(db, "users");
 
-  const useRef = doc(userDataCollectionRef);
-  //dari sini
   const handleGoogleLogin = () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
@@ -33,40 +24,12 @@ export default function Login() {
         console.info(result.user);
         localStorage.setItem("user", JSON.stringify(result.user));
         submitUser(googleData.email, googleData.displayName);
-        userState.currentUser = useRef.id;
-        saveUserStateToLocalStorage();
         navigate("/main");
       })
       .catch((err) => {
         console.info(err);
       });
   };
-
-  const submitUser = async (email, name) => {
-    console.log("User:", email, name);
-
-    const querySnapshot = await getDocs(
-      query(collection(db, "users"), where("email", "==", email))
-    );
-
-    if (querySnapshot.empty) {
-      try {
-        const id = useRef.id;
-        await setDoc(useRef, {
-          id: id,
-          email: email,
-          userName: name,
-          eventLists:[],
-        });
-
-      } catch (err) {
-        console.error(err);
-      }
-    } else {
-      console.log("User data already exists in the database");
-    }
-  };
-  //sampe sini
 
   const handleEmailPasswordLogin = (e) => {
     e.preventDefault();
@@ -75,9 +38,9 @@ export default function Login() {
 
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
-      .then((result) => {
+      .then(async (result) => {
         localStorage.setItem("user", JSON.stringify(result.user));
-        userState.currentUser = useRef.id;
+        await submitUser(email);
         saveUserStateToLocalStorage();
         navigate("/main");
       })
@@ -86,6 +49,22 @@ export default function Login() {
       });
   };
 
+  const submitUser = async (email) => {
+    console.log("User:", email);
+    const querySnapshot = await getDocs(
+      query(collection(db, "users"), where("email", "==", email))
+    );
+
+    if (!querySnapshot.empty) {
+      console.log("User data exists in the database");
+      const userData = querySnapshot.docs[0].data();
+      userState.currentUser = userData.id;
+    } else {
+      console.log("User data does not exist in the database");
+      alert("User not found");
+    }
+  };
+  
   return (
     <main className="  w-screen h-screen bg-mgreen grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
       <motion.form

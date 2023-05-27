@@ -4,9 +4,9 @@ import Bottomside from "./Bottomside.jsx";
 import Upcomming from "./upcoming events/Upcoming.jsx";
 import Navbar from "../navbar/Navbar.jsx";
 import { motion } from "framer-motion";
-import { userState } from "../currentUser.js";
 
 import "./Main.css";
+import { storedUserState, userState } from "../currentUser.js";
 
 function Main() {
   console.log(userState.currentUser)

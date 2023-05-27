@@ -27,7 +27,8 @@
     "react-slick": "^0.29.0",
     "react-toastify": "^9.1.3",
     "slick-carousel": "^1.8.1",
-    "toastify": "^2.0.1"
+    "toastify": "^2.0.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
