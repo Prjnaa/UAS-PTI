@@ -1,0 +1,46 @@
+.event-box {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .event-box:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .event-box.active {
+    animation: fade-in 0.3s;
+  }
+  
+  .event-box-header {
+    margin-bottom: 10px;
+  }
+  
+  .event-box-body {
+    animation: slide-down 0.3s;
+    padding-top: 10px;
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-down {
+    0% {
+      height: 0;
+      opacity: 0;
+    }
+     100% {
+      height: auto;
+      opacity: 1;
+    }
+  }
+  
