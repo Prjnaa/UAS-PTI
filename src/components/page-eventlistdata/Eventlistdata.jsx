@@ -42,7 +42,7 @@ const EventBox = ({ eventName, eventDate, eventTime, eventLocation, budget, addi
   );
 };
 
-const App = () => {
+const Eventlistdata = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="grid grid-cols-2 gap-4">
