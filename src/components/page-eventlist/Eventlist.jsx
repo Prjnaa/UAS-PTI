@@ -27,6 +27,16 @@ const EventList = () => {
 
   useEffect(() => {
     fetchEvents();
+    const unsubscribe = onSnapshot(doc(db, 'users', currentUser), (userSnapshot) => {
+      if (userSnapshot.exists()) {
+        const userEventData = userSnapshot.data().eventLists;
+        setEvents(userEventData);
+      }
+    });
+
+    return () => {
+      unsubscribe(); // Unsubscribe saat komponen di-unmount
+    };
   }, []);
 
   const handleEventClick = (event) => {
