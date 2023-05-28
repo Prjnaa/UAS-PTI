@@ -7,14 +7,21 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { collection, doc, getDocs, query, where } from "firebase/firestore";
+import { collection, doc, getDocs, query, setDoc, where } from "firebase/firestore";
 import { db } from "../firebase";
 import { saveUserStateToLocalStorage, userState } from "../currentUser";
+import { v4 as uuidv4 } from 'uuid'
 
 export default function Login() {
   const navigate = useNavigate();
   const userDataCollectionRef = collection(db, "users");
 
+  const generateUniqueId = () => {
+    const id = uuidv4();
+    return id;
+  };
+
+  //google
   const handleGoogleLogin = () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
@@ -23,13 +30,54 @@ export default function Login() {
         const googleData = result.user;
         console.info(result.user);
         localStorage.setItem("user", JSON.stringify(result.user));
-        submitUser(googleData.email, googleData.displayName);
-        navigate("/main");
+        submitGoogleUser(googleData.email, googleData.displayName)
+          .then((id) => {
+            userState.currentUser = id;
+            saveUserStateToLocalStorage();
+            navigate("/main");
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       })
       .catch((err) => {
         console.info(err);
       });
   };
+
+  const submitGoogleUser = async (email, name) => {
+    console.log("User:", email, name);
+    const querySnapshot = await getDocs(
+      query(collection(db, "users"), where("email", "==", email))
+    );
+
+    if (querySnapshot.empty) {
+      try {
+        const id = generateUniqueId(); // Generate a unique ID
+        const useRef = doc(userDataCollectionRef, id); // Use the generated ID for the user document
+        await setDoc(useRef, {
+          id: id,
+          email: email,
+          userName: name,
+          eventLists: [],
+        });
+
+        userState.currentUser = id;
+        return id;
+      } catch (err) {
+        console.error(err);
+        throw err;
+      }
+    } else {
+      console.log("User data already exists in the database");
+      const firstDoc = querySnapshot.docs[0];
+      const id = firstDoc.id; // Use the existing ID for the user document
+      userState.currentUser = id;
+      return id;
+    }
+  };
+
+  //google
 
   const handleEmailPasswordLogin = (e) => {
     e.preventDefault();
@@ -64,7 +112,7 @@ export default function Login() {
       alert("User not found");
     }
   };
-  
+
   return (
     <main className="  w-screen h-screen bg-mgreen grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
       <motion.form

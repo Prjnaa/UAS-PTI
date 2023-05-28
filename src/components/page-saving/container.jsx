@@ -1,9 +1,9 @@
 import React from 'react';
 import ProgressBar from './bar';
 
-const Container = () => {
-  const collectedAmount = 0; // Jumlah uang yang terkumpul
-  const targetAmount = 1000; // Target jumlah uang
+const Container = (props) => {
+  const collectedAmount = props.save; // Jumlah uang yang terkumpul
+  const targetAmount = props.budget; // Target jumlah uang
   return (
     <div className="container bg-cust-5 h-64 rounded-xl">
 

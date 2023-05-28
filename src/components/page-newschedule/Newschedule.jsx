@@ -51,7 +51,7 @@ const Form = () => {
       setDesc("");
       setTime("");
 
-      console.log("Data berhasil disimpan dalam array");
+      console.log("Data Stored Successfuly");
     } catch (error) {
       console.log("Terjadi kesalahan:", error);
     }

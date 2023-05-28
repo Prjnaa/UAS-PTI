@@ -10,7 +10,7 @@ import { collection, db } from "../firebase";
 import "firebase/auth";
 import { doc, getDocs, query, setDoc, where } from "firebase/firestore";
 import { saveUserStateToLocalStorage, userState } from "../currentUser";
-import { v4 as uuidv4 } from 'uuid'; // Import uuidv4 function from the uuid library
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Register() {
   const navigate = useNavigate();
