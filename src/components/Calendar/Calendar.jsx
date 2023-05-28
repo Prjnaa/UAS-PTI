@@ -37,8 +37,18 @@ const Calendar = () => {
       upcomingEvents.forEach(event => {
         const eventDateTime = new Date(event.start);
         const timeDiff = eventDateTime - now;
-        if (timeDiff > 0 && timeDiff <= 300000) {
-          console.log(`Notifikasi: Acara ${event.title} akan segera dimulai!`);
+        if (timeDiff > 0 && timeDiff <= 600000) {
+          const alarmSound = new Audio('path_to_alarm_sound_file.mp3');
+          alarmSound.play();
+          toast.info(`Event ${event.title} is about to start!`, {
+            position: 'top-right',
+            autoClose: false,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         }
       });
     };
@@ -82,7 +92,7 @@ const Calendar = () => {
       setEvents(prevEvents => [...prevEvents, newEvent]);
       setShowModal(false);
 
-      toast.success('Acara berhasil disimpan!', {
+      toast.success('The event was successfully saved', {
         position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
@@ -92,7 +102,7 @@ const Calendar = () => {
         progress: undefined,
       });
     } else {
-      toast.error('Mohon isi semua kolom yang diperlukan!');
+      toast.error('Please fill in all required fields');
     }
   };
 
@@ -113,7 +123,7 @@ const Calendar = () => {
           center: 'title',
           end: 'dayGridMonth,timeGridWeek,timeGridDay',
         }}
-        height="100vh"
+        height="100%"
         events={events}
         eventDidMount={info => {
           return new bootstrap.Popover(info.el, {
@@ -121,7 +131,7 @@ const Calendar = () => {
             placement: 'auto',
             trigger: 'hover',
             customClass: 'popoverStyle',
-            content: `Lokasi: ${info.event.extendedProps.location}<br>Jam mulai: ${new Date(info.event.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}<br>Jam selesai: ${new Date(info.event.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).replace(':00 ', ' ')}`,
+            content: `Location: ${info.event.extendedProps.location}<br>Start Time: ${new Date(info.event.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}<br>End Time: ${new Date(info.event.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).replace(':00 ', ' ')}`,
             html: true,
           });
         }}
@@ -130,24 +140,24 @@ const Calendar = () => {
 
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Tambah acara</Modal.Title>
+          <Modal.Title>Add Event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmitModal}>
             <Form.Group controlId="title">
-              <Form.Label>Nama acara</Form.Label>
-              <Form.Control type="text" placeholder="Masukkan nama acara" />
+              <Form.Label>Event Name</Form.Label>
+              <Form.Control type="text" placeholder="Enter event name" />
             </Form.Group>
             <Form.Group controlId="location">
-              <Form.Label>Lokasi acara</Form.Label>
-              <Form.Control type="text" placeholder="Masukkan lokasi acara" />
+              <Form.Label>Event Location</Form.Label>
+              <Form.Control type="text" placeholder="Enter event location" />
             </Form.Group>
             <Form.Group controlId="startTime">
-              <Form.Label>Jam mulai acara</Form.Label>
+              <Form.Label>Event start</Form.Label>
               <Form.Control type="time" value={startTime} onChange={e => setStartTime(e.target.value)} max="24:00" />
             </Form.Group>
             <Form.Group controlId="endTime">
-              <Form.Label>Jam selesai acara</Form.Label>
+              <Form.Label>Event End</Form.Label>
               <Form.Control type="time" value={endTime} onChange={e => setEndTime(e.target.value)} max="24:00" />
             </Form.Group>
             <Button
@@ -158,7 +168,7 @@ const Calendar = () => {
               onMouseLeave={() => setIsSaveButtonHovered(false)}
               style={{ backgroundColor: '#DDFFBC', zIndex: 1, color: '#52734D', marginTop: '10px', border: 'none', transition: 'background-color 0.3s' }}
             >
-              Simpan
+              Save
             </Button>
           </Form>
         </Modal.Body>

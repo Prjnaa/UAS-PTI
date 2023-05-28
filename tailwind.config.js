@@ -41,10 +41,10 @@ export default {
         'text': '0px 4px 2px rgba(0, 0, 0, 0.24)'
       },
       colors: {
-        'cust-1': "#FFF8D6",
-        'cust-2': "#F7E1AE",
-        'cust-3': "#A4D0A4",
-        'cust-4': "#617A55",
+        'cust-1': "#152238",
+        'cust-2': "#70e9ff",
+        'cust-3': "#DDFFBC",
+        'cust-4': "#83764F",
         'cust-5': '#FBEEC1',
       },
     },

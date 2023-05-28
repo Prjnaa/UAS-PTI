@@ -12,7 +12,7 @@ function Main() {
   console.log(userState.currentUser)
   
   return (
-    <div className="container-wrapper bg-cust-2 w-screen grid grid-cols-12 py-3">
+    <div className="container-wrapper bg-cust-1 w-screen grid grid-cols-12 py-3">
       <motion.div
         initial={{ y: "-1000px" }}
         animate={{ y: 0 }}
@@ -31,7 +31,7 @@ function Main() {
           <Topside />
           <Bottomside />
         </div>
-        <div className="justify-around container-bottom mt-32 mb-32">
+        <div className="justify-around container-bottom mt-10 mb-32">
           <Upcomming />
         </div>
         <Navbar />

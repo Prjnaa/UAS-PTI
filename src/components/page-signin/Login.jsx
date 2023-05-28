@@ -11,6 +11,8 @@ import { collection, doc, getDocs, query, setDoc, where } from "firebase/firesto
 import { db } from "../firebase";
 import { saveUserStateToLocalStorage, userState } from "../currentUser";
 import { v4 as uuidv4 } from 'uuid'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -93,7 +95,7 @@ export default function Login() {
         navigate("/main");
       })
       .catch(() => {
-        alert("User tidak terdaftar");
+        toast.error("User not registered");
       });
   };
 
@@ -104,19 +106,19 @@ export default function Login() {
     );
 
     if (!querySnapshot.empty) {
-      console.log("User data exists in the database");
+      console.log("Data pengguna ada dalam database");
       const userData = querySnapshot.docs[0].data();
       userState.currentUser = userData.id;
     } else {
-      console.log("User data does not exist in the database");
-      alert("User not found");
+      console.log("Data pengguna tidak ada dalam database");
+      toast.error("User not found");
     }
   };
-
+  
   return (
-    <main className="  w-screen h-screen bg-mgreen grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
+    <main className="w-screen h-screen bg-mgreen grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
       <motion.form
-        className=" w-full bg-lyellow shadow-box rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9"
+        className="w-full bg-lyellow shadow-box rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9"
         autoComplete="off"
         onSubmit={handleEmailPasswordLogin}
         initial={{ y: "-1000px" }}
@@ -174,6 +176,7 @@ export default function Login() {
           </div>
         </div>
       </motion.form>
+      <ToastContainer />
     </main>
   );
 }

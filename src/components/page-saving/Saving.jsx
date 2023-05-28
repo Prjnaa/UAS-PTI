@@ -19,7 +19,7 @@ const Saving = () => {
       const userData = userDocSnap.data();
       const eventData = userData.eventLists;
       console.log("eventData:", eventData);
-      setEventData(eventData); // Store the eventData array in state
+      setEventData(eventData);
     } else {
       console.log('User document does not exist.');
     }
