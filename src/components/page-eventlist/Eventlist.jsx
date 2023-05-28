@@ -1,9 +1,33 @@
-import React, { useState } from 'react';
-import "tailwindcss/tailwind.css";
+import React, { useState, useEffect } from 'react';
+import { db, collection } from '../firebase';
+import 'tailwindcss/tailwind.css';
+import { doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { userState } from '../currentUser';
 
 const EventList = () => {
+  const currentUser = userState.currentUser;
+  console.log(currentUser);
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
+
+  const fetchEvents = async () => {
+    try {
+      const userRef = doc(db, 'users', currentUser);
+      const userSnapshot = await getDoc(userRef);
+      console.log(userSnapshot);
+      if (userSnapshot.exists()) {
+        const userEventData = userSnapshot.data().eventLists;
+        setEvents(userEventData);
+      }
+      console.log(events);
+    } catch (error) {
+      console.log('Error fetching events:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);
@@ -16,7 +40,10 @@ const EventList = () => {
           <p className="text-center">No events available.</p>
         ) : (
           events.map((event, index) => (
-            <div key={index} className="mb-4 p-4 border border-gray-300 rounded">
+            <div
+              key={index}
+              className="mb-4 p-4 border border-gray-300 rounded shadow-md"
+            >
               <h3>{event.eventName}</h3>
               <hr className="my-2" />
               <button
