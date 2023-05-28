@@ -30,41 +30,47 @@ const EventList = () => {
   }, []);
 
   const handleEventClick = (event) => {
-    setSelectedEvent(event);
+    if (selectedEvent && selectedEvent.eventName === event.eventName) {
+      setSelectedEvent(null);
+    } else {
+      setSelectedEvent(event);
+    }
   };
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="w-96">
+      <div className="w-1/2 max-h-full overflow-y-auto pr-5" style={{ scrollbarWidth: 'thin' }}>
         {events.length === 0 ? (
           <p className="text-center">No events available.</p>
         ) : (
           events.map((event, index) => (
             <div
               key={index}
-              className="mb-4 p-4 border border-gray-300 rounded shadow-md"
+              className="mb-4 p-4 border border-gray-300 rounded-xl shadow-md hover:-translate-y-1 hover:shadow-lg transform transition-all duration-200 bg-white"
             >
-              <h3>{event.eventName}</h3>
+              <h3 className="text-center">{event.eventName}</h3>
               <hr className="my-2" />
-              <button
-                onClick={() => handleEventClick(event)}
-                className="bg-blue-500 text-white py-2 px-4 rounded"
-              >
-                View Details
-              </button>
+              <div className="flex justify-center">
+                <button
+                  onClick={() => handleEventClick(event)}
+                  className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition-all duration-200 transform hover:-translate-y-1 hover:scale-105"
+                >
+                  {selectedEvent && selectedEvent.eventName === event.eventName
+                    ? 'Hide Details'
+                    : 'View Details'}
+                </button>
+              </div>
+              {selectedEvent && selectedEvent.eventName === event.eventName && (
+                <div className="border border-gray-400 p-4 mt-4 rounded-xl">
+                  <h3 className="text-center">{selectedEvent.eventName}</h3>
+                  <p className="my-2">Date: {selectedEvent.date}</p>
+                  <p className="my-2">Time: {selectedEvent.time}</p>
+                  <p className="my-2">Location: {selectedEvent.location}</p>
+                  <p className="my-2">Budget: {selectedEvent.budget}</p>
+                </div>
+              )}
             </div>
           ))
-        )}
-
-        {selectedEvent && (
-          <div className="border border-gray-400 p-4 mt-4">
-            <h3>{selectedEvent.eventName}</h3>
-            <p>Date: {selectedEvent.eventDate}</p>
-            <p>Time: {selectedEvent.eventTime}</p>
-            <p>Location: {selectedEvent.eventLocation}</p>
-            <p>Budget: {selectedEvent.budget}</p>
-            <p>Additional Cost: {selectedEvent.additionalCost}</p>
-          </div>
         )}
       </div>
     </div>
