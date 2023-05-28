@@ -127,7 +127,7 @@ const Form = () => {
         </div>
         <div className="mt-4 flex justify-center">
           <button
-            className="bg-dgreen font-semibold py-2 px-9 rounded text-lyellow"
+            className="bg-cust-1 font-semibold py-2 px-9 rounded text-white"
             onClick={onSubmitEvent}
           >
             SUBMIT

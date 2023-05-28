@@ -30,7 +30,7 @@ function Main() {
           <Topside />
           <Bottomside />
         </div>
-        <div className="justify-around container-bottom mt-32 mb-32">
+        <div className="justify-around container-bottom mt-10 mb-32">
           <Upcomming />
         </div>
         <Navbar />

@@ -89,6 +89,10 @@ a {
     transform: scale(1.05);
     }
 
-.fc-daygrid-day-frame {
-        border-radius: 10px !important;
+.fc-scrollgrid {
+        border-radius: 20px !important;
     }
+
+.fc-dayGridMonth-view {
+    border: none !important;
+}

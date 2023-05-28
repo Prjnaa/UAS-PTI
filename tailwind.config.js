@@ -43,7 +43,7 @@ export default {
       colors: {
         'cust-1': "#152238",
         'cust-2': "#70e9ff",
-        'cust-3': "#617A55",
+        'cust-3': "#DDFFBC",
         'cust-4': "#83764F",
         'cust-5': '#FBEEC1',
       },
