@@ -57,7 +57,6 @@ a {
     }
     
 .fc-event-main {
-    background-color: #52734D !important;
     border-radius: 0.5rem;
     border: none !important;
     transition: background-color 0.3s ease;
@@ -76,23 +75,12 @@ a {
     }
     
 .fc-event {
-    border: none !important;
-    background: transparent !important;
+    background-color: white;
+    margin-bottom: 20px ;
     border-radius: 10px !important;
     margin-top: 5px !important;
     }
-    
-.hover-button.save-button-hover {
-    background-color: darkgreen !important;
-    color: white !important;
-    transition: background-color 0.3s ease;
-    transform: scale(1.05);
-    }
 
-.fc-scrollgrid {
-        border-radius: 20px !important;
+.fc-daygrid-day-frame {
+        border-radius: 10px !important;
     }
-
-.fc-dayGridMonth-view {
-    border: none !important;
-}

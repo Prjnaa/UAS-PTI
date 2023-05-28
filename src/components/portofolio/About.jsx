@@ -6,26 +6,26 @@ const teamMembers = [
     {
         name: "@cmesayaa",
         position: "asdfghjkl",
-        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        imageUrl: "https://example.com/john-doe.jpg",
+        bio: "Lorem ipsum",
+        imageUrl: "a.jpg",
     },
     {
         name: "Ben silalahi",
         position: "asdfghjkl",
-        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        imageUrl: "https://example.com/jane-smith.jpg",
+        bio: "Lorem ipsum",
+        imageUrl: "b.jpg",
     },
     {
         name: "Prajna unch",
         position: "asdfghjkl",
-        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        imageUrl: "https://example.com/mike-johnson.jpg",
+        bio: "Lorem ipsum",
+        imageUrl: "c.jpg",
     },
     {
         name: "Hose wakwaw",
         position: "asdfghjkl",
-        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        imageUrl: "https://example.com/john-doe.jpg",
+        bio: "Lorem ipsum",
+        imageUrl: "d.jpg",
     },
 ];
 
