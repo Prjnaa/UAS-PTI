@@ -15,8 +15,9 @@ import {
 } from "firebase/firestore";
 import FormField from "./FormField";
 import { userState } from "../currentUser";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Navbar from "../navbar/Navbar";
 
 const Form = () => {
   const currentUser = userState.currentUser;
@@ -30,7 +31,6 @@ const Form = () => {
   const [allFieldsFilled, setAllFieldsFilled] = useState(false);
 
   useEffect(() => {
-    // Cek apakah semua kolom telah diisi
     const isFormFilled =
       eventName !== "" &&
       location !== "" &&
@@ -52,7 +52,7 @@ const Form = () => {
         eventName,
         location,
         date,
-        budget,
+        budget: Number(budget),
         desc,
         time,
       };
@@ -78,7 +78,7 @@ const Form = () => {
 
   return (
     <div className="bg-cust-2 h-screen w-screen grid grid-cols-12 py-3">
-      <div className="bg-cust-2 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13">
+      <div className="relative bg-cust-2 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13">
         <div className="bg-dgreen rounded-md shadow-md p-4">
           <h2 className="text-2xl font-semibold mb-4 text-lyellow">
             Event Form
@@ -127,11 +127,14 @@ const Form = () => {
         </div>
         <div className="mt-4 flex justify-center">
           <button
-            className="bg-cust-1 font-semibold py-2 px-9 rounded text-white"
+            className="bg-cust-1 font-semibold py-2 px-9 rounded text-white mb-5"
             onClick={onSubmitEvent}
           >
             SUBMIT
           </button>
+        </div>
+        <div className="absolute w-full bottom-0">
+          <Navbar />
         </div>
       </div>
       <ToastContainer />

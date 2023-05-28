@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "../navbar/Navbar";
 import "tailwindcss/tailwind.css";
 
 const Team = () => {
@@ -46,6 +47,7 @@ return (
                 ))}
             </div>
         </div>
+        <Navbar />
     </div>
     );
 };

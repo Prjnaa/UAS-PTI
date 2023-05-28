@@ -6,7 +6,7 @@ import Navbar from "../navbar/Navbar.jsx";
 import { motion } from "framer-motion";
 
 import "./Main.css";
-import { storedUserState, userState } from "../currentUser.js";
+import { userState } from "../currentUser.js";
 
 function Main() {
   console.log(userState.currentUser)

@@ -13,7 +13,6 @@ function Topside() {
         </h1>
         <div className="md:mt-3 def:mt-1">
           <p className="md:text-base/6 text-xs/5 font-normal">Nov 15 2023</p>
-          <p className="md:text-base/5 text-xs/none font-normal">with, kelompok</p>
         </div>
       </div>
       <Weather />

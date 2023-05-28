@@ -78,7 +78,6 @@ export default function Login() {
       return id;
     }
   };
-
   //google
 
   const handleEmailPasswordLogin = (e) => {
