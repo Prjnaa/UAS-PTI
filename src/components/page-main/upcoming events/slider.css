@@ -30,7 +30,7 @@
   bottom: -10%;
   left: -1.75%;
   right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0));
+  background: linear-gradient(to top, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0));
   transform: translateY(120%);
 }
 
@@ -50,9 +50,9 @@
 }
 
 .title {
-  margin-top: 7.5%;
+  margin-top: 10%;
   font-size: 140%;
-  line-height: 80%;
+  line-height: 90%;
 }
 
 .date {

@@ -13,19 +13,19 @@ function Bottomside() {
         goTo="/form" 
         ALT="add.jpg" 
         imgURL=""   
-        desc="Add"
+        desc="New Event"
       />
       <Menubutton 
-        goTo="/" 
+        goTo="/eventlist" 
         ALT="events.jpg" 
         imgURL="" 
-        desc="Events"
+        desc="Event List"
       />
       <Menubutton 
-        goTo="/" 
+        goTo="/friend" 
         ALT="group.jpg" 
         imgURL="" 
-        desc="Group"
+        desc="Friend List"
       />
     </div>
   );

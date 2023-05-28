@@ -66,10 +66,10 @@ function Imgslider() {
               />
               <div className="descbox rounded-xl">
                 <div>
-                  <p className="title font-bold text-lgreen tracking-wider">
+                  <p className="title font-bold text-white tracking-wider">
                     {item.eventid}
                   </p>
-                  <p className="date font-sm text-lgreen">{item.desc}</p>
+                  <p className="date font-sm text-white">{item.desc}</p>
                 </div>
               </div>
             </div>

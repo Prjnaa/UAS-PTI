@@ -6,13 +6,13 @@ import Navbar from "../navbar/Navbar.jsx";
 import { motion } from "framer-motion";
 
 import "./Main.css";
-import { storedUserState, userState } from "../currentUser.js";
+import { userState } from "../currentUser.js";
 
 function Main() {
   console.log(userState.currentUser)
   
   return (
-    <div className="container-wrapper bg-cust-1 w-screen grid grid-cols-12 py-3">
+    <div className="container-wrapper bg-cust-1 w-screen h-auto grid grid-cols-12 py-3">
       <motion.div
         initial={{ y: "-1000px" }}
         animate={{ y: 0 }}

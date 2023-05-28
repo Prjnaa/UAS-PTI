@@ -13,6 +13,7 @@ import Friend from "./components/page-friends/src/Friend";
 import Calendar from "./components/Calendar/Calendar";
 import Saving from "./components/page-saving/Saving";
 import EventList from "./components/page-eventlist/Eventlist";
+import About from "./components/portofolio/About";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -52,8 +53,9 @@ export default function App() {
             <Route path="/friend" element={<Friend />} />
             <Route path="/form" element={<Form />} />
             <Route path="/calendar" element={<Calendar />} />
-            <Route path="/saving" element={<Saving />}/>
-            <Route path="/eventlist" element={<EventList />}/>
+            <Route path="/saving" element={<Saving />} />
+            <Route path="/eventlist" element={<EventList />} />
+            <Route path="/aboutUs" element={<About />} />
           </Routes>
         </AnimatePresence>
       ) : (
