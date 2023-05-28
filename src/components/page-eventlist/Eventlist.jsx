@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { db, collection } from '../firebase';
-import 'tailwindcss/tailwind.css';
-import { doc, getDoc, onSnapshot } from 'firebase/firestore';
-import { userState } from '../currentUser';
+import React, { useState, useEffect } from "react";
+import { db, collection } from "../firebase";
+import "tailwindcss/tailwind.css";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { userState } from "../currentUser";
+import Navbar from "../navbar/Navbar";
 
 const EventList = () => {
   const currentUser = userState.currentUser;
@@ -12,7 +13,7 @@ const EventList = () => {
 
   const fetchEvents = async () => {
     try {
-      const userRef = doc(db, 'users', currentUser);
+      const userRef = doc(db, "users", currentUser);
       const userSnapshot = await getDoc(userRef);
       console.log(userSnapshot);
       if (userSnapshot.exists()) {
@@ -21,18 +22,21 @@ const EventList = () => {
       }
       console.log(events);
     } catch (error) {
-      console.log('Error fetching events:', error);
+      console.log("Error fetching events:", error);
     }
   };
 
   useEffect(() => {
     fetchEvents();
-    const unsubscribe = onSnapshot(doc(db, 'users', currentUser), (userSnapshot) => {
-      if (userSnapshot.exists()) {
-        const userEventData = userSnapshot.data().eventLists;
-        setEvents(userEventData);
+    const unsubscribe = onSnapshot(
+      doc(db, "users", currentUser),
+      (userSnapshot) => {
+        if (userSnapshot.exists()) {
+          const userEventData = userSnapshot.data().eventLists;
+          setEvents(userEventData);
+        }
       }
-    });
+    );
 
     return () => {
       unsubscribe(); // Unsubscribe saat komponen di-unmount
@@ -48,8 +52,14 @@ const EventList = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-1/2 max-h-full overflow-y-auto pr-5" style={{ scrollbarWidth: 'thin' }}>
+    <div className="items-center w-screen h-screen bg-cust-2 grid grid-cols-12 py-3">
+      <div className="lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13">
+        <h1 className="text-center text-5xl font-semibold ">Event List</h1>
+      </div>
+      <div
+        className=" max-h-[40rem] overflow-y-auto mb-14 px-2 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13"
+        style={{ scrollbarWidth: "thin" }}
+      >
         {events.length === 0 ? (
           <p className="text-center">No events available.</p>
         ) : (
@@ -58,30 +68,44 @@ const EventList = () => {
               key={index}
               className="mb-4 p-4 border border-gray-300 rounded-xl shadow-md hover:-translate-y-1 hover:shadow-lg transform transition-all duration-200 bg-white"
             >
-              <h3 className="text-center">{event.eventName}</h3>
+              <h2 className="text-center text-xl">{event.eventName}</h2>
               <hr className="my-2" />
               <div className="flex justify-center">
                 <button
                   onClick={() => handleEventClick(event)}
-                  className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition-all duration-200 transform hover:-translate-y-1 hover:scale-105"
+                  className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 mt-2"
                 >
                   {selectedEvent && selectedEvent.eventName === event.eventName
-                    ? 'Hide Details'
-                    : 'View Details'}
+                    ? "Hide Details"
+                    : "View Details"}
                 </button>
               </div>
               {selectedEvent && selectedEvent.eventName === event.eventName && (
-                <div className="border border-gray-400 p-4 mt-4 rounded-xl">
-                  <h3 className="text-center">{selectedEvent.eventName}</h3>
-                  <p className="my-2">Date: {selectedEvent.date}</p>
-                  <p className="my-2">Time: {selectedEvent.time}</p>
-                  <p className="my-2">Location: {selectedEvent.location}</p>
-                  <p className="my-2">Budget: {selectedEvent.budget}</p>
+                <div className="border border-gray-400 px-8 py-3 mt-4 rounded-xl transition-all duration-200 text-[1.3rem] overflow-hidden">
+                  <div className="my-2 flex justify-between flex-wrap px-2">
+                    <p>Date:</p>
+                    <p>{selectedEvent.date}</p>
+                  </div>
+                  <div className="my-2 flex justify-between flex-wrap px-2">
+                    <p>Time:</p>
+                    <p>{selectedEvent.time}</p>
+                  </div>
+                  <div className="my-2 flex justify-between flex-wrap px-2">
+                    <p>Location:</p>
+                    <p>{selectedEvent.location}</p>
+                  </div>
+                  <div className="my-2 flex justify-between flex-wrap px-2">
+                    <p>Budget:</p>
+                    <p>{selectedEvent.budget}</p>
+                  </div>
                 </div>
               )}
             </div>
           ))
         )}
+      </div>
+      <div className="absolute grid w-full bottom-0 lg:px-40">
+        <Navbar />
       </div>
     </div>
   );
