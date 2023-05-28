@@ -15,7 +15,8 @@ import {
 } from "firebase/firestore";
 import FormField from "./FormField";
 import { userState } from "../currentUser";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Form = () => {
   const currentUser = userState.currentUser;
@@ -26,8 +27,26 @@ const Form = () => {
   const [budget, setBudget] = useState(0);
   const [desc, setDesc] = useState("");
   const [time, setTime] = useState("");
+  const [allFieldsFilled, setAllFieldsFilled] = useState(false);
+
+  useEffect(() => {
+    // Cek apakah semua kolom telah diisi
+    const isFormFilled =
+      eventName !== "" &&
+      location !== "" &&
+      date !== "" &&
+      budget !== 0 &&
+      desc !== "" &&
+      time !== "";
+    setAllFieldsFilled(isFormFilled);
+  }, [eventName, location, date, budget, desc, time]);
 
   const onSubmitEvent = async () => {
+    if (!allFieldsFilled) {
+      toast.error("Please fill in all fields before submitting");
+      return;
+    }
+
     try {
       const event = {
         eventName,
@@ -43,7 +62,7 @@ const Form = () => {
         eventLists: arrayUnion(event),
       });
 
-      //reset value
+      // Reset nilai
       setEventName("");
       setLocation("");
       setDate("");
@@ -56,7 +75,6 @@ const Form = () => {
       console.log("Terjadi kesalahan:", error);
     }
   };
-  
 
   return (
     <div className="bg-cust-2 h-screen w-screen grid grid-cols-12 py-3">
@@ -116,6 +134,7 @@ const Form = () => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

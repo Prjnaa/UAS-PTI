@@ -10,14 +10,16 @@ import { collection, db } from "../firebase";
 import "firebase/auth";
 import { doc, getDocs, query, setDoc, where } from "firebase/firestore";
 import { saveUserStateToLocalStorage, userState } from "../currentUser";
-import { v4 as uuidv4 } from 'uuid'; // Import uuidv4 function from the uuid library
+import { v4 as uuidv4 } from 'uuid'; // Import fungsi uuidv4 dari pustaka uuid
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Register() {
   const navigate = useNavigate();
 
   const userDataCollectionRef = collection(db, "users");
 
-  // Function to generate a unique ID
+  // Fungsi untuk menghasilkan ID unik
   const generateUniqueId = () => {
     const id = uuidv4();
     return id;
@@ -48,7 +50,7 @@ export default function Register() {
         throw err;
       }
     } else {
-      console.log("User data already exists in the database");
+      console.log("Data pengguna sudah ada dalam database");
       const firstDoc = querySnapshot.docs[0];
       const id = firstDoc.id; // Use the existing ID for the user document
       userState.currentUser = id;
@@ -88,15 +90,18 @@ export default function Register() {
     const userName = email.split("@")[0];
 
     if (!email || !password || !password2) {
-      return alert("Lengkapi Data Dulu");
+      toast.error("Please enter all required data");
+      return;
     }
 
     if (password !== password2) {
-      return alert("Password Tidak Sama");
+      toast.error("Passwords are not the same");
+      return;
     }
 
     if (password.length < 6) {
-      return alert("Password Harus Lebih Dari 6 Karakter");
+      toast.error("Password must be longer than 6 characters");
+      return;
     }
 
     const auth = getAuth();
@@ -115,7 +120,7 @@ export default function Register() {
       })
       .catch((err) => {
         console.error(err);
-        alert("Email already in use");
+        toast.error("Email already in use");
       });
   };
 
@@ -181,6 +186,7 @@ export default function Register() {
           </div>
         </div>
       </motion.form>
+      <ToastContainer />
     </main>
   );
 }
