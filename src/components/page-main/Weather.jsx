@@ -35,13 +35,14 @@ function Weather() {
             </p>
           </div>
           <div className="condition grid grid-cols-2">
+          <div className="md:w-16 w-12 col-start-1 col-end-2">
             <img
-              className="md:w-14 w-12 col-start-1 col-end-2"
               src={weatherData.current.condition.icon}
-              alt=""
+              alt="Weather Icon"
             />
+          </div>
             <div className="relative col-start-2 col-end-3">
-              <div className="top-2 right-0 absolute">
+              <div className="md:top-3 top-2 right-3 absolute">
                 <p className="w-fit font-semibold md:text-base/4 text-sm/4">
                   {weatherData.current.temp_c}°
                 </p>

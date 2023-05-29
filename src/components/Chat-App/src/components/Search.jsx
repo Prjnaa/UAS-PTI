@@ -98,7 +98,7 @@ const Search = () => {
           onKeyDown={handleKey}
           onChange={(e) => setUserName(e.target.value)}
         />
-        <button onClick={handleSearch} className='p-2'>Cari</button>
+        <button onClick={handleSearch} className='rounded-lg py-2 px-3 mb-1 mx-2 bg-cust-8'>Cari</button>
       </div>
       {err && <span className='text-white'>Pengguna tidak ditemukan</span>}
       {user && (
@@ -110,7 +110,7 @@ const Search = () => {
       )}
       <div>
         {selectedUsers.map((userName) => (
-          <div className="selectedUser bg-cust-2 border-t-2 border-black text-black p-2 hover:bg-white" key={userName}>
+          <div className="selectedUser bg-cust-6 border-t-2 border-white text-white p-2 hover:bg-white" key={userName}>
             {userName}
             <p>Halo</p>
           </div>

@@ -13,6 +13,8 @@ import { saveUserStateToLocalStorage, userState } from "../currentUser";
 import { v4 as uuidv4 } from 'uuid'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LogoSVG from "../assets/Logo.svg"
+import "./sign.css"
 
 export default function Login() {
   const navigate = useNavigate();
@@ -124,6 +126,7 @@ export default function Login() {
         animate={{ y: 0 }}
         exit={{ y: "1000px", transition: { duration: 0.25 } }}
       >
+        <img src={LogoSVG} className="logo"/>
         <h1 className="text-4xl text-cust-7 font-bold text-center">Login</h1>
         <div className="flex flex-col gap-2">
           <label
