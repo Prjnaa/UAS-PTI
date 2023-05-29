@@ -4,9 +4,9 @@ const ProgressBar = ({ collectedAmount, targetAmount }) => {
   const percentage = (collectedAmount / targetAmount) * 100;
 
   return (
-    <div className="w-1/3 bg-gray-200 relative rounded-lg">
+    <div className="w-1/3 bg-cust-1 relative rounded-lg">
       <div
-        className="h-full bg-green-500 absolute top-0 left-0 rounded-lg"
+        className="h-full bg-cust-1 absolute top-0 left-0 rounded-lg"
         style={{ width: `${percentage}%` }}
       ></div>
       <div className="flex justify-center items-center h-full font-bold">

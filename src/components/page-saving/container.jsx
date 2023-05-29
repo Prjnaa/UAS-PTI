@@ -42,7 +42,7 @@ const Container = (props) => {
   }, [currentUser, index]);
 
   return (
-    <div className="container bg-cust-5 rounded-xl mb-10 py-4 px-8">
+    <div className="container bg-cust-2 rounded-xl mb-10 py-4 px-8">
       <div className="flex justify-between flex-wrap mb-[3%]">
         <h1 className="font-semibold text-2xl">{eventName}</h1>
         <Add index={index} setCollectedAmount={setCollectedAmount} />

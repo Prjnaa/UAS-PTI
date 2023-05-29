@@ -45,7 +45,7 @@ export default {
         'cust-2': "#FFE194",
         'cust-3': "#F7E1AE",
         'cust-4': "#1B9C85",
-        'cust-5': '#FBEEC1',
+        'cust-5': '#4C4C6D',
       },
     },
     plugins: [],
