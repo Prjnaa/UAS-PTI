@@ -52,21 +52,22 @@ const EventList = () => {
   };
 
   return (
-    <div className="items-center w-screen h-screen bg-cust-2 grid grid-cols-12 py-3">
+    <div className="items-center w-screen h-screen bg-cust-4 grid grid-cols-12 py-3">
       <div className="lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13">
-        <h1 className="text-center text-5xl font-semibold ">Event List</h1>
       </div>
       <div
         className=" max-h-[40rem] overflow-y-auto mb-14 px-2 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13"
         style={{ scrollbarWidth: "thin" }}
+      
       >
+        <h1 className="z-50 text-center text-5xl font-semibold text-cust-2 sticky top-0">Event List</h1>
         {events.length === 0 ? (
           <p className="text-center">No events available.</p>
         ) : (
           events.map((event, index) => (
             <div
               key={index}
-              className="mb-4 p-4 border border-gray-300 rounded-xl shadow-md hover:-translate-y-1 hover:shadow-lg transform transition-all duration-200 bg-white"
+              className="mb-4 p-4 border border-gray-300 rounded-xl shadow-md hover:-translate-y-1 hover:shadow-lg transform transition-all duration-200 bg-cust-1"
             >
               <h2 className="text-center text-xl">{event.eventName}</h2>
               <hr className="my-2" />
