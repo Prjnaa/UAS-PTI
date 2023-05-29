@@ -50,7 +50,7 @@ export default function Chat() {
   };
 
   return (
-    <div className="w-[80%] h-[90%] p-4 flex flex-col bg-cust-3 border border-gray-200 rounded-lg shadow ">
+    <div className="w-[80%] h-[90%] p-4 flex flex-col bg-cust-3 border border-gray-200 rounded-lg shadow hover:translate-y-[-5px] transition duration-300 ease-in-out">
       <div ref={chatContainerRef} className="flex flex-col flex-grow overflow-y-scroll space-y-2">
         {messages.map((message) => (
           <div
@@ -83,7 +83,7 @@ export default function Chat() {
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type a new message..."
         />
-        <button className="bg-blue-500 hover:bg-blue-700 w-32 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" type="submit">Send</button>
+        <button className="bg-cust-4 w-32 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline hover:translate-y-[-5px] transition duration-300 ease-in-out" type="submit">Send</button>
       </form>
     </div>
   );
