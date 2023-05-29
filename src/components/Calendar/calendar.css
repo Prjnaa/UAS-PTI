@@ -16,71 +16,57 @@
     }
 }
     
-.popoverstyle {
+.popoverStyle {
     z-index: 99999 !important;
     }
-        
+
 a {
-    color: #212529 !important;
+    color: #000000 !important;
+    font-weight: bold;
+    }
+
+.popoverStyle .popover-header {
+    background-color: #1B9C85 !important;
+    color: white !important;
+    font-weight: bold;
+    }
+
+.popoverStyle .popover-body {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border-radius: 10px;
     }
     
 .fc-button-group > button {
-    background-color: #DDFFBC !important;
-    color: black !important;
-    margin-left: 1px !important;
-    margin-right: 1px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+    margin-top: 10px !important;
+    border-radius: 5px !important;
+    background-color: #1B9C85 !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
     border: none !important;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-    border-radius: 10px !important;
-    margin-top: 5px !important;
-    }
-    
-.fc-button-group > button:hover {
-    background-color: #52734D !important;
-    border-color: #52734D !important;
     color: white !important;
+    }
+
+.fc-button-group > button:hover {
+    background-color: #0F665C !important;
     }
     
 .fc-toolbar-chunk > button {
-    background-color: #DDFFBC !important;
-    color: black !important;
+    background-color: #1B9C85 !important;
+    color: white !important;
     border: none !important;
     transition: background-color 0.3s ease, color 0.3s ease;
     border-radius: 10px !important;
-    margin-top: 5px !important;
-    }
-    
+    margin-top: 10px !important;
+    margin-left: 5px !important;
+}
+
 .fc-toolbar-chunk > button:hover {
-    background-color: #52734D !important;
-    border: none !important;
-    color: #DDFFBC !important;
-    }
-    
-.fc-event-main {
-    border-radius: 0.5rem;
-    border: none !important;
-    transition: background-color 0.3s ease;
-    border-radius: 10px !important;
-    margin-top: 5px !important;
-    }
-    
-.fc-event-main-frame {
-    padding: 2.5% 7% !important;
-    font-size: 130%;
-    line-height: 100%;
-    border: none !important;
-    transition: padding 0.3s ease, font-size 0.3s ease;
-    border-radius: 10px !important;
-    margin-top: 5px !important;
+    background-color: #0F665C !important;
     }
     
 .fc-event {
-    background-color: white;
-    margin-bottom: 20px ;
-    border-radius: 10px !important;
-    margin-top: 5px !important;
-    }
-
-.fc-daygrid-day-frame {
-        border-radius: 10px !important;
+    background-color: transparent;
+    border: none;
     }

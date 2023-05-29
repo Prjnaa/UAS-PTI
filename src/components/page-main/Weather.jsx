@@ -52,10 +52,10 @@ function Weather() {
             </div>
           </div>
           <div>
-            <p className="text-end md:text-base/3 text-xs/3">
+            <p className="text-end md:text-base/3 text-xs/3 mt-2">
               {weatherData.current.condition.text}
             </p>
-            <p className="text-end md:text-base text-xs/6 md:mt-3 mt-1">
+            <p className="text-end md:text-base text-xs/6 md:mt-3 mt-1 -mb-1">
               {"UV index: " + weatherData.current.uv}
             </p>
           </div>

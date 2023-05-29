@@ -18,7 +18,7 @@ function Logout(props) {
 
   return (
     <img
-      className="navbtn drop-shadow-text"
+      className="navbtn drop-shadow-text transition-all duration-200 transform hover:-translate-y-1 hover:scale-105"
       src={props.imgURL}
       alt={props.alt}
       onClick={handleLogout}
