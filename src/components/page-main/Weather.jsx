@@ -26,7 +26,7 @@ function Weather() {
   }, []);
 
   return (
-    <div className="my-2 weather text-white">
+    <div className="my-2 weather text-black">
       {weatherData && (
         <div className="weather-wrapper">
           <div className="location">
@@ -56,7 +56,7 @@ function Weather() {
             <p className="text-end md:text-base/3 text-xs/3">
               {weatherData.current.condition.text}
             </p>
-            <p className="text-end md:text-base text-xs/4 md:mt-3">
+            <p className="text-end md:text-base text-xs/4 md:mt-3 mt-1">
               UV index : {weatherData.current.uv}
             </p>
           </div>

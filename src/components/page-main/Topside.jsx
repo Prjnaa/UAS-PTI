@@ -52,8 +52,8 @@ function Topside() {
   }, []);
 
   return (
-    <div className="topbox shadow-box mt-3 bg-cust-5 flex lg:px-14 px-4 py-4 justify-between rounded-xl">
-      <div className="schedule text-cust-1 my-auto">
+    <div className="topbox shadow-box mt-3 bg-cust-3 flex lg:px-14 px-4 py-4 justify-between rounded-xl">
+      <div className="schedule text-black my-auto">
         <p className="md:text-base/7 text-xs/3 font-normal tracking-widest">
           NEXT SCHEDULE
         </p>

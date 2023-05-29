@@ -56,10 +56,10 @@ export default function Add({ index, setCollectedAmount }) {
             onChange={(e) => setSave(e.target.value)}
             value={save}
           />
-          <button onClick={submitSave} className='mt-1 mx-3 py-1 px-4 bg-white rounded-lg'>Add</button>
+          <button onClick={submitSave} className='mt-2 mx-3 py-1 px-4 bg-cust-4 rounded-lg text-white hover:bg-cust-5 hover:transition 2000ms hover:font-semibold'>Add</button>
         </div>
       ) : (
-        <button className='mt-2 mx-3 py-2 px-4 bg-white rounded-lg' onClick={handleClick}>Add Saving</button>
+        <button className=' text-white mt-2 mx-3 py-1.5 px-3 bg-cust-4 rounded-lg shadow-md hover:bg-cust-5 hover:transition 2000ms hover:font-semibold' onClick={handleClick}>Add Saving</button>
       )}
     </div>
   );
