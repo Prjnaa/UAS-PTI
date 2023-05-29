@@ -77,9 +77,9 @@ const Form = () => {
   };
 
   return (
-    <div className="bg-cust-2 h-screen w-screen grid grid-cols-12 py-3">
-      <div className="relative bg-cust-2 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13">
-        <div className="bg-cust-6 rounded-md shadow-box p-3">
+    <div className="gradient-bg-3 h-screen w-screen grid grid-cols-12 py-3">
+      <div className="relative gradient-bg-3 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13">
+        <div className="bg-cust-3 rounded-md shadow-box p-3">
           <h2 className="text-2xl font-semibold mb-4 text-lyellow">
             Event Form
           </h2>
