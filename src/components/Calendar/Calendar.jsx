@@ -59,10 +59,15 @@ const Calendar = () => {
         }}
         height="100%"
         events={events}
+        slotDuration="00:30:00" // Interval waktu setiap slot, misalnya setiap 30 menit
         eventDidMount={info => {
-          const popoverContent = `Location: ${info.event.extendedProps.location}`;
+          const popoverContent = `
+            <strong>${info.event.title}</strong>
+            Location: ${info.event.extendedProps.location}<br/>
+            Time: ${info.event.extendedProps.time}
+          `;
           return new bootstrap.Popover(info.el, {
-            title: info.event.title,
+            title: info.event.extendedProps.eventName, // Menggunakan eventName sebagai judul popover
             placement: 'auto',
             trigger: 'hover',
             customClass: 'popoverStyle',
