@@ -6,8 +6,8 @@ import Navbar from '../navbar/Navbar'
 
 const ChatApp = () => {
   return (
-    <div className='home relative'>
-      <div className="container mb-20">
+    <div className='home relative gradient-bg-3'>
+      <div className="container mb-20 shadow-box">
         <Sidebar/>
         <Chat/>
       </div>

@@ -53,12 +53,11 @@ const EventList = () => {
 
   return (
     <div className="items-center w-screen h-screen gradient-bg-1 grid grid-cols-12 py-3">
-      <div className="lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13"></div>
       <div
         className="max-h-[40rem] overflow-y-auto mb-14 px-2 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13"
         style={{ scrollbarWidth: "thin" }}
       >
-        <h1 className="z-50 text-center text-5xl font-semibold text-cust-8 sticky top-0 mb-3">Event List</h1>
+        <h1 className="z-50 w-2/3 text-center text-5xl font-semibold text-cust-8 fixed top-0 mt-3">Event List</h1>
         {events.length === 0 ? (
           <p className="text-center">No events available.</p>
         ) : (

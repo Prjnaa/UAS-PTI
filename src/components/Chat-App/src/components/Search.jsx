@@ -63,14 +63,14 @@ const Search = () => {
 
   return (
     <div className="search">
-      <div className="searchForm">
+      <div className="searchForm flex justify-between">
         <input
           type="text"
           placeholder="Cari pengguna"
           onKeyDown={handleKey}
           onChange={(e) => setUserName(e.target.value)}
         />
-        <button onClick={handleSearch}>Cari</button>
+        <button onClick={handleSearch} className='p-2'>Cari</button>
       </div>
       {err && <span>Pengguna tidak ditemukan</span>}
       {user && (

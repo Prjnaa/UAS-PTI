@@ -3,7 +3,7 @@ import Message from './Message';
 
 const Messages = () => {
   return (
-    <div className='messages'>
+    <div className='messages bg-cust-7'>
       <Message />
       <Message />
       <Message />

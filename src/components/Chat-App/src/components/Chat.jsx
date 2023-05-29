@@ -5,7 +5,7 @@ import Input from './Input';
 const Chat = () => {
   return (
     <div className="chat">
-      <div className="chatInfo">
+      <div className="chatInfo bg-cust-8">
         <span>Jane</span>
       </div>
 
