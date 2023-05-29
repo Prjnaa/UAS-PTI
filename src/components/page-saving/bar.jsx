@@ -34,7 +34,7 @@ const ProgressBar = ({ collectedAmount, targetAmount }) => {
         style={{ width: `${currentPercentage}%`, transition: 'width 0.3s ease' }}
       ></div>
       <div className="flex justify-center items-center h-full font-bold">
-        <div className="text-white text-xs z-10">{`${currentPercentage.toFixed()}%`}</div>
+        <div className="text-white text-xs z-0">{`${currentPercentage.toFixed()}%`}</div>
       </div>
     </div>
   );

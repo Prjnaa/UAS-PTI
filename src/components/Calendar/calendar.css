@@ -70,3 +70,9 @@ a {
     background-color: transparent;
     border: none;
     }
+
+
+.fc-event-title {
+    color: black !important;
+    font-size: 13px !important;
+}
