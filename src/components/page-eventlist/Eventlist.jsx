@@ -60,21 +60,21 @@ const EventList = () => {
         style={{ scrollbarWidth: "thin" }}
       
       >
-        <h1 className="z-50 text-center text-5xl font-semibold text-cust-2 sticky top-0">Event List</h1>
+        <h1 className="z-50 text-center text-5xl font-semibold text-cust-3 sticky top-0 mb-3">Event List</h1>
         {events.length === 0 ? (
           <p className="text-center">No events available.</p>
         ) : (
           events.map((event, index) => (
             <div
               key={index}
-              className="mb-4 p-4 border border-gray-300 rounded-xl shadow-md hover:-translate-y-1 hover:shadow-lg transform transition-all duration-200 bg-cust-1"
+              className="mb-4 p-4 border border-gray-300 rounded-xl shadow-md hover:-translate-y-1 hover:shadow-lg transform transition-all duration-200 bg-cust-3"
             >
-              <h2 className="text-center text-xl">{event.eventName}</h2>
+              <h2 className="text-center text-cust-4 text-xl">{event.eventName}</h2>
               <hr className="my-2" />
               <div className="flex justify-center">
                 <button
                   onClick={() => handleEventClick(event)}
-                  className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 mt-2"
+                  className="bg-cust-4 hover:bg-cust-5 text-cust-1 py-2 px-4 rounded transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 mt-2"
                 >
                   {selectedEvent && selectedEvent.eventName === event.eventName
                     ? "Hide Details"
