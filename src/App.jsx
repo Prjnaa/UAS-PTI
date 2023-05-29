@@ -14,7 +14,7 @@ import Calendar from "./components/Calendar/Calendar";
 import Saving from "./components/page-saving/Saving";
 import EventList from "./components/page-eventlist/Eventlist";
 import About from "./components/portofolio/About";
-import ChatApp from "./components/Chat-App/chatApp";
+import ChatApp from "./components/Chat-App/Chat-App";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
