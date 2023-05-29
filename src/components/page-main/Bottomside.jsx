@@ -1,4 +1,8 @@
 import Menubutton from "./Menubtn";
+import EventListSvg from "../assets/Event List.svg"
+import NewEventSvg from "../assets/New Event.svg"
+import FriendSvg from "../assets/Friends.svg"
+import SavingSvg from "../assets/Saving.svg"
 
 function Bottomside() {
   return (
@@ -6,25 +10,25 @@ function Bottomside() {
       <Menubutton
         goTo="/saving"
         ALT="saving.jpg"
-        imgURL=""
+        imgURL={SavingSvg}
         desc="Saving"
       />
       <Menubutton 
         goTo="/form" 
         ALT="add.jpg" 
-        imgURL=""   
+        imgURL={NewEventSvg}  
         desc="New Event"
       />
       <Menubutton 
         goTo="/eventlist" 
         ALT="events.jpg" 
-        imgURL="" 
+        imgURL={EventListSvg}
         desc="Event List"
       />
       <Menubutton 
-        goTo="/friend" 
-        ALT="group.jpg" 
-        imgURL="" 
+        goTo="/chat" 
+        ALT="friend.jpg" 
+        imgURL={FriendSvg} 
         desc="Friend List"
       />
     </div>

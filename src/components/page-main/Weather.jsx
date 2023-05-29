@@ -30,7 +30,6 @@ function Weather() {
       {weatherData && (
         <div className="weather-wrapper">
           <div className="location">
-            <img src="" alt="" />
             <p className="text-end md:text-base/4 text-sm/snug">
               {weatherData.location.name}
             </p>

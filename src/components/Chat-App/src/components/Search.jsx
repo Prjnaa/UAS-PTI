@@ -1,12 +1,32 @@
-import React, { useState } from 'react';
-import { doc, setDoc, serverTimestamp, getDocs, collection, query, where, arrayUnion } from 'firebase/firestore';
+import React, { useState, useEffect } from 'react';
+import { doc, setDoc, serverTimestamp, getDocs, collection, query, where, arrayUnion, getDoc } from 'firebase/firestore';
 
 import { db } from "../../../firebase";
+import Chat from "./Chat"; // Import the Chat component
 
 const Search = () => {
   const [userName, setUserName] = useState("");
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
+  const [selectedUsers, setSelectedUsers] = useState([]); // State untuk melacak pengguna yang telah dipilih
+
+  useEffect(() => {
+    const fetchSelectedUsers = async () => {
+      try {
+        const selectedUsersRef = doc(db, 'selectedUsers', 'selectedUsersDocument');
+        const docSnapshot = await getDoc(selectedUsersRef);
+  
+        if (docSnapshot.exists()) {
+          const data = docSnapshot.data();
+          setSelectedUsers(data.selectedUsers);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+  
+    fetchSelectedUsers();
+  }, []);
 
   const handleSearch = async () => {
     try {
@@ -37,9 +57,9 @@ const Search = () => {
   };
 
   const handleSelect = async () => {
-    if (user && user.id) {
+    if (user && user.id && !selectedUsers.includes(user.userName)) { // Cek apakah pengguna sudah dipilih sebelumnya
       const combineId = user.id;
-
+  
       try {
         const userChatRef = doc(db, 'userChats', combineId);
         await setDoc(userChatRef, {
@@ -53,13 +73,21 @@ const Search = () => {
             },
           },
         });
-
+  
         console.log('Pengguna berhasil ditambahkan ke userChats');
+        setSelectedUsers(prevSelectedUsers => [...prevSelectedUsers, user.userName]); // Menambahkan pengguna yang dipilih ke dalam state selectedUsers
+
+        // Simpan daftar pengguna yang dipilih ke Firebase
+        const selectedUsersRef = doc(db, 'selectedUsers', 'selectedUsersDocument');
+        await setDoc(selectedUsersRef, {
+          selectedUsers: [...selectedUsers, user.userName],
+        });
       } catch (err) {
         console.error(err);
       }
     }
   };
+  
 
   return (
     <div className="search">
@@ -72,7 +100,7 @@ const Search = () => {
         />
         <button onClick={handleSearch}>Cari</button>
       </div>
-      {err && <span>Pengguna tidak ditemukan</span>}
+      {err && <span className='text-white'>Pengguna tidak ditemukan</span>}
       {user && (
         <div className="userChat" onClick={handleSelect}>
           <div className="userChatInfo">
@@ -80,6 +108,14 @@ const Search = () => {
           </div>
         </div>
       )}
+      <div>
+        {selectedUsers.map((userName) => (
+          <div className="selectedUser bg-cust-2 border-t-2 border-black text-black p-2 hover:bg-white" key={userName}>
+            {userName}
+            <p>Halo</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
