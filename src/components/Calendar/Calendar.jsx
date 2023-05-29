@@ -33,7 +33,10 @@ const Calendar = () => {
         const userDoc = await getDoc(userRef);
         if (userDoc.exists()) {
           const userData = userDoc.data();
-          setEvents(userData.eventLists);
+          setEvents(userData.eventLists.map(event => ({
+            ...event,
+            title: event.eventName // Ganti event.eventName dengan nama field yang menyimpan nama event di Firestore
+          })));
         }
       } catch (error) {
         console.log('Error fetching events: ', error);
@@ -59,15 +62,15 @@ const Calendar = () => {
         }}
         height="100%"
         events={events}
-        slotDuration="00:30:00" // Interval waktu setiap slot, misalnya setiap 30 menit
+        slotDuration="00:30:00"
         eventDidMount={info => {
           const popoverContent = `
             <strong>${info.event.title}</strong>
-            Location: ${info.event.extendedProps.location}<br/>
+            <br/>Location: ${info.event.extendedProps.location}<br/>
             Time: ${info.event.extendedProps.time}
           `;
           return new bootstrap.Popover(info.el, {
-            title: info.event.extendedProps.eventName, // Menggunakan eventName sebagai judul popover
+            title: info.event.extendedProps.eventName,
             placement: 'auto',
             trigger: 'hover',
             customClass: 'popoverStyle',

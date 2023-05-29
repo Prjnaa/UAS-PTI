@@ -53,7 +53,7 @@ function Imgslider() {
   function openURL() {}
 
   return (
-    <div className="slider-container">
+    <div className="slider-container mt-">
       <Slider {...settings}>
         {data.map((item, index) => (
           <div key={index} className="slider">
