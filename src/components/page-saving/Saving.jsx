@@ -36,9 +36,7 @@ const Saving = () => {
   return (
     <div className="w-screen h-screen bg-cust-4 grid grid-cols-12 py-3">
       <div className="relative lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13 px-5">
-          <div>
-            <h1 className="font-semibold text-5xl text-center sticky top-0 z-50 pb-4">Saving</h1>
-          </div>
+      <h1 className="font-semibold text-5xl text-center sticky top-0 z-50 pb-4 text-cust-1">Saving</h1>
           <div className="max-h-[40rem] overflow-y-auto mb-5">
             {eventData.length != 0 ? (
               eventData.map((eventItem, index) => (

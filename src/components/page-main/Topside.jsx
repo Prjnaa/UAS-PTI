@@ -1,7 +1,24 @@
 import Weather from "./Weather";
 import "./Main.css"
+import { userState } from "../currentUser";
+import { doc } from "firebase/firestore";
+import { useState } from "react";
 
 function Topside() {
+  const currentUser = userState.currentUser;
+  // const [nextE, setNextE] = userState([])
+  
+  // const getEvent = async (event) => {
+  //   try {
+  //     const userRef = doc(dv, "users", currentUser);
+  //     const userSnap = await getDoc(userRef)
+  //     const userEventData = userSnap.data().eventLists
+  //     setNextE(userEventData)
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
+
   return (
     <div className="topbox shadow-box mt-3 bg-cust-4 flex lg:px-14 px-4 py-4 justify-between rounded-xl">
       <div className="schedule text-cust-1 my-auto">

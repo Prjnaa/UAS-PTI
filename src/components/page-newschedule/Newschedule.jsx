@@ -77,9 +77,9 @@ const Form = () => {
   };
 
   return (
-    <div className="bg-cust-2 h-screen w-screen grid grid-cols-12 py-3">
-      <div className="relative bg-cust-2 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13">
-        <div className="bg-dgreen rounded-md shadow-md p-4">
+    <div className="bg-cust-4 h-screen w-screen grid grid-cols-12 py-3">
+      <div className="relative bg-cust-4 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13">
+        <div className="bg-cust-2 rounded-md shadow-md p-4">
           <h2 className="text-2xl font-semibold mb-4 text-lyellow">
             Event Form
           </h2>
@@ -127,7 +127,7 @@ const Form = () => {
         </div>
         <div className="mt-4 flex justify-center">
           <button
-            className="bg-cust-1 font-semibold py-2 px-9 rounded text-white mb-5"
+            className="bg-cust-2 font-semibold py-2 px-9 rounded text-cust-4 mb-5"
             onClick={onSubmitEvent}
           >
             SUBMIT
