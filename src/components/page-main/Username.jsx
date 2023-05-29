@@ -17,7 +17,7 @@ function Username() {
         usernm = usernm.charAt(0).toUpperCase() + usernm.slice(1)
     }
 
-    return <h1 className="2xl:text-3xl/6 xl:text-xl flex flex-wrap font-semibold">{usernm + " !"}</h1>;
+    return <h1 className="2xl:text-3xl/6 xl:text-xl flex flex-wrap font-semibold">{usernm}</h1>;
 }
 
 export default Username;

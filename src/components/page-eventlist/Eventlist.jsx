@@ -104,9 +104,9 @@ const EventList = () => {
             </div>
           ))
         )}
-      </div>
-      <div className="absolute grid w-full bottom-0 lg:px-40">
+      <div className="fixed w-2/3 bottom-0 mb-3">
         <Navbar />
+      </div>
       </div>
     </div>
   );

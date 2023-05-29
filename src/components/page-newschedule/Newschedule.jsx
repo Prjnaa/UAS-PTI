@@ -134,7 +134,7 @@ const Form = () => {
         </button>
 
         </div>
-        <div className="absolute w-full bottom-0">
+        <div className="fixed w-2/3 bottom-0 mb-3">
           <Navbar />
         </div>
       </div>
