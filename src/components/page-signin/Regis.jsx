@@ -125,18 +125,18 @@ export default function Register() {
   };
 
   return (
-    <main className="w-screen h-screen bg-cust-1 grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
+    <main className="w-screen h-screen gradient-bg-2 grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
       <motion.form
-        className="w-full bg-cust-3 shadow-box rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9"
+        className="w-full bg-cust-1 shadow-box rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9"
         autoComplete="off"
         onSubmit={handleRegister}
         initial={{ y: "-1000px" }}
         animate={{ y: 0 }}
         exit={{ y: "1000px", transition: { duration: 0.25 } }}
       >
-        <h1 className="text-4xl text-cust-4 font-bold text-center">Register</h1>
+        <h1 className="text-4xl text-cust-8 font-bold text-center">Register</h1>
         <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-cust-4 font-semibold">
+          <label htmlFor="email" className="text-cust-8 font-semibold">
             Email
           </label>
           <input
@@ -145,7 +145,7 @@ export default function Register() {
             className="h-10 px-3 rounded-md border-[1px] border-gray-300"
           />
 
-          <label htmlFor="password" className="text-cust-4 font-semibold">
+          <label htmlFor="password" className="text-cust-8 font-semibold">
             Password
           </label>
           <input
@@ -154,7 +154,7 @@ export default function Register() {
             className="h-10 px-3 rounded-md border-[1px] border-gray-300"
           />
 
-          <label htmlFor="password2" className="text-cust-4 font-semibold">
+          <label htmlFor="password2" className="text-cust-8 font-semibold">
             Confirm password
           </label>
           <input
@@ -179,7 +179,7 @@ export default function Register() {
             </button>
             <Link
               to={"/"}
-              className="h-10 w-full bg-cust-5 text-white rounded-lg flex justify-center items-center transition-transform hover:scale-95"
+              className="h-10 w-full bg-cust-7 text-white rounded-lg flex justify-center items-center transition-transform hover:scale-95"
             >
               Back to Login
             </Link>

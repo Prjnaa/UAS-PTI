@@ -39,7 +39,7 @@ function Header() {
   let currMonth = months[month];
 
   return (
-    <div className="header px-5 bg-cust-3 shadow-box rounded-xl sticky top-0 flex justify-between pb-4 pt-3 text-black font-normal text-xl ">
+    <div className="header px-5 bg-cust-2 shadow-box rounded-xl sticky top-0 flex justify-between pb-4 pt-3 text-black font-normal text-xl">
       <div className="header-username text-start">
         <p className="tracking-wider">Hello,</p>
         <Username></Username>

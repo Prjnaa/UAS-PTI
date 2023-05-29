@@ -16,7 +16,7 @@ function Menubtn(props) {
         alt={props.ALT}
         onClick={handleClick}
       />
-      <p className="md:text-xl text-2xs text-black font-semibold">{props.desc}</p>
+      <p className="md:text-xl text-2xs font-semibold text-white">{props.desc}</p>
     </div>
   );
 }
