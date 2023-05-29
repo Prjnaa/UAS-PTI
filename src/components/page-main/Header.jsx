@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Username from "./Username";
+import LogoSvg from "../assets/Logo.svg"
 
 function Header() {
   const [user, setUser] = useState();
@@ -39,9 +40,9 @@ function Header() {
   let currMonth = months[month];
 
   return (
-    <div className="header px-5 bg-cust-2 shadow-box rounded-xl sticky top-0 flex justify-between pb-4 pt-3 text-black font-normal text-xl">
-      <div className="header-username text-start">
-        <p className="tracking-wider">Hello,</p>
+    <div className="header px-4 bg-cust-2 shadow-box rounded-xl sticky top-0 flex justify-between pb-4 pt-3 text-black font-normal text-xl">
+      <div className="header-username text-start flex flex-wrap">
+      <img src={LogoSvg} className="logo-small "/>
         <Username></Username>
       </div>
       <div className="header-date text-end">

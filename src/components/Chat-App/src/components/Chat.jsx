@@ -4,7 +4,7 @@ import Input from './Input';
 
 const Chat = ({ userName }) => {
   return (
-    <div className="chat">
+    <div className="chat bg-cust-7">
       <div className="chatInfo bg-cust-8">
         <span>{userName}</span>
       </div>

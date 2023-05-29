@@ -10,7 +10,7 @@ function Navbutton(props) {
 
   return (
     <img
-      className="navbtn drop-shadow-text"
+      className="navbtn drop-shadow-text shake-hover"
       src={props.imgURL}
       alt={props.alt}
       onClick={handleClick}

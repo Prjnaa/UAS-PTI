@@ -13,6 +13,8 @@ import { saveUserStateToLocalStorage, userState } from "../currentUser";
 import { v4 as uuidv4 } from 'uuid'; // Import fungsi uuidv4 dari pustaka uuid
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "./sign.css"
+import LogoSvg from "../assets/Logo.svg"
 
 export default function Register() {
   const navigate = useNavigate();
@@ -134,6 +136,7 @@ export default function Register() {
         animate={{ y: 0 }}
         exit={{ y: "1000px", transition: { duration: 0.25 } }}
       >
+      <img src={LogoSvg} className="logo"/>
         <h1 className="text-4xl text-cust-8 font-bold text-center">Register</h1>
         <div className="flex flex-col gap-2">
           <label htmlFor="email" className="text-cust-8 font-semibold">

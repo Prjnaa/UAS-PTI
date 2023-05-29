@@ -33,7 +33,8 @@ function Topside() {
       });
 
       if (closestEventIndex !== -1) {
-        setClosestEvent(userEventData[closestEventIndex].eventName);
+        let tempEvent = userEventData[closestEventIndex].eventName
+        setClosestEvent(tempEvent.charAt(0).toUpperCase() + tempEvent.slice(1));
         const eventDate = new Date(userEventData[closestEventIndex].date);
         const month = dateStr[eventDate.getMonth()];
         const day = eventDate.getDate();

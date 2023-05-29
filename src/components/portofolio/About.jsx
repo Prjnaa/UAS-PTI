@@ -1,6 +1,10 @@
 import React from "react";
 import Navbar from "../navbar/Navbar";
 import "tailwindcss/tailwind.css";
+import Hosea from "../assets/us/Hosea.png";
+import Mesaya from "../assets/us/mesaya.png";
+import Ben from "../assets/us/Ben.png";
+import Prajna from "../assets/us/Prajna.png";
 
 const Team = () => {
   const teamMembers = [
@@ -8,32 +12,34 @@ const Team = () => {
       name: "Christopher Mesaya",
       position: "Student",
       bio: "@cmesayaa",
-      imageUrl: "a.jpg",
+      imageUrl: Mesaya,
     },
     {
       name: "Benedick Christopher Bamba",
       position: "Student",
       bio: "@benchris04",
-      imageUrl: "b.jpg",
+      imageUrl: Ben,
     },
     {
       name: "Prajna Ananda Citra",
       position: "Student",
       bio: "@prjnaa_04",
-      imageUrl: "c.jpg",
+      imageUrl: Prajna,
     },
     {
       name: "Hosea",
       position: "Student",
       bio: "@hosea_304",
-      imageUrl: "d.jpg",
+      imageUrl: Hosea,
     },
   ];
 
   return (
     <div className="gradient-bg-1 min-h-screen">
       <div className="container mx-auto py-12">
-        <h1 className="text-4xl font-bold text-center mb-8 text-white">ABOUT US</h1>
+        <h1 className="text-4xl font-bold text-center mb-8 text-white">
+          ABOUT US
+        </h1>
         <div className="grid grid-cols-2 gap-8">
           {teamMembers.map((member, index) => (
             <div
