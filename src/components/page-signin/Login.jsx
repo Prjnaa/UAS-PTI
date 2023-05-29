@@ -94,7 +94,7 @@ export default function Login() {
         navigate("/main");
       })
       .catch(() => {
-        toast.error("User not registered");
+        toast.error("User not registered or invalid password");
       });
   };
 
@@ -115,20 +115,20 @@ export default function Login() {
   };
   
   return (
-    <main className="w-screen h-screen bg-mgreen grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
+    <main className="w-screen h-screen bg-cust-1 grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
       <motion.form
-        className="w-full bg-lyellow shadow-box rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9"
+        className="w-full bg-cust-3 shadow-box rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9"
         autoComplete="off"
         onSubmit={handleEmailPasswordLogin}
         initial={{ y: "-1000px" }}
         animate={{ y: 0 }}
         exit={{ y: "1000px", transition: { duration: 0.25 } }}
       >
-        <h1 className="text-4xl text-dgreen font-bold text-center">Login</h1>
+        <h1 className="text-4xl text-cust-5 font-bold text-center">Login</h1>
         <div className="flex flex-col gap-2">
           <label
             htmlFor="email"
-            className="text-dgreen font-semibold text-base"
+            className="text-cust-5 font-semibold text-base"
           >
             Email
           </label>
@@ -141,7 +141,7 @@ export default function Login() {
 
           <label
             htmlFor="password"
-            className="text-dgreen font-semibold text-base"
+            className="text-cust-5 font-semibold text-base"
           >
             Password
           </label>
@@ -155,12 +155,12 @@ export default function Login() {
           <div className="mt-4 flex flex-col gap-2">
             <button
               type="submit"
-              className="h-10 w-full bg-blue-500 text-white rounded-lg flex justify-center items-center"
+              className="h-10 w-full bg-cust-5 text-white rounded-lg flex justify-center items-center transition-transform hover:scale-95"
             >
               Login
             </button>
             <button
-              className="h-10 w-full bg-yellow-500 text-white rounded-lg"
+              className="h-10 w-full bg-red-500 text-white rounded-lg flex justify-center items-center transition-transform hover:scale-95"
               type="button"
               onClick={handleGoogleLogin}
             >
@@ -168,7 +168,7 @@ export default function Login() {
             </button>
             <Link
               to="/register"
-              className="h-10 w-full bg-red-500 text-white rounded-lg flex justify-center items-center"
+              className="h-10 w-full bg-cust-4 text-white rounded-lg flex justify-center items-center transition-transform hover:scale-95"
             >
               Register
             </Link>
