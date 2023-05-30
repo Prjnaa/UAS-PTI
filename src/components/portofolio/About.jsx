@@ -49,7 +49,7 @@ const Team = () => {
               <img
                 src={member.imageUrl}
                 alt={member.name}
-                className="w-32 h-32 rounded-full mb-4"
+                className="w-32 h-32 rounded-full mb-4 hover:translate-y-[-5px] transition duration-300 ease-in-out"
               />
               <h2 className="text-xl font-bold mb-2">{member.name}</h2>
               <p className="text-gray-500 mb-4">{member.position}</p>

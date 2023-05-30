@@ -21,7 +21,7 @@
     }
 
 a {
-    color: #000000 !important;
+    color: black !important;
     font-weight: bold;
     }
 
@@ -73,6 +73,8 @@ a {
 
 
 .fc-event-title {
+    margin-top: 10px;
     color: black !important;
-    font-size: 13px !important;
+    font-size: 18px !important;
+    margin-left: 5px;
 }

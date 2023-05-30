@@ -29,7 +29,7 @@ function Bottomside() {
         goTo="/chat" 
         ALT="friend.jpg" 
         imgURL={FriendSvg} 
-        desc="Comunity Chat"
+        desc="Forum Chat"
       />
     </div>
   );
