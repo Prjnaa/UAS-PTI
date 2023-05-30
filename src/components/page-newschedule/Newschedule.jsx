@@ -39,7 +39,7 @@ const Form = () => {
 
   const onSubmitEvent = async (e) => {
     e.preventDefault(); // Prevent form submission causing page reload
-
+    toast.success("Datta Submitted");
     if (!allFieldsFilled) {
       toast.error("Please fill in all fields before submitting");
       return;
@@ -134,7 +134,7 @@ const Form = () => {
             </div>
           </form>
         </div>
-        <div className="fixed w-2/3 bottom-0 mb-3">
+        <div className="mt-5">
           <Navbar />
         </div>
       </div>

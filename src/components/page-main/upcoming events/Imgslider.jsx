@@ -46,20 +46,19 @@ function Imgslider() {
         },
       },
     ],
-    prevArrow: null,
-    nextArrow: null,
   };
 
-  function openURL() {}
+  function clickHandle(webUrl) {
+    window.location.href = webUrl
+  }
 
   return (
     <div className="slider-container mt-">
       <Slider {...settings}>
         {data.map((item, index) => (
           <div key={index} className="slider">
-            <div className="img-wrapper mx-3 overflow-visible mt-4 mb-3">
+            <div className="img-wrapper mx-3 overflow-visible mt-4 mb-3" onClick={() => clickHandle(item.url)}>
               <img
-                onClick={openURL}
                 className="sliderimg rounded-xl"
                 src={item.imgurl}
                 alt={item.eventid}

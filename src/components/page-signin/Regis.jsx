@@ -21,7 +21,6 @@ export default function Register() {
 
   const userDataCollectionRef = collection(db, "users");
 
-  // Fungsi untuk menghasilkan ID unik
   const generateUniqueId = () => {
     const id = uuidv4();
     return id;
@@ -36,8 +35,8 @@ export default function Register() {
 
     if (querySnapshot.empty) {
       try {
-        const id = generateUniqueId(); // Generate a unique ID
-        const useRef = doc(userDataCollectionRef, id); // Use the generated ID for the user document
+        const id = generateUniqueId(); 
+        const useRef = doc(userDataCollectionRef, id); 
         await setDoc(useRef, {
           id: id,
           email: email,

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db, collection } from "../firebase";
 import "tailwindcss/tailwind.css";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import { userState } from "../currentUser";
 import Navbar from "../navbar/Navbar";
 
@@ -61,13 +61,37 @@ const EventList = () => {
     }
   };
 
+  //delete event
+  const handleEventDone = async (event) => {
+    try {
+      const userRef = doc(db, "users", currentUser);
+      const userSnapshot = await getDoc(userRef);
+  
+      if (userSnapshot.exists()) {
+        const userEventData = userSnapshot.data().eventLists;
+        const filteredEvents = userEventData.filter((e) => e.eventName !== event.eventName);
+  
+        // Update the events in the UI
+        setEvents(filteredEvents);
+  
+        // Update the events in the database
+        await updateDoc(userRef, {
+          eventLists: filteredEvents,
+        });
+      }
+    } catch (error) {
+      console.log("Error deleting event:", error);
+    }
+  };
+  
+
   return (
     <div className="items-center w-screen h-screen gradient-bg-1 grid grid-cols-12 py-3">
+        <h1 className="z-50 text-center text-5xl font-semibold text-cust-8 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13 mt-3 bg-opacity-10 bg-cust-1 rounded-xl">Event List</h1>
       <div
         className="max-h-[40rem] overflow-y-auto mb-14 px-2 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13"
         style={{ scrollbarWidth: "thin" }}
       >
-        <h1 className="z-50 w-2/3 text-center text-5xl font-semibold text-cust-8 fixed top-0 mt-3 bg-opacity-10 bg-cust-1 rounded-xl">Event List</h1>
         {events.length === 0 ? (
           <p className="text-center">No events available.</p>
         ) : (
@@ -124,13 +148,14 @@ const EventList = () => {
                   </div>
                 )}
               </div>
+              
             </div>
           ))
         )}
-        <div className="fixed w-2/3 bottom-0 mb-3">
+      </div>
+        <div className="mt-5  lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13">
           <Navbar />
         </div>
-      </div>
     </div>
   );
 };

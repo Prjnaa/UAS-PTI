@@ -50,8 +50,9 @@ export default function Chat() {
   };
 
   return (
-    <div className="w-[80%] h-[90%] p-4 flex flex-col bg-cust-3 border border-gray-200 rounded-lg shadow ">
-      <div ref={chatContainerRef} className="flex flex-col flex-grow overflow-y-scroll space-y-2">
+    <div className="w-[80%] h-[80%] p-4 flex flex-col bg-cust-3 border border-gray-200 rounded-lg shadow mb-5 ">
+      <h1 className="font-semibold text-xl mb-3">Comunity Chat</h1>
+      <div ref={chatContainerRef} className="flex flex-col flex-grow overflow-y-scroll space-y-2 mb-2">
         {messages.map((message) => (
           <div
             className={`flex flex-row items-center space-x-2 ${
@@ -71,7 +72,7 @@ export default function Chat() {
               <p className="text-sm">{message.text}</p>
             </div>
             {message.name === auth.currentUser.displayName && (
-              <img className="w-8 h-8 rounded-full" src={message.img} alt={message.name} />
+              <h1 className="mb-3 font-semibold text-base">Me</h1>
             )}
           </div>
         ))}

@@ -51,12 +51,10 @@ const Saving = () => {
               </div>
             ))
           ) : (
-            <h1 className="text-center text-3xl font-semibold">
-              No Event Listed
-            </h1>
+            <p className="text-center h-96 mt-32 grid place-items-center">No events available.</p>
           )}
         </div>
-      <div className="fixed bottom-0 w-2/3 mb-3">
+      <div className="">
         <Navbar />
       </div>
       </div>
