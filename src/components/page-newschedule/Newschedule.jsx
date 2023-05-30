@@ -39,10 +39,11 @@ const Form = () => {
 
   const onSubmitEvent = async (e) => {
     e.preventDefault(); // Prevent form submission causing page reload
-    toast.success("Datta Submitted");
     if (!allFieldsFilled) {
       toast.error("Please fill in all fields before submitting");
       return;
+    } else {
+      toast.success("Event Submitted");
     }
 
     try {

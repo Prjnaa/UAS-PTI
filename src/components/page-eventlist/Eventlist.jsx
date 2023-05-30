@@ -4,6 +4,7 @@ import "tailwindcss/tailwind.css";
 import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import { userState } from "../currentUser";
 import Navbar from "../navbar/Navbar";
+import { toast } from "react-toastify";
 
 const EventList = () => {
   const currentUser = userState.currentUser;
@@ -66,14 +67,16 @@ const EventList = () => {
     try {
       const userRef = doc(db, "users", currentUser);
       const userSnapshot = await getDoc(userRef);
-  
+
       if (userSnapshot.exists()) {
         const userEventData = userSnapshot.data().eventLists;
-        const filteredEvents = userEventData.filter((e) => e.eventName !== event.eventName);
-  
+        const filteredEvents = userEventData.filter(
+          (e) => e.eventName !== event.eventName
+        );
+
         // Update the events in the UI
         setEvents(filteredEvents);
-  
+
         // Update the events in the database
         await updateDoc(userRef, {
           eventLists: filteredEvents,
@@ -83,11 +86,12 @@ const EventList = () => {
       console.log("Error deleting event:", error);
     }
   };
-  
 
   return (
     <div className="items-center w-screen h-screen gradient-bg-1 grid grid-cols-12 py-3">
-        <h1 className="z-50 text-center text-5xl font-semibold text-cust-8 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13 mt-3 bg-opacity-10 bg-cust-1 rounded-xl">Event List</h1>
+      <h1 className="z-50 text-center text-5xl font-semibold text-cust-8 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13 mt-3 bg-opacity-10 bg-cust-1 rounded-xl">
+        Event List
+      </h1>
       <div
         className="max-h-[40rem] overflow-y-auto mb-14 px-2 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13"
         style={{ scrollbarWidth: "thin" }}
@@ -100,13 +104,17 @@ const EventList = () => {
               key={index}
               className="mb-4 p-4 border border-gray-300 rounded-xl shadow-md hover:shadow-lg transform transition-all duration-200 bg-cust-1"
             >
-              <h2 className="text-center text-cust-8 text-xl">{event.eventName}</h2>
+              <h2 className="text-center text-cust-8 text-xl">
+                {event.eventName}
+              </h2>
               <hr className="my-2" />
               <div className="flex justify-center">
                 <button
                   onClick={() => handleEventClick(event)}
                   className={`bg-cust-4 hover:bg-cust-5 text-cust-1 py-2 px-4 rounded transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 mt-2 ${
-                    selectedEvent && selectedEvent.eventName === event.eventName ? 'bg-cust-1 hover:bg-cust-5' : 'bg-cust-4 hover:bg-cust-5'
+                    selectedEvent && selectedEvent.eventName === event.eventName
+                      ? "bg-cust-1 hover:bg-cust-5"
+                      : "bg-cust-4 hover:bg-cust-5"
                   }`}
                 >
                   {selectedEvent && selectedEvent.eventName === event.eventName
@@ -119,43 +127,65 @@ const EventList = () => {
                   isAnimating ? "opacity-0" : ""
                 }`}
                 style={{
-                  maxHeight: selectedEvent && selectedEvent.eventName === event.eventName ? "200px" : "0",
-                  paddingTop: selectedEvent && selectedEvent.eventName === event.eventName ? "16px" : "0",
-                  paddingBottom: selectedEvent && selectedEvent.eventName === event.eventName ? "16px" : "0",
-                  marginTop: selectedEvent && selectedEvent.eventName === event.eventName ? "8px" : "0",
-                  marginBottom: selectedEvent && selectedEvent.eventName === event.eventName ? "8px" : "0",
-                  transition: "max-height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease, margin-top 0.3s ease, margin-bottom 0.3s ease",
+                  maxHeight:
+                    selectedEvent && selectedEvent.eventName === event.eventName
+                      ? "200px"
+                      : "0",
+                  paddingTop:
+                    selectedEvent && selectedEvent.eventName === event.eventName
+                      ? "16px"
+                      : "0",
+                  paddingBottom:
+                    selectedEvent && selectedEvent.eventName === event.eventName
+                      ? "16px"
+                      : "0",
+                  marginTop:
+                    selectedEvent && selectedEvent.eventName === event.eventName
+                      ? "8px"
+                      : "0",
+                  marginBottom:
+                    selectedEvent && selectedEvent.eventName === event.eventName
+                      ? "8px"
+                      : "0",
+                  transition:
+                    "max-height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease, margin-top 0.3s ease, margin-bottom 0.3s ease",
                 }}
               >
-                {selectedEvent && selectedEvent.eventName === event.eventName && (
-                  <div className="border border-gray-400 px-8 py-3 rounded-xl text-[1.1rem] bg-white">
-                    <div className="my-2 flex justify-between flex-wrap px-2">
-                      <p>Date:</p>
-                      <p>{selectedEvent.date}</p>
+                {selectedEvent &&
+                  selectedEvent.eventName === event.eventName && (
+                    <div className="border border-gray-400 px-8 py-3 rounded-xl text-[1.1rem] bg-white">
+                      <div className="my-2 flex justify-between flex-wrap px-2">
+                        <p>Date:</p>
+                        <p>{selectedEvent.date}</p>
+                      </div>
+                      <div className="my-2 flex justify-between flex-wrap px-2">
+                        <p>Time:</p>
+                        <p>{selectedEvent.time}</p>
+                      </div>
+                      <div className="my-2 flex justify-between flex-wrap px-2">
+                        <p>Location:</p>
+                        <p>{selectedEvent.location}</p>
+                      </div>
+                      <div className="my-2 flex justify-between flex-wrap px-2">
+                        <p>Budget:</p>
+                        <p>{selectedEvent.budget}</p>
+                      </div>
                     </div>
-                    <div className="my-2 flex justify-between flex-wrap px-2">
-                      <p>Time:</p>
-                      <p>{selectedEvent.time}</p>
-                    </div>
-                    <div className="my-2 flex justify-between flex-wrap px-2">
-                      <p>Location:</p>
-                      <p>{selectedEvent.location}</p>
-                    </div>
-                    <div className="my-2 flex justify-between flex-wrap px-2">
-                      <p>Budget:</p>
-                      <p>{selectedEvent.budget}</p>
-                    </div>
-                  </div>
-                )}
+                  )}
               </div>
-              
+              <button
+                onClick={() => handleEventDone(event)}
+                className="bg-cust-4 text-cust-1 py-2 px-4 rounded transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 mt-2 hover:bg-cust-5"
+              >
+                Done
+              </button>
             </div>
           ))
         )}
       </div>
-        <div className="mt-5  lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13">
-          <Navbar />
-        </div>
+      <div className="mt-5 lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13">
+        <Navbar />
+      </div>
     </div>
   );
 };
