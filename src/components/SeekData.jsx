@@ -12,7 +12,7 @@ export function SeekData() {
         ...doc.data(),
         id: doc.id,
       }));
-      console.log(filteredData);
+
     } catch (err) {
       console.error(err);
     }

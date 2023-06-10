@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { addDoc, collection, serverTimestamp, onSnapshot, query, orderBy, doc, getDoc } from "firebase/firestore";
-import { db, auth } from "../../firebase";
-import "../../../index.css";
-import { userState } from "../../currentUser";
+import { db, auth } from "../firebase";
+import "../../index.css";
+import { userState } from "../currentUser";
 
 export default function Chat() {
   const [newMessage, setNewMessage] = useState("");
@@ -40,7 +40,7 @@ export default function Chat() {
   useEffect(() => {
     const fetchUserName = async () => {
       if (!auth.currentUser.displayName) {
-        const userDocRef = doc(db, "users", currUser); // Assuming users collection is named "users"
+        const userDocRef = doc(db, "users", currUser);
         const userDocSnap = await getDoc(userDocRef);
         if (userDocSnap.exists()) {
           const userData = userDocSnap.data();

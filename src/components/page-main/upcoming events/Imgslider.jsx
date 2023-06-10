@@ -15,17 +15,16 @@ function Imgslider() {
     fetch(apiURL)
       .then((res) => res.json())
       .then((responseData) => {
-        console.log(responseData);
         setData(responseData.data);
       })
-      .catch((error) => {
-        console.error("Error fetching data", error);
+      .catch((err) => {
+        console.error("Error fetching data", err);
       });
   }, []);
 
   const settings = {
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
     dots: false,
     infinite: true,
     speed: 500,
@@ -34,8 +33,8 @@ function Imgslider() {
     swipeToSlide: true,
     draggable: true,
     scroll: true,
-    centerMode: true, // Set centerMode to true
-    centerPadding: "0px", // Adjust the center padding as needed
+    centerMode: true,
+    centerPadding: "0px",
     responsive: [
       {
         breakpoint: 768,
@@ -59,7 +58,7 @@ function Imgslider() {
   };
 
   function clickHandle(webUrl) {
-    window.location.href = webUrl;
+    window.open(webUrl);
   }
 
   return (

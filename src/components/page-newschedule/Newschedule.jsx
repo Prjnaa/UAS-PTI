@@ -53,7 +53,7 @@ const Form = () => {
       setDesc("");
       setTime("");
     } catch (error) {
-      console.log("Terjadi kesalahan:", error);
+      console.error(error);
       toast.error("An error occurred while submitting the event");
     }
   };
@@ -61,7 +61,7 @@ const Form = () => {
   return (
     <div className="flex flex-col min-h-screen bg-dom from-primary-light to-primary-dark">
       <div className="flex-grow md:mx-auto md:w-[70%] p-4 bg-comp shadow-box mt-6 sm:mt-8 md:mt-10 lg:mt-12">
-        <h2 className="text-2xl font-semibold mb-4 text-acc text-center">Event Form</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-acc text-center">New Event</h2>
         <form onSubmit={onSubmitEvent}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <FormField

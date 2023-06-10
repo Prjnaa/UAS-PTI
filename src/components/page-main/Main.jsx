@@ -9,7 +9,7 @@ import "./Main.css";
 function Main() {
   return (
     <div className="main-container">
-      <div className="container-wrapper bg-dom w-screen grid grid-cols-12">
+      <div className="container-wrapper bg-dom w-screen grid grid-cols-12 overflow-x-hidden">
         <motion.div
           initial={{ y: "-1000px" }}
           animate={{ y: 0 }}
