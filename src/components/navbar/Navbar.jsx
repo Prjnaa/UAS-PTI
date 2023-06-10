@@ -8,7 +8,7 @@ import "./nav.css";
 
 function Navbar() {
   return (
-    <div className="navbar-container bg-cust-2 sticky bottom-0 w-2/4 lg:h-24 md:h-20 h-14 shadow-box rounded-xl flex flex-row justify-around mx-auto">
+    <div className="navbar-container h-24 bg-comp flex flex-row justify-around items-center">
       <Navbutton imgURL={HomeSvg} navTo="/main" alt="Home" />
       <Navbutton imgURL={AboutUsSvg} navTo="/aboutUs" />
       <Logout imgURL={LogoutSvg} alt="Logout" />

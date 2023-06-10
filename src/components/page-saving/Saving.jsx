@@ -34,30 +34,32 @@ const Saving = () => {
   }, []);
 
   return (
-    <div className=" position-fixed w-screen h-screen gradient-bg-2 grid grid-cols-12 py-3 ">
-      <div className="lg:col-start-3 sm:col-start-2 col-start-1 lg:col-end-11 sm:col-end-12 col-end-13 px-5">
-        <h1 className="font-semibold text-5xl text-center sticky top-0 z-50 pb-4 text-cust-1">
-          Saving
-        </h1>
-        <div className="max-h-[40rem] overflow-y-auto mb-5">
-          {eventData.length != 0 ? (
-            eventData.map((eventItem, index) => (
-              <div key={index}>
-                <Container
-                  budget={eventItem.budget}
-                  event={eventItem.eventName}
-                  index={index}
-                />
-              </div>
-            ))
-          ) : (
-            <p className="text-center h-96 mt-32 grid place-items-center">No events available.</p>
-          )}
+    <div className="flex flex-col min-h-screen bg-dom">
+      <div className="flex-grow">
+        <div className="w-full py-3">
+          <h1 className="font-semibold text-5xl text-center pb-4 text-comp">
+            Saving
+          </h1>
+          <div className="max-h-[40rem] overflow-y-auto">
+            {eventData.length !== 0 ? (
+              eventData.map((eventItem, index) => (
+                <div key={index}>
+                  <Container
+                    budget={eventItem.budget}
+                    event={eventItem.eventName}
+                    index={index}
+                  />
+                </div>
+              ))
+            ) : (
+              <p className="text-center h-96 mt-32 grid place-items-center text-comp">
+                No events available.
+              </p>
+            )}
+          </div>
         </div>
-      <div className="">
-        <Navbar />
       </div>
-      </div>
+      <Navbar />
     </div>
   );
 };

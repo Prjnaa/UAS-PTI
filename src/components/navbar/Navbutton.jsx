@@ -9,12 +9,13 @@ function Navbutton(props) {
   };
 
   return (
-    <img
-      className="navbtn drop-shadow-text shake-hover"
-      src={props.imgURL}
-      alt={props.alt}
-      onClick={handleClick}
-    />
+    <button className="navbtn drop-shadow-text shake-hover" onClick={handleClick}>
+      <img
+        className="navbtn-icon"
+        src={props.imgURL}
+        alt={props.alt}
+      />
+    </button>
   );
 }
 

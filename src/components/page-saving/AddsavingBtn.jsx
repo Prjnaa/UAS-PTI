@@ -31,14 +31,8 @@ export default function Add({ index, setCollectedAmount }) {
   
         setCollectedAmount(eventItem.saving);
   
-        console.log('Value saved successfully.');
-      } else {
-        console.log('Invalid index or eventLists is not an array.');
       }
-    } else {
-      console.log('Event data does not exist.');
     }
-
     setShowInputField(false);
   };
   
@@ -52,14 +46,15 @@ export default function Add({ index, setCollectedAmount }) {
       {showInputField ? (
         <div>
           <input
+          className='px-2 py-1 rounded-md mr-2 mt-3'
             type="number"
             onChange={(e) => setSave(e.target.value)}
             value={save}
           />
-          <button onClick={submitSave} className='mt-2 mx-3 py-1 px-4 bg-cust-4 rounded-lg text-white hover:transition 2000ms transition-all duration-200 transform hover:-translate-y-1 hover:scale-105'>Add</button>
+          <button onClick={submitSave} className='bg-acc mt-2 py-1 px-4 bg-cust-4 rounded-lg text-white hover:transition 2000ms transition-all duration-200 transform hover:-translate-y-1 hover:scale-105'>Add</button>
         </div>
       ) : (
-        <button className=' text-white mt-2 mx-3 py-1.5 px-3 bg-cust-4 rounded-lg shadow-md hover:transition 2000ms transition-all duration-200 transform hover:-translate-y-1 hover:scale-105' onClick={handleClick}>Add Saving</button>
+        <button className='bg-acc text-white mt-2 py-1.5 px-3 bg-cust-4 rounded-lg shadow-md hover:transition 2000ms transition-all duration-200 transform hover:-translate-y-1 hover:scale-105' onClick={handleClick}>Add Saving</button>
       )}
     </div>
   );

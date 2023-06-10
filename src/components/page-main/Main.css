@@ -2,38 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-.container-wrapper {
-  height: 100%;
-}
-
-.gradient-bg-1 {
-  --darkBlue: #4c4c6d;
-  --lightBlue: #97e0d7;
-  --green: #1b9c85;
-  background-image: linear-gradient(
-    to top left,
-    var(--darkBlue),
-    var(--lightBlue)
-  );
-}
-
-.gradient-bg-2 {
-  --darkBlue: #4c4c6d;
-  --lightBlue: #e8f6ef;
-  --green: #1b9c85;
-  background-image: linear-gradient(-205deg, var(--darkBlue), var(--green));
-}
-
-.gradient-bg-3 {
-  --darkBlue: #4c4c6d;
-  --lightBlue: #e8f6ef;
-  --green: #1b9c85;
-  --yellow: #ffe194;
-  background-image: linear-gradient(165deg, var(--yellow), var(--green));
-}
 
 .logo-small {
-  width: 4.5rem;
+  max-width: 4.5rem;
   height: fit-content;
+  margin: 0 1.5%;
 }
+
+.shake-hover:hover {
+  animation: bellshake .5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.padding_r {
+  padding-right: 5% ;
+}
+
+@keyframes bellshake {
+  0% { transform: rotate(0); }
+  15% { transform: rotate(5deg); }
+  30% { transform: rotate(-5deg); }
+  45% { transform: rotate(4deg); }
+  60% { transform: rotate(-4deg); }
+  75% { transform: rotate(2deg); }
+  85% { transform: rotate(-2deg); }
+  92% { transform: rotate(1deg); }
+  100% { transform: rotate(0); }
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container-wrapper {
+  flex: 1;
+}
+
+.navbar-container {
+  width: 100%;
+}
+
+.container-wrapper .flex {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
 

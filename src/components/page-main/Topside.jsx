@@ -39,7 +39,7 @@ function Topside() {
         const month = dateStr[eventDate.getMonth()];
         const day = eventDate.getDate();
         const year = eventDate.getFullYear();
-        setClosestDate(`${month} ${day} ${year}`);
+        setClosestDate(`${month}, ${day} ${year}`);
       }
 
       setNextE(userEventData);
@@ -52,17 +52,25 @@ function Topside() {
     getEvent();
   }, []);
 
+
+
   return (
-    <div className="topbox shadow-box mt-3 bg-cust-2 flex lg:px-14 px-4 py-4 justify-between rounded-xl">
-      <div className="schedule text-black my-auto">
-        <p className="md:text-base/7 text-xs/3 font-normal tracking-widest">
+    <div className="topbox mt-3 flex px-6 justify-between">
+      <div className="schedule text-white my-auto">
+        <p className="md:text-base/8 text-xs/4 font-normal tracking-wider mb-2">
           NEXT SCHEDULE
         </p>
-        <h1 className="md:text-4xl/6 text-base/5 font-medium md:mt-4 mt-1">
-          {closestEvent}
-        </h1>
+        {
+          closestEvent !== "" ? (
+          <h1 className="md:text-4xl/8 text-2xl/6 font-semibold bg-comp -rotate-3 p-2 text-dom hover:rotate-0 transition-all duration-250 hover:scale-110 hover:shadow-box">
+            {closestEvent}
+          </h1>
+          ) : (
+            <h1 className="opacity-30">no event added !</h1>
+          )
+        }
         <div className="md:mt-3 def:mt-1">
-          <p className="md:text-base/6 text-xs/5 font-normal">{closestDate}</p>
+          <p className="md:text-base/6 text-xs/6 font-normal">{closestDate}</p>
         </div>
       </div>
       <Weather />

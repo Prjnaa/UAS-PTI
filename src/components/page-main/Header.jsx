@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Username from "./Username";
-import LogoSvg from "../assets/Logo.svg"
+import LogoSvg from "../assets/Logo.svg";
 
 function Header() {
   const [user, setUser] = useState();
@@ -11,15 +11,7 @@ function Header() {
 
   const date = new Date();
 
-  const days = [
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-  ];
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const months = [
     "Jan",
     "Feb",
@@ -40,16 +32,16 @@ function Header() {
   let currMonth = months[month];
 
   return (
-    <div className="header px-4 bg-cust-2 shadow-box rounded-xl sticky top-0 flex justify-between pb-4 pt-3 text-black font-normal text-xl">
-      <div className="header-username text-start flex flex-wrap">
-      <img src={LogoSvg} className="logo-small "/>
-        <Username></Username>
-      </div>
-      <div className="header-date text-end">
-        <p className="tracking-wider">{currDay},</p>
-        <h1 className="2xl:text-3xl/6 xl:text-xl flex flex-wrap font-semibold">
-          {currMonth} {date.getDate()} {date.getFullYear()}
-        </h1>
+    <div className="header padding_r bg-comp flex h-[8rem] pb-4 pt-3 text-acc font-normal text-xl mx-auto">
+      <img src={LogoSvg} className="logo-small my-auto" />
+      <div className="flex justify-between w-screen">
+          <Username></Username>
+        <div className="header-date text-end">
+          <p className="tracking-wider">{currDay},</p>
+          <h1 className="2xl:text-3xl/8 xl:text-xl flex flex-wrap font-semibold">
+            {currMonth} {date.getDate()} {date.getFullYear()}
+          </h1>
+        </div>
       </div>
     </div>
   );

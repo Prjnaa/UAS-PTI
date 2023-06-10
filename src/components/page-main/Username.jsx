@@ -18,8 +18,8 @@ function Username() {
   }
 
   return (
-    <div>
-    <p className="tracking-wider">Hello,</p>
+    <div className="my-auto">
+    <p className="tracking-widest">Hello,</p>
       <h1 className="2xl:text-3xl/6 xl:text-xl flex flex-wrap font-semibold">
         {usernm}
       </h1>
