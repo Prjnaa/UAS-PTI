@@ -26,7 +26,7 @@ function Weather() {
   }, []);
 
   return (
-    <div className="my-2 weather text-black">
+    <div className="my-2 weather text-white">
       {weatherData && (
         <div className="weather-wrapper">
           <div className="location">

@@ -38,7 +38,7 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className=" text-dgreen bg-mgreen  w-screen h-screen flex flex-col justify-center items-center">
+      <div className=" text-dom bg-white w-screen h-screen flex flex-col justify-center items-center">
         <p className="font-semibold text-3xl">PLEASE WAIT . . .</p>
       </div>
     );

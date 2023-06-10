@@ -35,20 +35,16 @@ export default {
     },
     extend: {
       boxShadow: {
-        'box': '0px 3px 8px 2px rgba(0, 0, 0, 0.3)',
+        'box': 'rgba(100, 100, 100, 0.09) 0px 2px 1px, rgba(100, 100, 100, 0.09) 0px 4px 2px, rgba(100, 100, 100, 0.09) 0px 8px 4px, rgba(100, 100, 100, 0.09) 0px 16px 8px, rgba(100, 100, 100, 0.09) 0px 32px 16px',
       },
       dropShadow: {
         'text': '0px 4px 2px rgba(0, 0, 0, 0.24)'
       },
       colors: {
-        'cust-1': "#E8F6EF",
-        'cust-2': "#FFE194",
-        'cust-3': "#F7E1AE",
-        'cust-4': "#1B9C85",
-        'cust-5': '#4C4C6D',
-        'cust-6': '#B0DAFF',
-        'cust-7': '#6E85B7',
-        'cust-8': '#002B5B',
+        'dom': "#5927E5",
+        'comp': "#FAEAFF",
+        'acc': "#362B48",
+        's-out': "#50FBDF",
       },
     },
     plugins: [],

@@ -8,7 +8,7 @@
 
 .slick-prev,
 .slick-next {
-  text-shadow:  0 5px 5px rgba(0, 0, 0, 0.3);
+  opacity: 0;
 }
 
 .sliderimg {
@@ -34,13 +34,15 @@
   transform: translateY(120%);
 }
 
-.slider:hover .descbox {
+.slider:hover .descbox,
+.slider.zoomed .descbox {
   animation: bg-in 0.5s ease-in-out forwards;
 }
 
-.slider:hover .sliderimg {
-  transform: scale(1.03) translateY(-10px);
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
+.slider:hover .sliderimg,
+.slider.zoomed .sliderimg {
+  transform: scale(1.03) translateY(-12.5px);
+  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.5);
 }
 
 .title,

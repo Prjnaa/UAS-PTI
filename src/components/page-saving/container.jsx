@@ -42,17 +42,17 @@ const Container = (props) => {
   }, [currentUser, index]);
 
   return (
-    <div className="container bg-cust-1 rounded-xl mb-10 py-4 px-8 shadow-box">
-      <div className="flex justify-between flex-wrap mb-[3%]">
-        <h1 className="font-semibold text-2xl">{eventName}</h1>
+    <div className="container bg-comp mb-10 py-4 px-8 shadow-box">
+      <div className="flex justify-between flex-wrap mb-[2%]">
+        <h1 className="font-semibold text-2xl mt-2 bg-acc p-2 text-comp rotate-2">{eventName}</h1>
         <Add index={index} setCollectedAmount={setCollectedAmount} />
       </div>
-      <div className="flex justify-between mt-3">
+      <div className="flex justify-between">
         <h1 className="font-medium text-left font-semibold">Saving</h1>
         <h1 className="font-medium text-right">{"Rp " + collectedAmount}</h1>
       </div>
 
-      <div className="flex justify-between mt-6">
+      <div className="flex justify-between mt-2">
         <h1 className="font-medium font-semibold">Progress</h1>
         <ProgressBar
           collectedAmount={collectedAmount}
@@ -60,7 +60,7 @@ const Container = (props) => {
         />
       </div>
 
-      <div className="flex justify-between mt-6">
+      <div className="flex justify-between mt-2">
         <h1 className="font-medium font-semibold">Target</h1>
         <h1 className="font-medium">{"Rp " + targetAmount}</h1>
       </div>

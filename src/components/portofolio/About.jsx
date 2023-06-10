@@ -5,37 +5,46 @@ import Hosea from "../assets/us/Hosea.png";
 import Mesaya from "../assets/us/mesaya.png";
 import Ben from "../assets/us/Ben.png";
 import Prajna from "../assets/us/Prajna.png";
+import "./about.css"
 
 const Team = () => {
   const teamMembers = [
     {
       name: "Christopher Mesaya",
       position: "Student",
-      bio: "@cmesayaa",
+      ig: "@cmesayaa",
+      url: "https://www.instagram.com/cmesayaa/",
       imageUrl: Mesaya,
     },
     {
       name: "Benedick Christopher Bamba",
       position: "Student",
-      bio: "@benchris04",
+      ig: "@benchris04",
+      url: "https://www.instagram.com/benchris04/",
       imageUrl: Ben,
     },
     {
       name: "Prajna Ananda Citra",
       position: "Student",
-      bio: "@prjnaa_04",
+      ig: "@prjnaa_04",
+      url: "https://www.instagram.com/prjnaa_04/",
       imageUrl: Prajna,
     },
     {
       name: "Hosea",
       position: "Student",
-      bio: "@hosea_304",
+      ig: "@hosea_304",
+      url: "https://www.instagram.com/hosea_304/",
       imageUrl: Hosea,
     },
   ];
 
+  function handleClick(url) {
+    window.open(url, "_blank");
+  }
+
   return (
-    <div className="gradient-bg-1 min-h-screen">
+    <div className="gradient-bg-1 min-h-screen bg-dom">
       <div className="container mx-auto py-12">
         <h1 className="text-4xl font-bold text-center mb-8 text-white">
           ABOUT US
@@ -44,23 +53,27 @@ const Team = () => {
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="bg-cust-1 rounded-md shadow-md p-6 flex flex-col items-center hover:translate-y-[-5px] transition duration-300 ease-in-out"
+              className="bg-comp text-acc rounded-md shadow-box p-6 flex flex-col items-center"
             >
               <img
                 src={member.imageUrl}
                 alt={member.name}
-                className="w-32 h-32 rounded-full mb-4 hover:translate-y-[-5px] transition duration-300 ease-in-out"
+                className="w-32 object-cover h-32 rounded-full mb-4 hover:translate-y-[-5px] transition duration-300 ease-in-out"
               />
               <h2 className="text-xl font-bold mb-2">{member.name}</h2>
               <p className="text-gray-500 mb-4">{member.position}</p>
-              <p className="text-gray-600 text-center">{member.bio}</p>
+              <a
+                href="#"
+                className="linkIg text-center hover:scale-110 transition-all duration-250"
+                onClick={() => handleClick(member.url)}
+              >
+                {member.ig}
+              </a>
             </div>
           ))}
         </div>
       </div>
-      <div className="px-44">
-        <Navbar />
-      </div>
+      <Navbar />
     </div>
   );
 };

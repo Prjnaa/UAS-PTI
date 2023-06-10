@@ -17,12 +17,13 @@ function Logout(props) {
   };
 
   return (
+    <button className="navbtn drop-shadow-text shake-hover" onClick={handleLogout}>
     <img
-      className="navbtn drop-shadow-text shake-hover"
+      className="navbtn-icon"
       src={props.imgURL}
       alt={props.alt}
-      onClick={handleLogout}
     />
+  </button>
   );
 }
 

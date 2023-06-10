@@ -57,8 +57,8 @@ export default function Login() {
 
     if (querySnapshot.empty) {
       try {
-        const id = generateUniqueId(); // Generate a unique ID
-        const useRef = doc(userDataCollectionRef, id); // Use the generated ID for the user document
+        const id = generateUniqueId(); 
+        const useRef = doc(userDataCollectionRef, id); 
         await setDoc(useRef, {
           id: id,
           email: email,
@@ -75,7 +75,7 @@ export default function Login() {
     } else {
       console.log("User data already exists in the database");
       const firstDoc = querySnapshot.docs[0];
-      const id = firstDoc.id; // Use the existing ID for the user document
+      const id = firstDoc.id;
       userState.currentUser = id;
       return id;
     }
@@ -117,9 +117,9 @@ export default function Login() {
   };
   
   return (
-    <main className="w-screen h-screen gradient-bg-3 grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
+    <main className="w-screen h-screen rb-gradient grid xl:grid-cols-8 md:grid-cols-12 grid-cols-8 px-4 py-20">
       <motion.form
-        className="w-full bg-cust-3 shadow-box rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9"
+        className="w-full bg-comp shadow-box rounded-lg p-6 xl:col-start-4 xl:col-end-6 lg:col-start-5 lg:col-end-9 md:col-start-4 md:col-end-10 sm:col-start-2 sm:col-end-8 col-start-1 col-end-9"
         autoComplete="off"
         onSubmit={handleEmailPasswordLogin}
         initial={{ y: "-1000px" }}
@@ -127,11 +127,11 @@ export default function Login() {
         exit={{ y: "1000px", transition: { duration: 0.25 } }}
       >
         <img src={LogoSVG} className="logo"/>
-        <h1 className="text-4xl text-cust-7 font-bold text-center">Login</h1>
+        <h1 className="text-4xl text-acc font-bold text-center">Login</h1>
         <div className="flex flex-col gap-2">
           <label
             htmlFor="email"
-            className="text-cust-7 font-semibold text-base"
+            className="text-acc font-semibold text-base"
           >
             Email
           </label>
@@ -144,7 +144,7 @@ export default function Login() {
 
           <label
             htmlFor="password"
-            className="text-cust-7 font-semibold text-base"
+            className="text-acc font-semibold text-base"
           >
             Password
           </label>
@@ -158,12 +158,12 @@ export default function Login() {
           <div className="mt-4 flex flex-col gap-2">
             <button
               type="submit"
-              className="h-10 w-full bg-cust-7 text-white rounded-lg flex justify-center items-center transition-transform hover:scale-95"
+              className="h-10 w-full bg-acc text-white rounded-lg flex justify-center items-center transition-transform hover:scale-95"
             >
               Login
             </button>
             <button
-              className="h-10 w-full bg-red-500 text-white rounded-lg flex justify-center items-center transition-transform hover:scale-95"
+              className="h-10 w-full rb-gradient2 text-white rounded-lg flex justify-center items-center transition-transform hover:scale-95"
               type="button"
               onClick={handleGoogleLogin}
             >
@@ -171,7 +171,7 @@ export default function Login() {
             </button>
             <Link
               to="/register"
-              className="h-10 w-full bg-cust-4 text-white rounded-lg flex justify-center items-center transition-transform hover:scale-95"
+              className="h-10 w-full bg-dom text-white rounded-lg flex justify-center items-center transition-transform hover:scale-95"
             >
               Register
             </Link>
