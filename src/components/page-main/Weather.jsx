@@ -10,7 +10,6 @@ function Weather() {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setWeatherData(data);
         })
         .catch((error) => {

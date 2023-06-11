@@ -35,20 +35,17 @@ const Calendar = () => {
           const userData = userDoc.data();
           setEvents(userData.eventLists.map(event => ({
             ...event,
-            title: event.eventName // Ganti event.eventName dengan nama field yang menyimpan nama event di Firestore
+            title: event.eventName 
           })));
         }
       } catch (error) {
-        console.log('Error fetching events: ', error);
+        console.error('Error fetching events: ', error);
       }
     };
 
     fetchEvents();
   }, []);
 
-  const handleEventClick = (event) => {
-    console.log('Event clicked:', event);
-  };
 
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} className='bg-cust-1'>
@@ -78,7 +75,6 @@ const Calendar = () => {
             html: true,
           });
         }}
-        eventClick={handleEventClick}
       />
 
       <ToastContainer />

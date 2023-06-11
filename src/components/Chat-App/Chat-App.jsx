@@ -1,4 +1,4 @@
-import Chat from "./components/Chat";
+import Chat from "./Chat";
 import '../../index.css'
 import Navbar from "../navbar/Navbar";
 

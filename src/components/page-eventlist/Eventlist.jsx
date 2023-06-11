@@ -21,7 +21,7 @@ const EventList = () => {
         setEvents(userEventData);
       }
     } catch (error) {
-      console.log("Error fetching events:", error);
+      console.error("Error fetching events:", error);
     }
   };
 
@@ -76,8 +76,8 @@ const EventList = () => {
           eventLists: filteredEvents,
         });
       }
-    } catch (error) {
-      console.log("Error deleting event:", error);
+    } catch (err) {
+      console.error("Error deleting event:", err);
     }
   };
 
@@ -93,7 +93,7 @@ const EventList = () => {
           events.map((event, index) => (
             <div
               key={index}
-              className="mb-4 p-4 border border-gray-300 shadow-md hover:shadow-lg bg-comp"
+              className="mb-4 p-4 border border-gray-300 shadow-box bg-comp"
             >
               <h2 className="text-center text-lg font-semibold text-acc">
                 {event.eventName}

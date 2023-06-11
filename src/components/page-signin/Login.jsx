@@ -50,7 +50,6 @@ export default function Login() {
   };
 
   const submitGoogleUser = async (email, name) => {
-    console.log("User:", email, name);
     const querySnapshot = await getDocs(
       query(collection(db, "users"), where("email", "==", email))
     );
@@ -73,7 +72,6 @@ export default function Login() {
         throw err;
       }
     } else {
-      console.log("User data already exists in the database");
       const firstDoc = querySnapshot.docs[0];
       const id = firstDoc.id;
       userState.currentUser = id;
@@ -101,17 +99,14 @@ export default function Login() {
   };
 
   const submitUser = async (email) => {
-    console.log("User:", email);
     const querySnapshot = await getDocs(
       query(collection(db, "users"), where("email", "==", email))
     );
 
     if (!querySnapshot.empty) {
-      console.log("Data pengguna ada dalam database");
       const userData = querySnapshot.docs[0].data();
       userState.currentUser = userData.id;
     } else {
-      console.log("Data pengguna tidak ada dalam database");
       toast.error("User not found");
     }
   };

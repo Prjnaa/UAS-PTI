@@ -10,7 +10,7 @@ import { collection, db } from "../firebase";
 import "firebase/auth";
 import { doc, getDocs, query, setDoc, where } from "firebase/firestore";
 import { saveUserStateToLocalStorage, userState } from "../currentUser";
-import { v4 as uuidv4 } from 'uuid'; // Import fungsi uuidv4 dari pustaka uuid
+import { v4 as uuidv4 } from 'uuid';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./sign.css"
@@ -28,7 +28,6 @@ export default function Register() {
 
   //google
   const submitUser = async (email, name) => {
-    console.log("User:", email, name);
     const querySnapshot = await getDocs(
       query(collection(db, "users"), where("email", "==", email))
     );
@@ -51,7 +50,6 @@ export default function Register() {
         throw err;
       }
     } else {
-      console.log("Data pengguna sudah ada dalam database");
       const firstDoc = querySnapshot.docs[0];
       const id = firstDoc.id; 
       userState.currentUser = id;

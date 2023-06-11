@@ -8,6 +8,7 @@ import { db } from "../firebase";
 function Topside() {
   const currentUser = userState.currentUser;
   const [nextE, setNextE] = useState([]);
+  const [closestTime, setClosestTime] = useState("");
   const [closestEvent, setClosestEvent] = useState("");
   const [closestDate, setClosestDate] = useState("");
   const dateStr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -17,41 +18,45 @@ function Topside() {
       const userRef = doc(db, "users", currentUser);
       const userSnap = await getDoc(userRef);
       const userEventData = userSnap.data().eventLists;
-
+  
       const currentDate = new Date();
       let closestEventIndex = -1;
-      let closestDiff = Infinity;
-
+      let closestDateTimeDiff = Infinity;
+  
       userEventData.forEach((event, index) => {
-        const eventDate = new Date(event.date);
-        const timeDiff = Math.abs(eventDate - currentDate);
-
-        if (timeDiff < closestDiff) {
-          closestDiff = timeDiff;
+        const eventDateTime = new Date(`${event.date}T${event.time}`);
+        const dateTimeDiff = Math.abs(eventDateTime - currentDate);
+  
+        if (dateTimeDiff < closestDateTimeDiff) {
+          closestDateTimeDiff = dateTimeDiff;
           closestEventIndex = index;
         }
       });
-
+  
       if (closestEventIndex !== -1) {
-        let tempEvent = userEventData[closestEventIndex].eventName
+        let tempEvent = userEventData[closestEventIndex].eventName;
         setClosestEvent(tempEvent.charAt(0).toUpperCase() + tempEvent.slice(1));
-        const eventDate = new Date(userEventData[closestEventIndex].date);
-        const month = dateStr[eventDate.getMonth()];
-        const day = eventDate.getDate();
-        const year = eventDate.getFullYear();
+        const eventDateTime = new Date(`${userEventData[closestEventIndex].date}T${userEventData[closestEventIndex].time}`);
+        const month = dateStr[eventDateTime.getMonth()];
+        const day = eventDateTime.getDate();
+        const year = eventDateTime.getFullYear();
         setClosestDate(`${month}, ${day} ${year}`);
+  
+        const eventTime = userEventData[closestEventIndex].time;
+        setClosestTime(eventTime);
       }
-
+  
       setNextE(userEventData);
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.error(err);
     }
   };
+  
+  
 
   useEffect(() => {
     getEvent();
   }, []);
-
 
 
   return (

@@ -7,7 +7,6 @@ import { db } from "../firebase";
 
 const Saving = () => {
   const currentUser = userState.currentUser;
-  console.log(currentUser);
 
   const [eventData, setEventData] = useState([]);
 
@@ -17,16 +16,12 @@ const Saving = () => {
     if (userDocSnap.exists()) {
       const userData = userDocSnap.data();
       const eventData = userData.eventLists;
-      console.log("eventData:", eventData);
       if (Array.isArray(eventData)) {
         setEventData(eventData);
       } else {
-        console.log("Event data is not an array.");
         setEventData([]);
       }
-    } else {
-      console.log("Event data does not exist.");
-    }
+    } 
   };
 
   useEffect(() => {
@@ -38,7 +33,7 @@ const Saving = () => {
       <div className="flex-grow">
         <div className="w-full py-3">
           <h1 className="font-semibold text-5xl text-center pb-4 text-comp">
-            Saving
+            Savings
           </h1>
           <div className="max-h-[40rem] overflow-y-auto">
             {eventData.length !== 0 ? (
