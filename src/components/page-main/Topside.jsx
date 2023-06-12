@@ -67,7 +67,7 @@ function Topside() {
         </p>
         {
           closestEvent !== "" ? (
-          <h1 className="md:text-4xl/8 text-2xl/6 font-semibold bg-comp -rotate-3 p-2 text-dom hover:rotate-0 transition-all duration-250 hover:scale-110 hover:shadow-box">
+          <h1 className="md:text-4xl/8 text-2xl/6 font-semibold bg-comp -rotate-3 p-2 rounded-md text-dom hover:rotate-0 transition-all duration-250 hover:scale-110 hover:shadow-box">
             {closestEvent}
           </h1>
           ) : (

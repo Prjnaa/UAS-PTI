@@ -21,12 +21,12 @@
     }
 
 a {
-    color: black !important;
+    color: white !important;
     font-weight: bold;
     }
 
 .popoverStyle .popover-header {
-    background-color: #1B9C85 !important;
+    background-color: #362B48 !important;
     color: white !important;
     font-weight: bold;
     }
@@ -42,7 +42,7 @@ a {
     margin-right: 5px !important;
     margin-top: 10px !important;
     border-radius: 5px !important;
-    background-color: #1B9C85 !important;
+    background-color: #362B48 !important;
     transition: background-color 0.3s ease, color 0.3s ease;
     border: none !important;
     color: white !important;
@@ -53,7 +53,7 @@ a {
     }
     
 .fc-toolbar-chunk > button {
-    background-color: #1B9C85 !important;
+    background-color: #362B48 !important;
     color: white !important;
     border: none !important;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -74,7 +74,29 @@ a {
 
 .fc-event-title {
     margin-top: 10px;
-    color: black !important;
+    color: white !important;
     font-size: 18px !important;
     margin-left: 5px;
+}
+
+.fc-toolbar-title {
+    color: white !important;
+    font-weight: bold;
+}
+
+.fc-col-header-cell-cushion {
+    font-weight: bold !important;
+}
+
+.fc-day {
+    border-width: medium !important;
+}
+
+.fc-scrollgrid{
+    border-width: medium !important;
+    border-radius: 10px;
+}
+
+.fc-daygrid-day-number{
+    font-weight: bold !important;
 }

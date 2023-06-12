@@ -68,7 +68,7 @@ export default function Chat() {
   };
 
   return (
-    <div className="w-[85%] h-[80%] p-4 flex flex-col bg-cust-3 bg-comp shadow-box mb-20 ">
+    <div className="w-[85%] h-[80%] p-4 flex flex-col bg-cust-3 bg-comp shadow-box mb-20 rounded-xl">
       <h1 className="font-semibold text-acc text-xl mb-3">Chat</h1>
       <div ref={chatContainerRef} className="flex flex-col flex-grow overflow-y-scroll space-y-2 mb-2">
         {messages.map((message) => (

@@ -45,6 +45,7 @@ export default {
         'comp': "#FAEAFF",
         'acc': "#362B48",
         's-out': "#50FBDF",
+        'cal': "#0F665C",
       },
     },
     plugins: [],

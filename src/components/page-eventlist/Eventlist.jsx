@@ -107,7 +107,7 @@ const EventList = () => {
           events.map((event, index) => (
             <div
               key={index}
-              className="mb-4 p-4 border border-gray-300 shadow-box bg-comp"
+              className="mb-4 p-4 border border-gray-300 shadow-box bg-comp rounded-xl"
             >
               <h2 className="text-center text-lg font-semibold text-acc">
                 {event.eventName}
@@ -158,7 +158,7 @@ const EventList = () => {
               >
                 {selectedEvent &&
                   selectedEvent.eventName === event.eventName && (
-                    <div className="border border-gray-400 px-8 py-3 text-lg bg-acc text-comp">
+                    <div className="border border-gray-400 px-8 py-3 text-lg bg-acc text-comp rounded-lg">
                       <div className="my-2 flex justify-between flex-wrap">
                         <p>Date:</p>
                         <p>{selectedEvent.date}</p>

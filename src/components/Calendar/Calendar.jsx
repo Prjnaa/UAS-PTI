@@ -46,9 +46,16 @@ const Calendar = () => {
     fetchEvents();
   }, []);
 
+  const handleClick = () => {
+    window.location.href = "eventlist";
+  };
 
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} className='bg-cust-1'>
+      <button className="bg-acc text-white font-bold py-2 px-4 rounded absolute top-3 right-10 transition-all duration-200 transform hover:-translate-y-1 hover:scale-105" onClick={handleClick}>
+        Kembali
+      </button>
+
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
@@ -62,8 +69,7 @@ const Calendar = () => {
         slotDuration="00:30:00"
         eventDidMount={info => {
           const popoverContent = `
-            <strong>${info.event.title}</strong>
-            <br/>Location: ${info.event.extendedProps.location}<br/>
+            Location: ${info.event.extendedProps.location}<br/>
             Time: ${info.event.extendedProps.time}
           `;
           return new bootstrap.Popover(info.el, {
