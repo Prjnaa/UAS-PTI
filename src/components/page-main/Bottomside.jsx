@@ -6,7 +6,7 @@ import SavingSvg from "../assets/Saving.svg"
 
 function Bottomside() {
   return (
-    <div className="bottombox md:mt-10 mt-3 bg-acc flex justify-around pb-2">
+    <div className="bottombox md:mt-10 mt-3 bg-acc flex justify-around pb-2 shadow-box">
       <Menubutton
         goTo="/saving"
         ALT="saving.jpg"
