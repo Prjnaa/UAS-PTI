@@ -21,6 +21,7 @@ import {
   arrayUnion,
   FieldValue,
 } from "firebase/firestore";
+import Navbar from "../navbar/Navbar.jsx";
 
 const Calendar = () => {
   const currentUser = userState.currentUser;
@@ -82,7 +83,7 @@ const Calendar = () => {
           });
         }}
       />
-
+      <Navbar />
       <ToastContainer />
     </div>
   );

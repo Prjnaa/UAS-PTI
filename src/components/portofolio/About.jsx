@@ -66,7 +66,7 @@ const Team = () => {
               <p className="text-gray-500 mb-4">{member.position}</p>
               <a
                 href="#"
-                className="linkIg text-center hover:scale-110 transition-all duration-250"
+                className="linkIg text-center hover:scale-110 transition-all duration-250 text-black"
                 onClick={() => handleClick(member.url)}
               >
                 {member.ig}
