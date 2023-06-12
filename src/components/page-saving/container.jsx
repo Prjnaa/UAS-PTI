@@ -44,7 +44,7 @@ const Container = (props) => {
   return (
     <div className="container bg-comp mb-10 py-4 px-8 shadow-box rounded-xl">
       <div className="flex justify-between flex-wrap mb-[2%]">
-        <h1 className="font-semibold text-2xl mt-2 bg-acc p-2 text-comp rotate-2">{eventName}</h1>
+        <h1 className="font-semibold text-2xl mt-2 bg-acc p-2 text-comp rotate-2 rounded-sm">{eventName}</h1>
         <Add index={index} setCollectedAmount={setCollectedAmount} />
       </div>
       <div className="flex justify-between">
