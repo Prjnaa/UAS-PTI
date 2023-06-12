@@ -5,6 +5,7 @@ import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import { userState } from "../currentUser";
 import Navbar from "../navbar/Navbar";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const EventList = () => {
   const currentUser = userState.currentUser;
@@ -81,11 +82,24 @@ const EventList = () => {
     }
   };
 
+  const navigate = useNavigate();
+  function toCalendar() {
+    navigate("/calendar");
+  }
+
   return (
     <div className="min-h-screen bg-dom from-primary to-secondary">
-      <h1 className="text-5xl font-semibold text-comp text-center py-8">
-        Event List
-      </h1>
+      <div className="text-center">
+        <h1 className="text-5xl font-semibold text-comp text-center pt-6 pb-2">
+          Event List
+        </h1>
+        <button
+          className="calendarBtn bg-acc text-comp p-2 rounded-lg just mt-2 mb-4 transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 hover:shadow-md"
+          onClick={toCalendar}
+        >
+          Calendar
+        </button>
+      </div>
       <div className="max-h-[40rem] lg:w-[60rem] mx-auto overflow-y-auto px-2">
         {events.length === 0 ? (
           <p className="text-center text-white">No events available.</p>

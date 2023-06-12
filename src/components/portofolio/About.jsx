@@ -5,7 +5,7 @@ import Hosea from "../assets/us/Hosea.png";
 import Mesaya from "../assets/us/mesaya.png";
 import Ben from "../assets/us/Ben.png";
 import Prajna from "../assets/us/Prajna.png";
-import "./about.css"
+import "./about.css";
 
 const Team = () => {
   const teamMembers = [
@@ -44,23 +44,25 @@ const Team = () => {
   }
 
   return (
-    <div className="gradient-bg-1 min-h-screen bg-dom">
+    <div className="h-screen bg-dom">
       <div className="container mx-auto py-12">
         <h1 className="text-4xl font-bold text-center mb-8 text-white">
           ABOUT US
         </h1>
-        <div className="grid grid-cols-2 gap-8">
+        <div className="m-auto grid md:grid-cols-2 place-items-center grid-cols-1 sm:w-[80%] gap-8">
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="bg-comp text-acc rounded-md shadow-box p-6 flex flex-col items-center"
+              className="bg-comp text-acc rounded-md shadow-box p-6 flex flex-col items-center w-full xl:w-[80%]"
             >
               <img
                 src={member.imageUrl}
                 alt={member.name}
                 className="w-32 object-cover h-32 rounded-full mb-4 hover:translate-y-[-5px] transition duration-300 ease-in-out"
               />
-              <h2 className="text-xl font-bold mb-2">{member.name}</h2>
+              <h2 className="text-xl text-center font-bold mb-2">
+                {member.name}
+              </h2>
               <p className="text-gray-500 mb-4">{member.position}</p>
               <a
                 href="#"
@@ -73,7 +75,7 @@ const Team = () => {
           ))}
         </div>
       </div>
-      <Navbar />
+        <Navbar />
     </div>
   );
 };
