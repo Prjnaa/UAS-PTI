@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Navbar from "../navbar/Navbar";
 import "tailwindcss/tailwind.css";
 import Hosea from "../assets/us/Hosea.png";
@@ -51,31 +52,48 @@ const Team = () => {
         </h1>
         <div className="m-auto grid md:grid-cols-2 place-items-center grid-cols-1 sm:w-[80%] gap-8">
           {teamMembers.map((member, index) => (
-            <div
+            <motion.div
               key={index}
               className="bg-comp text-acc rounded-md shadow-box p-6 flex flex-col items-center w-full xl:w-[80%]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              <img
+              <motion.img
                 src={member.imageUrl}
                 alt={member.name}
-                className="w-32 object-cover h-32 rounded-full mb-4 hover:translate-y-[-5px] transition duration-300 ease-in-out"
+                className="w-32 object-cover h-32 rounded-full mb-4"
+                whileHover={{ translateY: -5 }}
               />
-              <h2 className="text-xl text-center font-bold mb-2">
+              <motion.h2
+                className="text-xl text-center font-bold mb-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
                 {member.name}
-              </h2>
-              <p className="text-gray-500 mb-4">{member.position}</p>
-              <a
+              </motion.h2>
+              <motion.p
+                className="text-gray-500 mb-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+              >
+                {member.position}
+              </motion.p>
+              <motion.a
                 href="#"
-                className="linkIg text-center hover:scale-110 transition-all duration-250 text-black"
+                className="linkIg text-center"
                 onClick={() => handleClick(member.url)}
+                whileTap={{ scale: 1.1 }}
               >
                 {member.ig}
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
           ))}
         </div>
       </div>
-        <Navbar />
+      <Navbar />
     </div>
   );
 };
