@@ -21,12 +21,12 @@
     }
 
 a {
-    color: #5927E5 !important;
+    color: ##362B48 !important;
     font-weight: bold;
     }
 
 .popoverStyle .popover-header {
-    background-color: #5927E5 !important;
+    background-color: #362B48 !important;
     color: white !important;
     font-weight: bold;
     }
@@ -74,7 +74,7 @@ a {
 
 .fc-event-title {
     margin-top: 10px;
-    color: #5927E5 !important;
+    color: #362B48 !important;
     font-size: 18px !important;
     margin-left: 5px;
 }
