@@ -22,6 +22,7 @@ import {
   FieldValue,
 } from "firebase/firestore";
 import Navbar from "../navbar/Navbar.jsx";
+import { useNavigate } from 'react-router-dom';
 
 const Calendar = () => {
   const currentUser = userState.currentUser;
@@ -47,8 +48,9 @@ const Calendar = () => {
     fetchEvents();
   }, []);
 
+  const navigate = useNavigate();
   const handleClick = () => {
-    window.location.href = "eventlist";
+    navigate("/eventList")
   };
 
   return (
