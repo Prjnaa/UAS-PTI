@@ -1,6 +1,14 @@
+import React from "react";
+import { motion } from "framer-motion";
+
 const FormField = ({ label, type = 'text', placeholder, value, onChange, textarea = false, rows = 1 }) => {
   return (
-    <div className="mb-4">
+    <motion.div
+      initial={{ opacity: 1, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="mb-4"
+    >
       <label htmlFor={label.toLowerCase().replace(/\s/g, '')} className="block mb-2 font-medium text-lyellow">
         {label}
       </label>
@@ -23,7 +31,7 @@ const FormField = ({ label, type = 'text', placeholder, value, onChange, textare
           onChange={onChange}
         />
       )}
-    </div>
+    </motion.div>
   );
 }
 
