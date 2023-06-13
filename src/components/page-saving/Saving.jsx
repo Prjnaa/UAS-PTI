@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Container from "./container";
 import Navbar from "../navbar/Navbar";
 import { userState } from "../currentUser";
@@ -21,7 +22,7 @@ const Saving = () => {
       } else {
         setEventData([]);
       }
-    } 
+    }
   };
 
   useEffect(() => {
@@ -32,24 +33,39 @@ const Saving = () => {
     <div className="flex flex-col min-h-screen bg-dom">
       <div className="flex-grow">
         <div className="w-full py-3">
-          <h1 className="font-semibold text-5xl text-center pb-4 text-comp">
+          <motion.h1
+            className="font-semibold text-5xl text-center pb-4 text-comp"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             Savings
-          </h1>
+          </motion.h1>
           <div className="max-h-[40rem] overflow-y-auto">
             {eventData.length !== 0 ? (
               eventData.map((eventItem, index) => (
-                <div key={index}>
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
                   <Container
                     budget={eventItem.budget}
                     event={eventItem.eventName}
                     index={index}
                   />
-                </div>
+                </motion.div>
               ))
             ) : (
-              <p className="text-center h-96 mt-32 grid place-items-center text-comp">
+              <motion.p
+                className="text-center h-96 mt-32 grid place-items-center text-comp"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
                 No events available.
-              </p>
+              </motion.p>
             )}
           </div>
         </div>

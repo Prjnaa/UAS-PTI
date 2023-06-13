@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { db, collection } from "../firebase";
 import "tailwindcss/tailwind.css";
 import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
@@ -88,34 +89,53 @@ const EventList = () => {
   }
 
   return (
-    <div className="min-h-screen bg-dom from-primary to-secondary">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="min-h-screen bg-dom from-primary to-secondary"
+    >
       <div className="text-center">
         <h1 className="text-5xl font-semibold text-comp text-center pt-6 pb-2">
           Event List
         </h1>
-        <button
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           className="calendarBtn bg-acc text-comp p-2 rounded-lg just mt-2 mb-4 transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 hover:shadow-md"
           onClick={toCalendar}
         >
           Calendar
-        </button>
+        </motion.button>
       </div>
       <div className="max-h-[40rem] lg:w-[60rem] mx-auto overflow-y-auto px-2">
         {events.length === 0 ? (
           <p className="text-center text-white">No events available.</p>
         ) : (
           events.map((event, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="mb-4 p-4 border border-gray-300 shadow-box bg-comp rounded-xl"
             >
-              <h2 className="text-center text-lg font-semibold text-acc">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center text-lg font-semibold text-acc"
+              >
                 {event.eventName}
-              </h2>
+              </motion.h2>
               <hr className="my-2" />
-              <div className="flex justify-center">
-                <button
+              <motion.div
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="flex justify-center"
+              >
+                <motion.button
                   onClick={() => handleEventClick(event)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   className={`bg-acc hover:bg-primary-dark text-white py-2 px-4 rounded mt-2 transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 ${
                     selectedEvent && selectedEvent.eventName === event.eventName
                       ? "bg-secondary hover:bg-secondary-dark"
@@ -125,9 +145,12 @@ const EventList = () => {
                   {selectedEvent && selectedEvent.eventName === event.eventName
                     ? "Hide Details"
                     : "View Details"}
-                </button>
-              </div>
-              <div
+                </motion.button>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
                 className={`overflow-hidden transition-all duration-300 ${
                   isAnimating ? "opacity-0" : ""
                 }`}
@@ -158,7 +181,12 @@ const EventList = () => {
               >
                 {selectedEvent &&
                   selectedEvent.eventName === event.eventName && (
-                    <div className="border border-gray-400 px-8 py-3 text-lg bg-acc text-comp rounded-lg">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                      className="border border-gray-400 px-8 py-3 text-lg bg-acc text-comp rounded-lg"
+                    >
                       <div className="my-2 flex justify-between flex-wrap">
                         <p>Date:</p>
                         <p>{selectedEvent.date}</p>
@@ -175,23 +203,25 @@ const EventList = () => {
                         <p>Budget:</p>
                         <p>{selectedEvent.budget}</p>
                       </div>
-                    </div>
+                    </motion.div>
                   )}
-              </div>
-              <button
+              </motion.div>
+              <motion.button
                 onClick={() => handleEventDone(event)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className="bg-acc text-white py-2 px-4 rounded mt-2 transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 hover:bg-secondary"
               >
                 Done
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
           ))
         )}
       </div>
       <div className="fixed bottom-0 w-full">
         <Navbar />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

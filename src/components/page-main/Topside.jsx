@@ -18,46 +18,66 @@ function Topside() {
       const userRef = doc(db, "users", currentUser);
       const userSnap = await getDoc(userRef);
       const userEventData = userSnap.data().eventLists;
-  
+
       const currentDate = new Date();
       let closestEventIndex = -1;
       let closestDateTimeDiff = Infinity;
-  
+
       userEventData.forEach((event, index) => {
         const eventDateTime = new Date(`${event.date}T${event.time}`);
         const dateTimeDiff = Math.abs(eventDateTime - currentDate);
-  
+
         if (dateTimeDiff < closestDateTimeDiff) {
           closestDateTimeDiff = dateTimeDiff;
           closestEventIndex = index;
         }
       });
-  
+
       if (closestEventIndex !== -1) {
         let tempEvent = userEventData[closestEventIndex].eventName;
-        setClosestEvent(tempEvent.charAt(0).toUpperCase() + tempEvent.slice(1));
+        const capitalizedEvent = tempEvent.charAt(0).toUpperCase() + tempEvent.slice(1);
+        setClosestEvent(capitalizedEvent);
         const eventDateTime = new Date(`${userEventData[closestEventIndex].date}T${userEventData[closestEventIndex].time}`);
         const month = dateStr[eventDateTime.getMonth()];
         const day = eventDateTime.getDate();
         const year = eventDateTime.getFullYear();
         setClosestDate(`${month}, ${day} ${year}`);
-  
+
         const eventTime = userEventData[closestEventIndex].time;
         setClosestTime(eventTime);
       }
-  
+
       setNextE(userEventData);
     } catch (err) {
       console.error(err);
     }
   };
-  
-  
 
   useEffect(() => {
     getEvent();
   }, []);
 
+  const maxCharsPerLine = 20;
+  const closestEventLines = []; 
+  
+  if (closestEvent.length <= maxCharsPerLine) {
+    closestEventLines.push(closestEvent);
+  } else {
+    const words = closestEvent.split(" ");
+    let line = "";
+    words.forEach((word) => {
+      if (line.length + word.length > maxCharsPerLine) {
+        closestEventLines.push(line);
+        line = word;
+      } else {
+        line += (line === "" ? "" : " ") + word;
+      }
+    });
+
+    if (line !== "") {
+      closestEventLines.push(line);
+    }
+  }
 
   return (
     <div className="topbox mt-3 flex px-6 justify-between">
@@ -65,15 +85,18 @@ function Topside() {
         <p className="md:text-base/8 text-xs/4 font-normal tracking-wider mb-2">
           NEXT SCHEDULE
         </p>
-        {
-          closestEvent !== "" ? (
-          <h1 className="md:text-4xl/8 text-2xl/6 font-semibold bg-comp -rotate-3 p-2 rounded-md text-dom hover:rotate-0 transition-all duration-250 hover:scale-110 hover:shadow-box">
-            {closestEvent}
-          </h1>
-          ) : (
-            <h1 className="opacity-30">no event added !</h1>
-          )
-        }
+        {closestEvent !== "" ? (
+          closestEventLines.map((line, index) => (
+            <h1
+              key={index}
+              className="md:text-4xl/8 text-2xl/6 font-semibold bg-comp -rotate-3 p-2 rounded-md text-dom hover:rotate-0 transition-all duration-250 hover:scale-110 hover:shadow-box"
+            >
+              {line}
+            </h1>
+          ))
+        ) : (
+          <h1 className="opacity-30">no event added !</h1>
+        )}
         <div className="md:mt-3 def:mt-1">
           <p className="md:text-base/6 text-xs/6 font-normal">{closestDate}</p>
         </div>
