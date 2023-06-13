@@ -53,10 +53,6 @@ const Calendar = () => {
 
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} className='bg-cust-1'>
-      <button className="bg-acc text-white font-bold py-2 px-4 rounded absolute top-3 right-10 transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 hover:bg-black" onClick={handleClick}>
-        Back
-      </button>
-
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
@@ -65,6 +61,7 @@ const Calendar = () => {
           center: 'title',
           end: '',
         }}
+        
         height="100%"
         events={events}
         slotDuration="00:30:00"
@@ -83,6 +80,9 @@ const Calendar = () => {
           });
         }}
       />
+      <button className="bg-acc text-white font-bold py-1 px-2 rounded-sm absolute top-4 right-10 transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 hover:bg-black" onClick={handleClick}>
+        Back
+      </button>
       <Navbar />
       <ToastContainer />
     </div>
