@@ -128,7 +128,6 @@ const EventList = () => {
               </motion.h2>
               <hr className="my-2" />
               <motion.div
-                initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="flex justify-center"
